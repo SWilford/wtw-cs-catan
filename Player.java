@@ -23,4 +23,12 @@ public class Player {
             numRoad--;
     }
 
+    public static void gainPoint(int v)
+    {
+        points += v;
+    }
+
+    public int getPoints() {
+        return points;
+    }
 }
