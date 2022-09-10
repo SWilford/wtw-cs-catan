@@ -11,21 +11,58 @@ public class Player {
         numRoad = 15;
     }
 
+    public int getSheep()
+    {
+        return numSheep;
+    }
+    public int getBrick()
+    {
+        return numBrick;
+    }
+    public int getWheat()
+    {
+        return numWheat;
+    }
+    public int getOre()
+    {
+        return ore;
+    }
+    public int getLumber()
+    {
+        return numLumber;
+    }
+
 
     //settlement = 0, city = 1, road = 2
-    public static void updateBuildingCount(int i)
+    public static void placeBuilding(int i)
     {
-        if(i = 0)
+        if(i = 0) {
             numSettlement--;
-        else if(i = 1)
+            numWood--;
+            numBrick--;
+            numWheat--;
+            numSheep--;
+        }
+        else if(i = 1) {
             numCity--;
-        else
+            numSettlement++;
+            numOre -= 3;
+            numWheat -= 2;
+        }
+        else {
             numRoad--;
+            numBrick--;
+            numWood--;
+        }
     }
 
     public static void gainPoint(int v)
     {
         points += v;
+    }
+    public static void losePoint(int v)
+    {
+        points -= v;
     }
 
     public int getPoints() {
