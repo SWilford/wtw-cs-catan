@@ -28,8 +28,23 @@ public class Tile {
         return nO;
     }
 
-    public int getNorthEast() { //accessor for north eat vertex
+    public int getNorthEast() { //accessor for north east vertex
         return noE;
     }
 
+    public int getSouthEast() { //accessor for south east vertex
+        return soE;
+    }
+
+    public int getSouth() { //accessor for south vertex
+        rerturn sO;
+    }
+
+    public int getSouthWest() { //accessor for south west vertex
+        return soW;
+    }
+
+    public int getNorthWest() { //accessor for north west vertex
+        return noW;
+    }
 }
