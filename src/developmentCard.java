@@ -1,4 +1,4 @@
-public class developmentCard {
+public class developmentCard extends card{
     private int type, pointValue;
     private String text;
     //1 = knight, 2 = progress, 3 = VP

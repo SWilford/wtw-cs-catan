@@ -1,9 +1,9 @@
 public class developmentDeck {
-    private developmentCard[] deck;
+    private card[] deck;
 
     public developmentDeck()
     {
-        deck = new developmentCard[25];
+        deck = new card[25];
         //knights
         for(int i = 0; i<14; i++)
         {
@@ -36,8 +36,8 @@ public class developmentDeck {
     //deals the top card (duh)
     public card dealTop()
     {
-        card top = new card(deck[deck.length-1]); //top card
-        developmentCard[] newDeck = deck[]-deck.length-2; //new deck minus top card
+        card top = deck[deck.length-1]; //top card
+        card[] newDeck = new card[deck.length-2]; //new deck minus top card
         return top;
     }
     //shuffles
@@ -48,7 +48,7 @@ public class developmentDeck {
             int rand = (int)(Math.random() * deck.length + 1); //random card
             card temp = deck[rand]; //swaps the cards
             deck[rand] = deck[i];
-            deck[i] = deck[temp];
+            deck[i] = temp;
         }
     }
 }

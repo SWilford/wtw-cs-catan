@@ -25,7 +25,7 @@ public class Player {
     }
     public int getOre()
     {
-        return ore;
+        return numOre;
     }
     public int getLumber()
     {
@@ -34,16 +34,16 @@ public class Player {
 
 
     //settlement = 0, city = 1, road = 2
-    public static void placeBuilding(int i)
+    public void placeBuilding(int i)
     {
-        if(i = 0) {
+        if(i == 0) {
             numSettlement--;
-            numWood--;
+            numLumber--;
             numBrick--;
             numWheat--;
             numSheep--;
         }
-        else if(i = 1) {
+        else if(i == 1) {
             numCity--;
             numSettlement++;
             numOre -= 3;
@@ -52,15 +52,15 @@ public class Player {
         else {
             numRoad--;
             numBrick--;
-            numWood--;
+            numLumber--;
         }
     }
 
-    public static void gainPoint(int v)
+    public void gainPoint(int v)
     {
         points += v;
     }
-    public static void losePoint(int v)
+    public void losePoint(int v)
     {
         points -= v;
     }
