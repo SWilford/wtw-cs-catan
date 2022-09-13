@@ -4,7 +4,7 @@ public class Tile {
 
     private int nO, noE, soE, sO, soW, noW; //Stores values for shared vertices of hexes
 
-    public Tile(String t, int n, nD, neD, seD, sD, swD, nwD)
+    public Tile(String t, int n, int nD, int neD, int seD, int sD, int swD, int nwD)
     {
         type = t;
         number = n;
@@ -24,27 +24,27 @@ public class Tile {
         return number;
     }
 
-    public int getNorth() { //acessor for north vertex value
+    public int getNorth() { //accessor for north vertex value
         return nO;
     }
 
-    public int getNorthEast() { //accessor for north east vertex
+    public int getNorthEast() { //accessor for northeast vertex
         return noE;
     }
 
-    public int getSouthEast() { //accessor for south east vertex
+    public int getSouthEast() { //accessor for southeast vertex
         return soE;
     }
 
     public int getSouth() { //accessor for south vertex
-        rerturn sO;
+        return sO;
     }
 
-    public int getSouthWest() { //accessor for south west vertex
+    public int getSouthWest() { //accessor for southwest vertex
         return soW;
     }
 
-    public int getNorthWest() { //accessor for north west vertex
+    public int getNorthWest() { //accessor for northwest vertex
         return noW;
     }
 }

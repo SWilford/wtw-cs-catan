@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class catanGraphics extend JPanel{
+public class catanGraphics extends JPanel{
     private JButton startButton, rules, settings, stats;
     private JLabel title;
 
@@ -18,7 +18,7 @@ public class catanGraphics extend JPanel{
         stats = new JButton("Stats");
         stats.addActionListener(new statsClicked());
         title = new JLabel("The Settlers of Catan");
-        setLayout(new FlowLayout);
+        setLayout(new FlowLayout());
         add(title);
         add(rules);
         add(settings);
@@ -30,28 +30,28 @@ public class catanGraphics extend JPanel{
     //Action listeners
     private class startClicked implements ActionListener
     {
-        public void ActionPerformed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
         }
     }
     private class rulesClicked implements ActionListener
     {
-        public void ActionPerformed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
         }
     }
     private class statsClicked implements ActionListener
     {
-        public void ActionPerformed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
         }
     }
     private class settingsClicked implements ActionListener
     {
-        public void ActionPerformed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
         }

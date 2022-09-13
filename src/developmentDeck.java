@@ -34,9 +34,9 @@ public class developmentDeck {
 
     //if deck.length = 0 we gotta reshuffle
     //deals the top card (duh)
-    public Card dealTop()
+    public card dealTop()
     {
-        Card top = new Card(deck[deck.length-1]); //top card
+        card top = new card(deck[deck.length-1]); //top card
         developmentCard[] newDeck = deck[]-deck.length-2; //new deck minus top card
         return top;
     }
@@ -45,8 +45,8 @@ public class developmentDeck {
     {
         for(int i = 0; i<deck.length; i++)
         {
-            int rand = Math.random() * deck.length + 1; //random card
-            Card temp = deck[rand]; //swaps the cards
+            int rand = (int)(Math.random() * deck.length + 1); //random card
+            card temp = deck[rand]; //swaps the cards
             deck[rand] = deck[i];
             deck[i] = deck[temp];
         }
