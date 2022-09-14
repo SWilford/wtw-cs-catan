@@ -5,6 +5,7 @@ import java.awt.event.*;
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
     private ImageIcon titlePic = new ImageIcon("images/title.png");
     private static final int SIZE = 500;
+    private int currentScreen; //home = 1, rules = 2
     private static final int textSize = 25;
     private static final int DELAY = 1;
     private static Timer t;
@@ -22,14 +23,22 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         mouseY = SIZE/2;
         Shape rect = new Rectangle(250, SIZE - 100, 75, 50);
         buttons[0] = new catanButton(rect, "rules", Color.YELLOW, Color.RED, Color.BLACK);
+        currentScreen = 1;
     }
     public void showGame(Graphics g)
     {
-        for(catanButton b:buttons)
-        {
-            b.drawButton(g);
+        if(currentScreen == 1) {
+            for (catanButton b : buttons) {
+                b.drawButton(g);
+            }
+            g.drawImage(titlePic.getImage(), 100, 100, titlePic.getIconWidth(), titlePic.getIconHeight(), null);
         }
-        g.drawImage(titlePic.getImage(), 100, 100, titlePic.getIconWidth(), titlePic.getIconHeight(), null);
+        else if(currentScreen == 2)
+        {
+            header = new JLabel("Rules");
+            add(header);
+            repaint();
+        }
     }
     public void paintComponent(Graphics g)
     {
@@ -60,7 +69,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 {
                     if(b.getTitle().equals("rules"))
                     {
-                        showRules();
+                        currentScreen = 2;
+                        repaint();
                     }
                 }
             }
@@ -83,11 +93,5 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         }
         repaint();
     }
-    public void showRules()
-    {
-        removeAll();
-        header = new JLabel("rules");
-        add(header);
-        repaint();
-    }
+
 }
