@@ -4,6 +4,7 @@ import java.awt.event.*;
 
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
     private ImageIcon titlePic = new ImageIcon("images/title.png");
+    private ImageIcon startBack = new ImageIcon("images/background.gif");
     private static final int SIZE = 500;
     private int currentScreen; //home = 1, rules = 2
     private static final int textSize = 25;
@@ -14,7 +15,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     protected static int mouseX;
     protected static int mouseY;
 
-    private JLabel header;
+    private String header, ruleText;
     public catanGraphics()
     {
         addMouseListener(this);
@@ -28,15 +29,19 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     public void showGame(Graphics g)
     {
         if(currentScreen == 1) {
+            g.drawImage(startBack.getImage(), 0,0, startBack.getIconWidth(), startBack.getIconHeight(), null);
             for (catanButton b : buttons) {
                 b.drawButton(g);
             }
             g.drawImage(titlePic.getImage(), 100, 100, titlePic.getIconWidth(), titlePic.getIconHeight(), null);
+
         }
         else if(currentScreen == 2)
         {
-            header = new JLabel("Rules");
-            add(header);
+            header = "Rules";
+            ruleText = "Catan is a game";
+            g.drawString(header, 400, 50);
+            g.drawString(ruleText, 400, 200);
             repaint();
         }
     }
