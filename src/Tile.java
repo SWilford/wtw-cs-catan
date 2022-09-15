@@ -2,7 +2,7 @@ public class Tile {
     private final String type;
     private int number;
 
-    private boolean specialHarbor;//If a tile is a special harbor or not
+    private String specialHarbor;//If a harbor is a special harbor what type
     private int nO, noE, soE, sO, soW, noW; //Stores values for shared vertices of hexes
 
     public Tile(String t, int n)//Constructor
@@ -15,7 +15,7 @@ public class Tile {
         sO = 0;
         soW = 0;
         noW = 0; //vertex values defaulted to 0
-        specialHarbor = false; //harbor defaulted to 0
+        specialHarbor = "NOT"; //harbor defaulted to not a special harbor
     }
 
     public void setNorth(int nh) {//mutator method for north vertex value
@@ -34,15 +34,15 @@ public class Tile {
         sO = sh;
     }//mutator for south vertex value
 
-    public void getSouthWest(int sw) {//mutator method for southwest vertex value
+    public void setSouthWest(int sw) {//mutator method for southwest vertex value
         soW = sw;
     }//mutator for southwest vertex value
 
-    public void getNorthWest(int nw) {//mutator method for northwest vertex value
+    public void setNorthWest(int nw) {//mutator method for northwest vertex value
         noW = nw;
     }//mutator for northwest vertex value
 
-    public void setSpecialHarbor(boolean b) {//mutator for special harbor
+    public void setSpecialHarbor(String b) {//mutator for special harbor
         specialHarbor = b;
     }
 
@@ -78,7 +78,7 @@ public class Tile {
         return noW;
     }
 
-    public boolean getSpecialHarbor() {
+    public String getSpecialHarbor() {
         return specialHarbor;
     }
 
