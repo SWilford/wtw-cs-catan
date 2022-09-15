@@ -1,6 +1,6 @@
 public class Tile {
     private final String type;
-    private final int number;
+    private int number;
 
     private boolean specialHarbor;//If a tile is a special harbor or not
     private int nO, noE, soE, sO, soW, noW; //Stores values for shared vertices of hexes
@@ -80,5 +80,9 @@ public class Tile {
 
     public boolean getSpecialHarbor() {
         return specialHarbor;
+    }
+
+    void setNumber(int n) {//mutator for number
+        number = n;
     }
 }
