@@ -5,6 +5,7 @@ import java.awt.event.*;
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
     private ImageIcon titlePic = new ImageIcon("images/title.png");
     private ImageIcon startBack = new ImageIcon("images/background.gif");
+    private ImageIcon rulesButton = new ImageIcon("images/rulesbut.png");
     private static final int SIZE = 500;
     private int currentScreen; //home = 1, rules = 2
     private static final int textSize = 25;
@@ -25,7 +26,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect = new Rectangle(250, SIZE - 100, 75, 50);
         Shape rect1 = new Rectangle(25, 400, 75, 50);
         Shape rect2 = new Rectangle(25, 500, 75, 50);
-        buttons[0] = new catanButton(rect, "rules", Color.YELLOW, Color.RED, Color.BLACK);
+        buttons[0] = new catanButton(rect, "rules", rulesButton, rulesButton);
         buttons[1] = new catanButton(rect1, "back", Color.WHITE, Color.GRAY, Color.BLACK);
         buttons[2] = new catanButton(rect2, "settings", Color.YELLOW, Color.RED, Color.BLACK);
         currentScreen = 1;
