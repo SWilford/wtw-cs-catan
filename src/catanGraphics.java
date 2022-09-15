@@ -33,7 +33,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     public void showGame(Graphics g)
     {
         if(currentScreen == 1) {
-            g.drawImage(startBack.getImage(), 0,0, startBack.getIconWidth(), startBack.getIconHeight(), null);
+            g.drawImage(startBack.getImage(), 0,0, 1366, 768, null);
             buttons[0].drawButton(g);
             buttons[2].drawButton(g);
             g.drawImage(titlePic.getImage(), 100, 100, titlePic.getIconWidth(), titlePic.getIconHeight(), null);
