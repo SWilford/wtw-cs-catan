@@ -1,6 +1,6 @@
 public class Player {
     private int numSettlement, numCity, points, numOre, numBrick, numLumber, numWheat, numSheep, numRoad;
-    private String color, name;
+    private final String color, name;
 
     public Player(String c, String n)
     {
@@ -30,6 +30,14 @@ public class Player {
     public int getLumber()
     {
         return numLumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getColor() {
+        return color;
     }
 
 
