@@ -7,6 +7,16 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private ImageIcon startBack = new ImageIcon("images/background.gif");
     private ImageIcon rulesButton = new ImageIcon("images/rulesbut.png");
     private ImageIcon rulesHighlighted = new ImageIcon("images/rulesbutHL.png");
+    private ImageIcon emptyBoard = new ImageIcon("images/blankcatanboard.png");
+    private ImageIcon desertTile = new ImageIcon("images/desertcatantile.png");
+    private ImageIcon mountainTile = new ImageIcon("images/mountainscatantile.png");
+    private ImageIcon fieldTile = new ImageIcon("images/fieldscatantile");
+    private ImageIcon forestTile = new ImageIcon("images/forestcatantile.png");
+    private ImageIcon hillTile = new ImageIcon("images/hillscatantile.png");
+    private ImageIcon pastureTile = new ImageIcon("images/pasturecatantile.png");
+
+
+
     private static final int SIZE = 500;
     private int currentScreen; //home = 1, rules = 2
     private static final int textSize = 25;
@@ -67,9 +77,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         }
         else if(currentScreen == 4)
         {
-            header = "board here";
-            g.drawString(header, 400, 50);
-            repaint();
+            drawBoard(g);
         }
     }
     public void paintComponent(Graphics g)
@@ -145,4 +153,41 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         repaint();
     }
 
+    public void drawBoard(Graphics g)
+    {
+        int x = 450;
+        int y = 50;
+        int r;
+        g.drawImage(emptyBoard.getImage(), 250, 25, 832, 702, null);
+        for(r = 0; r<5; r++)
+        {
+            x = 450;
+            if(r == 0 || r == 4) {
+                for (int c = 0; c < 3; c++) {
+                    g.drawImage(forestTile.getImage(), x, y, 150, 125, null);
+                    x += 150;
+                }
+            }
+            else if(r == 1 || r == 3)
+            {
+                for(int c = 0; c<4; c++)
+                {
+                    x = 350;
+                    g.drawImage(forestTile.getImage(), x, y, 150, 125, null);
+                    x += 150;
+                }
+            }
+            else
+            {
+                for(int c = 0; c<5; c++) {
+                    x = 200;
+                    g.drawImage(forestTile.getImage(), x, y, 150, 125, null);
+                    x += 150;
+                }
+            }
+            y += 100;
+
+        }
+        repaint();
+    }
 }
