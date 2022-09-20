@@ -14,7 +14,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static Timer t;
     private static int frame;
     private rulebook rules;
-    private catanButton[] buttons = new catanButton[3];
+    private catanButton[] buttons = new catanButton[5];
     protected static int mouseX;
     protected static int mouseY;
 
@@ -28,9 +28,13 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect = new Rectangle(650, SIZE - 100, 75, 50);
         Shape rect1 = new Rectangle(550, 400, 75, 50);
         Shape rect2 = new Rectangle(650, 500, 75, 50);
+        Shape rect3 = new Rectangle(500, 300, 150, 100);
+        Shape rect4 = new Rectangle(100, 600, 75, 50);
         buttons[0] = new catanButton(rect, "rules", rulesHighlighted, rulesButton);
         buttons[1] = new catanButton(rect1, "back", Color.WHITE, Color.GRAY, Color.BLACK);
         buttons[2] = new catanButton(rect2, "settings", Color.YELLOW, Color.RED, Color.BLACK);
+        buttons[3] = new catanButton(rect3, "Start", Color.YELLOW, Color.RED, Color.BLACK);
+        buttons[4] = new catanButton(rect4, "quit", Color.YELLOW, Color.RED, Color.BLACK);
         currentScreen = 1;
     }
     public void showGame(Graphics g)
@@ -39,7 +43,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         if(currentScreen == 1) {
             g.drawImage(startBack.getImage(), 0,0, 1366, 768, null);
             buttons[0].drawButton(g);
+            buttons[3].drawButton(g);
             buttons[2].drawButton(g);
+            buttons[4].drawButton(g);
             g.drawImage(titlePic.getImage(), 450, 100, titlePic.getIconWidth(), titlePic.getIconHeight(), null);
 
         }
@@ -57,6 +63,12 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             header = "Settings";
             g.drawString(header, 400, 50);
             buttons[1].drawButton(g);
+            repaint();
+        }
+        else if(currentScreen == 4)
+        {
+            header = "board here";
+            g.drawString(header, 400, 50);
             repaint();
         }
     }
@@ -101,6 +113,15 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                     {
                         currentScreen = 3;
                         repaint();
+                    }
+                    else if(b.getTitle().equals("Start"))
+                    {
+                        currentScreen = 4;
+                        repaint();
+                    }
+                    else if(b.getTitle().equals("quit"))
+                    {
+                        System.exit(0);
                     }
                 }
             }
