@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class board {
+    Tile[][] tiles = new Tile[7][7];//initializing an array of tiles that represent the board
     public board() {
-        Tile[][] tiles = new Tile[7][7];//initializing an array of tiles that represent the board
         ArrayList<String> types = new ArrayList<>();//Array List that will contain the name for the type of tile
         for(int i = 0; i < 4; i++) { // fills array list with 4 forest type
             types.add("Forest");
@@ -237,5 +237,9 @@ public class board {
         tiles[6][4].setNorthWest(53);
         tiles[6][5].setNorth(51);
         tiles[6][5].setNorthWest(54);
+    }
+
+    public String getTileType(int row, int col) {
+        return tiles[row][col].getType();
     }
 }
