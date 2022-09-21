@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
+    private boolean boardDrew;
     private ImageIcon titlePic = new ImageIcon("images/title.png");
     private ImageIcon startBack = new ImageIcon("images/background.gif");
     private ImageIcon rulesButton = new ImageIcon("images/rulesbut.png");
@@ -33,6 +34,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     {
         addMouseListener(this);
         addMouseMotionListener(this);
+        boardDrew = true;
         mouseX = SIZE/2;
         mouseY = SIZE/2;
         Shape rect = new Rectangle(650, SIZE - 100, 75, 50);
@@ -77,7 +79,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         }
         else if(currentScreen == 4)
         {
-            drawBoard(g);
+                drawBoard(g);
+
         }
     }
     public void paintComponent(Graphics g)
@@ -156,39 +159,106 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     public void drawBoard(Graphics g)
     {
         board board = new board();
-        int x = 450;
-        int y = 50;
+        int x = 500;
+        int y = 100;
         int r;
         g.drawImage(emptyBoard.getImage(), 250, 25, 832, 702, null);
-        for(r = 0; r<5; r++)
+        for(r = 1; r<6; r++)
         {
-            x = 450;
-            if(r == 0 || r == 4) {
-                for (int c = 0; c < 3; c++) {
-                    g.drawImage(forestTile.getImage(), x, y, 150, 125, null);
-                    x += 150;
+            x = 478;
+            if(r == 1 || r == 5) {
+                for (int c = 2; c < 5; c++) {
+                    if(board.getTileType(r, c).equals("Forest"))
+                    {
+                        g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Mountains"))
+                    {
+                        g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Pastures"))
+                    {
+                        g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Fields"))
+                    {
+                        g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Hills"))
+                    {
+                        g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else {
+                        g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
+                    }
+                    x += 125;
                 }
             }
-            else if(r == 1 || r == 3)
+            else if(r == 2 || r == 4)
             {
-                for(int c = 0; c<4; c++)
+                x = 416;
+                for(int c = 1; c<6; c++)
                 {
-                    x = 350;
-                    g.drawImage(forestTile.getImage(), x, y, 150, 125, null);
-                    x += 150;
+                    if(board.getTileType(r, c).equals("Forest"))
+                    {
+                        g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Mountains"))
+                    {
+                        g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Pastures"))
+                    {
+                        g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Fields"))
+                    {
+                        g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Hills"))
+                    {
+                        g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else {
+                        g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
+                    }
+                    x += 125;
                 }
             }
             else
             {
-                for(int c = 0; c<5; c++) {
-                    x = 200;
-                    g.drawImage(forestTile.getImage(), x, y, 150, 125, null);
-                    x += 150;
+                x = 356;
+                for(int c = 2; c<5; c++) {
+                    if(board.getTileType(r, c).equals("Forest"))
+                    {
+                        g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Mountains"))
+                    {
+                        g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Pastures"))
+                    {
+                        g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Fields"))
+                    {
+                        g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else if(board.getTileType(r, c).equals("Hills"))
+                    {
+                        g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
+                    }
+                    else {
+                        g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
+                    }
+                    x += 125;
                 }
             }
-            y += 100;
+            y += 103;
 
         }
+        boardDrew = false;
         repaint();
     }
 }

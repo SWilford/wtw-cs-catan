@@ -3,29 +3,29 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class rulebook extends JPanel implements MouseListener, MouseMotionListener{
-    private ImageIcon page1 = new ImageIcon("images/page1-01.png");
-    private ImageIcon page2 = new ImageIcon("images/page1-02.png");
-    private ImageIcon page3 = new ImageIcon("images/page1-03.png");
-    private ImageIcon page4 = new ImageIcon("images/page1-04.png");
-    private ImageIcon page5 = new ImageIcon("images/page1-05.png");
-    private ImageIcon page6 = new ImageIcon("images/page1-06.png");
-    private ImageIcon page7 = new ImageIcon("images/page1-07.png");
-    private ImageIcon page8 = new ImageIcon("images/page1-08.png");
-    private ImageIcon page9 = new ImageIcon("images/page1-09.png");
-    private ImageIcon page10 = new ImageIcon("images/page1-10.png");
-    private ImageIcon page11 = new ImageIcon("images/page1-11.png");
-    private ImageIcon page12 = new ImageIcon("images/page1-12.png");
-    private ImageIcon page13 = new ImageIcon("images/page1-13.png");
-    private ImageIcon page14 = new ImageIcon("images/page1-14.png");
-    private ImageIcon page15 = new ImageIcon("images/page1-15.png");
-    private ImageIcon page16 = new ImageIcon("images/page1-16.png");
+    private final ImageIcon page1 = new ImageIcon("images/page1-01.png");
+    private final ImageIcon page2 = new ImageIcon("images/page1-02.png");
+    private final ImageIcon page3 = new ImageIcon("images/page1-03.png");
+    private final ImageIcon page4 = new ImageIcon("images/page1-04.png");
+    private final ImageIcon page5 = new ImageIcon("images/page1-05.png");
+    private final ImageIcon page6 = new ImageIcon("images/page1-06.png");
+    private final ImageIcon page7 = new ImageIcon("images/page1-07.png");
+    private final ImageIcon page8 = new ImageIcon("images/page1-08.png");
+    private final ImageIcon page9 = new ImageIcon("images/page1-09.png");
+    private final ImageIcon page10 = new ImageIcon("images/page1-10.png");
+    private final ImageIcon page11 = new ImageIcon("images/page1-11.png");
+    private final ImageIcon page12 = new ImageIcon("images/page1-12.png");
+    private final ImageIcon page13 = new ImageIcon("images/page1-13.png");
+    private final ImageIcon page14 = new ImageIcon("images/page1-14.png");
+    private final ImageIcon page15 = new ImageIcon("images/page1-15.png");
+    private final ImageIcon page16 = new ImageIcon("images/page1-16.png");
 
     private static final int SIZE = 500;
 
     protected static int mouseX;
     protected static int mouseY;
     private int currentPage;
-    private catanButton[] buttons = new catanButton[2];
+    private final catanButton[] buttons = new catanButton[2];
 
 
     public rulebook()
@@ -144,16 +144,7 @@ public class rulebook extends JPanel implements MouseListener, MouseMotionListen
         }
         repaint();
     }
-    public boolean stillRules()
-    {
-        if(currentPage != 0)
-        {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+
     public void mouseMoved(MouseEvent e)
     {
         mouseX = e.getX();
