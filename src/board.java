@@ -141,7 +141,7 @@ public class board {
                 numbers.remove(randomNumber);
             }
         }
-
+        //last 2 tiles
         tiles[5][3] = new Tile(types.get(0), numbers.get(0));
         tiles[5][4] = new Tile(types.get(1), numbers.get(1));
 
