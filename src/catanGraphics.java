@@ -155,6 +155,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     public void drawBoard(Graphics g)
     {
+        board board = new board();
         int x = 450;
         int y = 50;
         int r;
