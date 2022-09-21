@@ -39,29 +39,112 @@ public class board {
         numbers.add(11);
         numbers.add(11);
         numbers.add(12);
-        for (int row = 0; row < tiles.length; row++) {
-            for (int col = 0; col < tiles[row].length; col++) {
-                if((col == 0 || ((col == 1) && ((row == 0) || (row == 6)))) || ((col == 6) && ((row == 0) || (row == 1) || (row == 5) || (row == 6)))) { //Makes non board pieces into frame
-                    tiles[row][col] = new Tile("Frame", -1);
-                }
-                if(((row == 0) && ((col == 2) || (col == 4))) || ((row == 1) && (col == 5)) || ((row == 3) && (col == 6)) || ((row == 5) && (col == 5)) || ((row == 6) && ((col == 2) || (col == 4))) || ((row == 4) && (col == 1)) || ((row == 2) && (col == 1))) { //Sets correct ocean pieces as harbors
-                    tiles[row][col] = new Tile("Harbor", -1);
-                }
-                if(((row == 0) && ((col == 3) || (col == 5))) || ((row == 2) && (col == 6)) || ((row == 4) && (col == 6)) || ((row == 6) && ((col == 2) || (col == 4))) || ((row == 5) && (col == 1)) || ((row == 3) && (col == 1)) || ((row == 1) && (col == 2))) { //Sets correct ocean pieces as ocean
-                    tiles[row][col] = new Tile("Ocean",-1);
-                }
-                else {//**note** this creates random tiles, in the future an option to create set positions must be added
-                    int randomType = (int)(Math.random()*(types.size()+1)); //gets random tile type from array list
-                    tiles[row][col] = new Tile(types.get(randomType), -1); //-1 is a placeholder for tile number, it is replaced in the next step, assures desert does not get a number
-                    types.remove(randomType);//Assures each type of tile will only get their specific respective quantity of type
-                }
-                if(tiles[row][col].getType().equals("Forest") || tiles[row][col].getType().equals("Pasture") || tiles[row][col].getType().equals("Fields") || tiles[row][col].getType().equals("Hills") || tiles[row][col].getType().equals("Mountains")) { //sets the correct tile number, **note** currently the numbers for tiles are set to random, in the future something will have to be added to make them set based off of the spiral and alphabetical order
-                    int randomNumber = (int)(Math.random()*(numbers.size()+1));
-                    tiles[row][col].setNumber(numbers.get(randomNumber)); //gets random number from number array list
-                    numbers.remove(randomNumber); //assures only the correct amount of each number is assigned
-                }
+
+        //setting proper tiles as frame tiles
+        tiles[0][0] = new Tile("Frame", -1);
+        tiles[0][1] = new Tile("Frame", -1);
+        tiles[0][6] = new Tile("Frame", -1);
+        tiles[1][0] = new Tile("Frame", -1);
+        tiles[1][6] = new Tile("Frame", -1);
+        tiles[2][0] = new Tile("Frame", -1);
+        tiles[4][0] = new Tile("Frame", -1);
+        tiles[5][0] = new Tile("Frame", -1);
+        tiles[5][6] = new Tile("Frame", -1);
+        tiles[6][0] = new Tile("Frame", -1);
+        tiles[6][1] = new Tile("Frame", -1);
+        tiles[6][6] = new Tile("Frame", -1);
+
+        //setting the correct tiles as ocean
+        tiles[0][3] = new Tile("Ocean", -1);
+        tiles[0][5] = new Tile("Ocean", -1);
+        tiles[2][6] = new Tile("Ocean", -1);
+        tiles[4][6] = new Tile("Ocean", -1);
+        tiles[6][5] = new Tile("Ocean", -1);
+        tiles[6][3] = new Tile("Ocean", -1);
+        tiles[5][1] = new Tile("Ocean", -1);
+        tiles[3][0] = new Tile("Ocean", -1);
+        tiles[1][1] = new Tile("Ocean", -1);
+
+        //setting the correct tiles as harbors
+        tiles[0][2] = new Tile("Harbor", -1);
+        tiles[0][4] = new Tile("Harbor", -1);
+        tiles[1][5] = new Tile("Harbor", -1);
+        tiles[3][6] = new Tile("Harbor", -1);
+        tiles[5][5] = new Tile("Harbor", -1);
+        tiles[6][4] = new Tile("Harbor", -1);
+        tiles[6][2] = new Tile("Harbor", -1);
+        tiles[4][1] = new Tile("Harbor", -1);
+        tiles[2][1] = new Tile("Harbor", -1);
+
+        //setting the proper pieces for the actual board
+        for(int r1 = 2; r1 < 5; r1++) {
+            int randomType = (int)(Math.random()*types.size());
+            int randomNumber = (int)(Math.random()*numbers.size());
+            if(types.get(randomType).equals("Desert")) {
+                tiles[1][r1] = new Tile(types.get(randomType), -1);
+            }
+            else {
+                tiles[1][r1] = new Tile(types.get(randomType), numbers.get(randomNumber));
+                types.remove(randomType);
+                numbers.remove(randomNumber);
             }
         }
+
+        for(int r2 = 2; r2 < 6; r2++) {
+            int randomType = (int)(Math.random()*types.size());
+            int randomNumber = (int)(Math.random()*numbers.size());
+            if(types.get(randomType).equals("Desert")) {
+                tiles[2][r2] = new Tile(types.get(randomType), -1);
+            }
+            else {
+                tiles[2][r2] = new Tile(types.get(randomType), numbers.get(randomNumber));
+                types.remove(randomType);
+                numbers.remove(randomNumber);
+            }
+        }
+
+        for(int r3 = 1; r3 < 6; r3++) {
+            int randomType = (int)(Math.random()*types.size());
+            int randomNumber = (int)(Math.random()*numbers.size());
+            if(types.get(randomType).equals("Desert")) {
+                tiles[3][r3] = new Tile(types.get(randomType), -1);
+            }
+            else {
+                tiles[3][r3] = new Tile(types.get(randomType), numbers.get(randomNumber));
+                types.remove(randomType);
+                numbers.remove(randomNumber);
+            }
+        }
+
+        for(int r4 = 2; r4 < 6; r4++) {
+            int randomType = (int)(Math.random()*types.size());
+            int randomNumber = (int)(Math.random()*numbers.size());
+            if(types.get(randomType).equals("Desert")) {
+                tiles[4][r4] = new Tile(types.get(randomType), -1);
+            }
+            else {
+                tiles[4][r4] = new Tile(types.get(randomType), numbers.get(randomNumber));
+                types.remove(randomType);
+                numbers.remove(randomNumber);
+            }
+        }
+
+        for(int r5 = 2; r5 < 3; r5++) {
+            int randomType = (int)(Math.random()*types.size());
+            int randomNumber = (int)(Math.random()*numbers.size());
+            if(types.get(randomType).equals("Desert")) {
+                tiles[5][r5] = new Tile(types.get(randomType), -1);
+            }
+            else {
+                tiles[5][r5] = new Tile(types.get(randomType), numbers.get(randomNumber));
+                types.remove(randomType);
+                numbers.remove(randomNumber);
+            }
+        }
+
+        tiles[5][3] = new Tile(types.get(0), numbers.get(0));
+        tiles[5][4] = new Tile(types.get(1), numbers.get(1));
+
         tiles[0][4].setSpecialHarbor("specialFields"); //setting the correct harbors as special harbors with their respective resource
         tiles[1][5].setSpecialHarbor("specialMountains");
         tiles[5][5].setSpecialHarbor("specialPasture");
