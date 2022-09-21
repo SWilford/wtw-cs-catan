@@ -16,7 +16,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private ImageIcon hillTile = new ImageIcon("images/hillscatantile.png");
     private ImageIcon pastureTile = new ImageIcon("images/pasturecatantile.png");
 
-
+    private final board board = new board();
 
     private static final int SIZE = 500;
     private int currentScreen; //home = 1, rules = 2
@@ -158,11 +158,59 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     public void drawBoard(Graphics g)
     {
-        board board = new board();
         int x = 500;
         int y = 100;
         int r;
         g.drawImage(emptyBoard.getImage(), 250, 25, 832, 702, null);
+        x = 478;
+        for(int c1 = 2; c1 < 5; c1++) {
+            if(board.getTileType(1, c1).equals("Forest")) {
+                g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(1, c1).equals("Fields")) {
+                g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(1, c1).equals("Pasture")) {
+                g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(1, c1).equals("Hills")) {
+                g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(1, c1).equals("Mountains")) {
+                g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(1, c1).equals("Desert")) {
+                g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
+            }
+            x+= 125;
+        }
+        y+= 103;
+        x = 416;
+        for(int c1 = 2; c1 < 6; c1++) {
+            if(board.getTileType(2, c1).equals("Forest")) {
+                g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(2, c1).equals("Fields")) {
+                g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(2, c1).equals("Pasture")) {
+                g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(2, c1).equals("Hills")) {
+                g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(2, c1).equals("Mountains")) {
+                g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(2, c1).equals("Desert")) {
+                g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
+            }
+            x+= 125;
+        }
+
+        repaint();
+
+        /*
         for(r = 1; r<6; r++)
         {
             x = 478;
@@ -256,9 +304,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             y += 103;
-
         }
-        boardDrew = false;
         repaint();
+        boardDrew = false;
+
+         */
     }
 }
