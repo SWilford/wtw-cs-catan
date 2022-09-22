@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Canvas xmlns="http://www.jgrasp.org">
+  <Language>Java</Language>
+  <ShowTypes>false</ShowTypes>
+  <Version>2</Version>
+  <Grid>
+    <Snap>true</Snap>
+    <Show>false</Show>
+  </Grid>
+  <Scope id="0">
+    <Name>&lt;init&gt;</Name>
+    <Signature>()V</Signature>
+    <DeclaringType>board</DeclaringType>
+    <Depth>0</Depth>
+  </Scope>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>190</X>
+      <Y>200</Y>
+      <W>98</W>
+      <H>39</H>
+    </Bounds>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local` tiles[row][col]</Expression>
+    </Viewer>
+  </Frame>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>415</X>
+      <Y>175</Y>
+      <W>315</W>
+      <H>212</H>
+    </Bounds>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local` tiles</Expression>
+      <ViewerClass>jgrasp_viewers._X_A_A_ToStringView</ViewerClass>
+    </Viewer>
+  </Frame>
+  <Size>
+    <W>683</W>
+    <H>384</H>
+  </Size>
+  <ESize>
+    <W>683</W>
+    <H>384</H>
+  </ESize>
+</Canvas>

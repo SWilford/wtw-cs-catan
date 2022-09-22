@@ -11,7 +11,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private ImageIcon emptyBoard = new ImageIcon("images/blankcatanboard.png");
     private ImageIcon desertTile = new ImageIcon("images/desertcatantile.png");
     private ImageIcon mountainTile = new ImageIcon("images/mountainscatantile.png");
-    private ImageIcon fieldTile = new ImageIcon("images/fieldscatantile");
+    private ImageIcon fieldTile = new ImageIcon("images/fieldscatantile.png");
     private ImageIcon forestTile = new ImageIcon("images/forestcatantile.png");
     private ImageIcon hillTile = new ImageIcon("images/hillscatantile.png");
     private ImageIcon pastureTile = new ImageIcon("images/pasturecatantile.png");
@@ -80,7 +80,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         else if(currentScreen == 4)
         {
                 drawBoard(g);
-
         }
     }
     public void paintComponent(Graphics g)
@@ -207,107 +206,79 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             }
             x+= 125;
         }
-
-        repaint();
-
-        /*
-        for(r = 1; r<6; r++)
-        {
-            x = 478;
-            if(r == 1 || r == 5) {
-                for (int c = 2; c < 5; c++) {
-                    if(board.getTileType(r, c).equals("Forest"))
-                    {
-                        g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Mountains"))
-                    {
-                        g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Pastures"))
-                    {
-                        g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Fields"))
-                    {
-                        g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Hills"))
-                    {
-                        g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else {
-                        g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
-                    }
-                    x += 125;
-                }
+        y+= 103;
+        x = 356;
+        for(int c1 = 1; c1 < 6; c1++) {
+            if(board.getTileType(3, c1).equals("Forest")) {
+                g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
             }
-            else if(r == 2 || r == 4)
-            {
-                x = 416;
-                for(int c = 1; c<6; c++)
-                {
-                    if(board.getTileType(r, c).equals("Forest"))
-                    {
-                        g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Mountains"))
-                    {
-                        g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Pastures"))
-                    {
-                        g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Fields"))
-                    {
-                        g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Hills"))
-                    {
-                        g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else {
-                        g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
-                    }
-                    x += 125;
-                }
+            if(board.getTileType(3, c1).equals("Fields")) {
+                g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
             }
-            else
-            {
-                x = 356;
-                for(int c = 2; c<5; c++) {
-                    if(board.getTileType(r, c).equals("Forest"))
-                    {
-                        g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Mountains"))
-                    {
-                        g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Pastures"))
-                    {
-                        g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Fields"))
-                    {
-                        g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else if(board.getTileType(r, c).equals("Hills"))
-                    {
-                        g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
-                    }
-                    else {
-                        g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
-                    }
-                    x += 125;
-                }
+            if(board.getTileType(3, c1).equals("Pasture")) {
+                g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
             }
-            y += 103;
+            if(board.getTileType(3, c1).equals("Hills")) {
+                g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(3, c1).equals("Mountains")) {
+                g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(3, c1).equals("Desert")) {
+                g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
+            }
+            x+= 125;
         }
-        repaint();
-        boardDrew = false;
+        y+= 103;
+        x = 416;
+        for(int c1 = 2; c1 < 6; c1++) {
+            if(board.getTileType(4, c1).equals("Forest")) {
+                g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(4, c1).equals("Fields")) {
+                g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(4, c1).equals("Pasture")) {
+                g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(4, c1).equals("Hills")) {
+                g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(4, c1).equals("Mountains")) {
+                g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(4, c1).equals("Desert")) {
+                g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
+            }
+            x+= 125;
+        }
+        y+= 103;
+        x = 478;
+        for(int c1 = 2; c1 < 5; c1++) {
+            if(board.getTileType(5, c1).equals("Forest")) {
+                g.drawImage(forestTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(5, c1).equals("Fields")) {
+                g.drawImage(fieldTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(5, c1).equals("Pasture")) {
+                g.drawImage(pastureTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(5, c1).equals("Hills")) {
+                g.drawImage(hillTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(5, c1).equals("Mountains")) {
+                g.drawImage(mountainTile.getImage(), x, y, 125, 140, null);
+            }
+            if(board.getTileType(5, c1).equals("Desert")) {
+                g.drawImage(desertTile.getImage(), x, y, 125, 140, null);
+            }
+            x+= 125;
+        }
 
-         */
+
+        repaint();
+
+
     }
 }

@@ -76,74 +76,82 @@ public class board {
         tiles[4][1] = new Tile("Harbor", -1);
         tiles[2][1] = new Tile("Harbor", -1);
 
+        Random rand = new Random();
         //setting the proper pieces for the actual board
-        for(int r1 = 2; r1 < 5; r1++) {
-            int randomType = (int)(Math.random()*types.size());
-            int randomNumber = (int)(Math.random()*numbers.size());
-            if(types.get(randomType).equals("Desert")) {
-                tiles[1][r1] = new Tile(types.get(randomType), -1);
+        for(int i = 0; i < types.size(); i++) {
+            int randI = rand.nextInt(types.size());
+            String temp = types.get(randI);
+            types.set(randI, types.get(i));
+            types.set(i, temp);
+        }
+        Random rand2 = new Random();
+        for(int j = 0; j < numbers.size(); j++) {
+            int randI = rand2.nextInt(numbers.size());
+            int temp = numbers.get(randI);
+            numbers.set(randI, numbers.get(j));
+            numbers.set(j, temp);
+        }
+        int numberCounter = 0;
+        int typeCounter = 0;
+        for(int c = 2; c < 5; c++) {
+            if(types.get(typeCounter).equals("Desert")) {
+                tiles[1][c] = new Tile("Desert", -1);
+                typeCounter++;
             }
             else {
-                tiles[1][r1] = new Tile(types.get(randomType), numbers.get(randomNumber));
-                types.remove(randomType);
-                numbers.remove(randomNumber);
+                tiles[1][c] = new Tile(types.get(typeCounter), numbers.get(numberCounter));
+                typeCounter++;
+                numberCounter++;
             }
         }
 
-        for(int r2 = 2; r2 < 6; r2++) {
-            int randomType = (int)(Math.random()*types.size());
-            int randomNumber = (int)(Math.random()*numbers.size());
-            if(types.get(randomType).equals("Desert")) {
-                tiles[2][r2] = new Tile(types.get(randomType), -1);
+        for(int c = 2; c < 6; c++) {
+            if(types.get(typeCounter).equals("Desert")) {
+                tiles[2][c] = new Tile("Desert", -1);
+                typeCounter++;
             }
             else {
-                tiles[2][r2] = new Tile(types.get(randomType), numbers.get(randomNumber));
-                types.remove(randomType);
-                numbers.remove(randomNumber);
+                tiles[2][c] = new Tile(types.get(typeCounter), numbers.get(numberCounter));
+                typeCounter++;
+                numberCounter++;
             }
         }
 
-        for(int r3 = 1; r3 < 6; r3++) {
-            int randomType = (int)(Math.random()*types.size());
-            int randomNumber = (int)(Math.random()*numbers.size());
-            if(types.get(randomType).equals("Desert")) {
-                tiles[3][r3] = new Tile(types.get(randomType), -1);
+        for(int c = 1; c < 6; c++) {
+            if(types.get(typeCounter).equals("Desert")) {
+                tiles[3][c] = new Tile("Desert", -1);
+                typeCounter++;
             }
             else {
-                tiles[3][r3] = new Tile(types.get(randomType), numbers.get(randomNumber));
-                types.remove(randomType);
-                numbers.remove(randomNumber);
+                tiles[3][c] = new Tile(types.get(typeCounter), numbers.get(numberCounter));
+                typeCounter++;
+                numberCounter++;
             }
         }
 
-        for(int r4 = 2; r4 < 6; r4++) {
-            int randomType = (int)(Math.random()*types.size());
-            int randomNumber = (int)(Math.random()*numbers.size());
-            if(types.get(randomType).equals("Desert")) {
-                tiles[4][r4] = new Tile(types.get(randomType), -1);
+        for(int c = 2; c < 6; c++) {
+            if(types.get(typeCounter).equals("Desert")) {
+                tiles[4][c] = new Tile("Desert", -1);
+                typeCounter++;
             }
             else {
-                tiles[4][r4] = new Tile(types.get(randomType), numbers.get(randomNumber));
-                types.remove(randomType);
-                numbers.remove(randomNumber);
+                tiles[4][c] = new Tile(types.get(typeCounter), numbers.get(numberCounter));
+                typeCounter++;
+                numberCounter++;
             }
         }
 
-        for(int r5 = 2; r5 < 3; r5++) {
-            int randomType = (int)(Math.random()*types.size());
-            int randomNumber = (int)(Math.random()*numbers.size());
-            if(types.get(randomType).equals("Desert")) {
-                tiles[5][r5] = new Tile(types.get(randomType), -1);
+        for(int c = 2; c < 5; c++) {
+            if(types.get(typeCounter).equals("Desert")) {
+                tiles[5][c] = new Tile("Desert", -1);
+                typeCounter++;
             }
             else {
-                tiles[5][r5] = new Tile(types.get(randomType), numbers.get(randomNumber));
-                types.remove(randomType);
-                numbers.remove(randomNumber);
+                tiles[5][c] = new Tile(types.get(typeCounter), numbers.get(numberCounter));
+                typeCounter++;
+                numberCounter++;
             }
         }
-        //last 2 tiles
-        tiles[5][3] = new Tile(types.get(0), numbers.get(0));
-        tiles[5][4] = new Tile(types.get(1), numbers.get(1));
 
         tiles[0][4].setSpecialHarbor("specialFields"); //setting the correct harbors as special harbors with their respective resource
         tiles[1][5].setSpecialHarbor("specialMountains");
