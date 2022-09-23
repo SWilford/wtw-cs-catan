@@ -2,9 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class catanButton {
-    private Shape shape;
-    private String title;
-    private Color color, regularColor, highlightColor, textColor;
+    private final Shape shape;
+    private final String title;
+    private Color color;
+    private final Color regularColor, highlightColor, textColor;
     private ImageIcon image, regularImage, highlightImage;
 
     //shape with color
@@ -41,10 +42,7 @@ public class catanButton {
     {
         return color;
     }
-    public void setColor(Color c)
-    {
-        color = c;
-    }
+
     public void highlight()
     {
         color = highlightColor;
