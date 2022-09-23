@@ -37,7 +37,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect3 = new Rectangle(500, 300, 150, 100);
         Shape rect4 = new Rectangle(100, 600, 75, 50);
         ImageIcon rulesButton = new ImageIcon("images/rulesbut.png"); //rules
-        ImageIcon rulesHighlighted = new ImageIcon("images/rulesbutHL.png"); //rules hightlighted
+        ImageIcon rulesHighlighted = new ImageIcon("images/rulesbutHL.png"); //rules highlighted
         //declaration of all buttons
         buttons[0] = new catanButton(rect, "rules", rulesHighlighted, rulesButton);
         buttons[1] = new catanButton(rect1, "back", Color.WHITE, Color.GRAY, Color.BLACK);
@@ -74,7 +74,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         {
             header = "Settings"; //headers
             g.drawString(header, 400, 50); //draws header
-            //TODO add setting options
+            //add setting options
             buttons[1].drawButton(g); //back
             repaint();
         }
