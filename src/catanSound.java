@@ -39,7 +39,7 @@ public class catanSound {
         channels[0].programChange(instr[PIANO].getPatch().getProgram());
         buildScale(harmMin, minPent);
         noteLengths = new int[9];
-        int wholeNote = 10*12;
+        int wholeNote = 8*12;
         noteLengths[0] = Math.max(1,wholeNote/16);
         noteLengths[1] = Math.max(2,wholeNote/8);
         noteLengths[2] = Math.max(2,wholeNote/8);
@@ -80,13 +80,20 @@ public class catanSound {
         int screen = catanGraphics.getCurrentScreen();
         if(screen == 1)
         {
+            int note = scale[(int) (Math.random() * scale.length)];
+            final int firstNote = note;
+
             if(catanGraphics.getFrames() > nextNoteFrame) {
                 channels[0].programChange(instr[HARPSICHORD].getPatch().getProgram());
-                int note = scale[(int) (Math.random() * scale.length)];
                 int velocity = 40;
-                channels[0].noteOn(note, velocity);
+                if(Math.random() <.25)
+                {
+                    channels[0].noteOn(firstNote, velocity);
+                }
+                else
+                    channels[0].noteOn(note, velocity);
                 int noteLength = noteLengths[(int)(Math.random()*(noteLengths.length))];
-                nextNoteFrame = catanGraphics.getFrames() + noteLength;  //faster notes in a castle
+                nextNoteFrame = catanGraphics.getFrames() + noteLength * (3/2);
                 soundOffFrame = catanGraphics.getFrames() + noteLength;
             }
         }
