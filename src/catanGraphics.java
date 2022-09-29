@@ -15,9 +15,11 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final ImageIcon pastureTile = new ImageIcon("images/pasturecatantile.png");
 
     private final board board = new board(); //creating board
-
     private static final int SIZE = 500;
-    private int currentScreen; //home = 1, rules = 2, etc. Allows us to only use 1 panel
+    private static int currentScreen; //home = 1, rules = 2, etc. Allows us to only use 1 panel
+    private static Timer t;
+    private static final int DELAY = 10;
+    private static int numFrames;
 
     private final catanButton[] buttons = new catanButton[5]; //array of all buttons, just add to the array length if needed
     protected static int mouseX; //position of mouse on X
@@ -30,6 +32,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         addMouseMotionListener(this); //mouse
         mouseX = SIZE/2; //mouse location
         mouseY = SIZE/2; //mouse location
+        catanSound.initialize();
         //shapes of the buttons
         Shape rect = new Rectangle(650, SIZE - 100, 75, 50);
         Shape rect1 = new Rectangle(550, 400, 75, 50);
@@ -45,6 +48,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         buttons[3] = new catanButton(rect3, "Start", Color.YELLOW, Color.RED, Color.BLACK);
         buttons[4] = new catanButton(rect4, "quit", Color.YELLOW, Color.RED, Color.BLACK);
         currentScreen = 1; //sets to start screen
+        t = new Timer(DELAY, new Listener());
+        t.start();
+        numFrames = 0;
     }
 
     //actual drawing of game
@@ -104,6 +110,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     //mouse clicked
     public void mouseClicked(MouseEvent e)
     {
+        catanSound.click();
         int button = e.getButton(); //left click, right click
         if(button == MouseEvent.BUTTON1) //if left click
         {
@@ -277,5 +284,28 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         repaint();
 
 
+    }
+    //listener for timer
+    private class Listener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)	//this is called for each timer iteration
+        {
+            catanSound.runBackgroundSounds();
+            numFrames++;
+            catanSound.checkToClearSound();
+            if(numFrames == Integer.MAX_VALUE) {
+                numFrames = 0;
+            }
+            repaint();
+        }
+
+    }
+    public static int getCurrentScreen()
+    {
+        return currentScreen;
+    }
+    public static int getFrames()
+    {
+        return numFrames;
     }
 }
