@@ -5,6 +5,7 @@ import java.awt.event.*;
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
     //declaring all images
     private final ImageIcon titlePic = new ImageIcon("images/title.png");
+    private final ImageIcon developmentBack = new ImageIcon("images/developmentBack.png");
     private final ImageIcon startBack = new ImageIcon("images/background.gif");
     private final ImageIcon emptyBoard = new ImageIcon("images/blankcatanboard.png");
     private final ImageIcon desertTile = new ImageIcon("images/desertcatantile.png");
@@ -20,8 +21,11 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static Timer t;
     private static final int DELAY = 10;
     private static int numFrames;
+    private static Player[] players = new Player[4];
+    private static int currentPlayer;
+    private static boolean placing, mousePlaced;
 
-    private final catanButton[] buttons = new catanButton[5]; //array of all buttons, just add to the array length if needed
+    private final catanButton[] buttons = new catanButton[6]; //array of all buttons, just add to the array length if needed
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
 
@@ -33,12 +37,18 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         mouseX = SIZE/2; //mouse location
         mouseY = SIZE/2; //mouse location
         catanSound.initialize();
+        for(int i = 0; i<4;i++)
+        {
+            players[i] = new Player("red", "spencer");
+        }
+        currentPlayer = 0;
         //shapes of the buttons
         Shape rect = new Rectangle(650, SIZE - 100, 75, 50);
         Shape rect1 = new Rectangle(550, 400, 75, 50);
         Shape rect2 = new Rectangle(650, 500, 75, 50);
         Shape rect3 = new Rectangle(500, 300, 150, 100);
         Shape rect4 = new Rectangle(100, 600, 75, 50);
+        Shape rect5 = new Rectangle(100, 500, 75, 50);
         ImageIcon rulesButton = new ImageIcon("images/rulesbut.png"); //rules
         ImageIcon rulesHighlighted = new ImageIcon("images/rulesbutHL.png"); //rules highlighted
         //declaration of all buttons
@@ -47,10 +57,13 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         buttons[2] = new catanButton(rect2, "settings", Color.YELLOW, Color.RED, Color.BLACK);
         buttons[3] = new catanButton(rect3, "Start", Color.YELLOW, Color.RED, Color.BLACK);
         buttons[4] = new catanButton(rect4, "quit", Color.YELLOW, Color.RED, Color.BLACK);
+        buttons[5] = new catanButton(rect5, "place", Color.WHITE, Color.GRAY, Color.BLACK);
         currentScreen = 1; //sets to start screen
         t = new Timer(DELAY, new Listener());
         t.start();
         numFrames = 0;
+        placing = false;
+        mousePlaced = false;
     }
 
     //actual drawing of game
@@ -87,6 +100,14 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         else if(currentScreen == 4) //start
         {
                 drawBoard(g); //draws board
+                g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
+                placing = true;
+                if(mousePlaced)
+                {
+                    g.drawImage(developmentBack.getImage(), mouseX, mouseY, 50, 50, null);
+                    mousePlaced = false;
+                    placing = false;
+                }
         }
     }
     //paints component
@@ -118,27 +139,33 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             {
                 if(b.getShape().contains(mouseX, mouseY)) //checks if mouse click in on a button
                 {
-                    switch (b.getTitle()) { //checks what the title is
-                        case "rules" -> { //goes through all the cases until it finds the right one
-                            currentScreen = 2; //rules screen
-                            repaint();
+                    if(currentScreen == 1) {
+                        switch (b.getTitle()) { //checks what the title is
+                            case "rules" -> { //goes through all the cases until it finds the right one
+                                currentScreen = 2; //rules screen
+                                repaint();
+                            }
+                            case "back" -> {
+                                currentScreen = 1; //goes back to main
+                                repaint();
+                            }
+                            case "settings" -> {
+                                currentScreen = 3; //settings
+                                repaint();
+                            }
+                            case "Start" -> {
+                                currentScreen = 4; //board draws
+                                repaint();
+                            }
+                            case "quit" -> System.exit(0); //closes window
                         }
-                        case "back" -> {
-                            currentScreen = 1; //goes back to main
-                            repaint();
-                        }
-                        case "settings" -> {
-                            currentScreen = 3; //settings
-                            repaint();
-                        }
-                        case "Start" -> {
-                            currentScreen = 4; //board draws
-                            repaint();
-                        }
-                        case "quit" -> System.exit(0); //closes window
                     }
                 }
             }
+        }
+        if(placing)
+        {
+            mousePlaced = true;
         }
         repaint();
     }
@@ -308,4 +335,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     {
         return numFrames;
     }
+
+
 }
