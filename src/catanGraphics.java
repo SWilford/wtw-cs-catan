@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
+    private catanClient connection;
     //declaring all images
     private final ImageIcon titlePic = new ImageIcon("images/title.png");
     private final ImageIcon placeBut = new ImageIcon("images/thing.png");
@@ -32,10 +34,27 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
 
+    private catanState state;
+
+    private class catanSClient extends catanClient {
+        public catanSClient(String hubHostName,int hubPort) throws IOException {
+            super(hubHostName, hubPort);
+        }
+        protected void messageReceived(final Object message) {
+            if(message instanceof catanState) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        newState((catanState) message);
+                    }
+                });
+            }
+        }
+    }
 
     //constructor
-    public catanGraphics()
-    {
+    public catanGraphics(String hostName, int serverPortNumber) throws IOException {
+        connection = new catanSClient(hostName, serverPortNumber);
         addMouseListener(this); //mouse
         addMouseMotionListener(this); //mouse
         mouseX = SIZE/2; //mouse location
@@ -404,9 +423,13 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         }
     }
 
+    public void newState(catanState state) {
+
+    }
+
     private static catanGraphics screen;
-    public static void main(String[]args) {
-        screen = new catanGraphics();
+    public static void main(String[]args) throws IOException {
+        screen = new catanGraphics("localhost", 45017);
         JFrame frame = new JFrame("catan");    //window title
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocation(100, 50);                 //location of game window on the screen

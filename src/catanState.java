@@ -5,6 +5,7 @@ public class catanState implements Serializable{
     public board board = new board();
     public ArrayList<Player> players = new ArrayList<>();
     public boolean gameInProgress;
+    public boolean playerDisconnected; //True if player has disconnected
     public int currentPlayer; //Stores the id of the player whose turn it is
     public int winner; //The id of the player who won
 
@@ -21,7 +22,9 @@ public class catanState implements Serializable{
             startGame();
         }
     }
-
+    void startFirstGame() {
+        startGame();
+    }
     //Something needs to be created here that will set currentPlayer to the next player in line
 
     private void startGame() {
