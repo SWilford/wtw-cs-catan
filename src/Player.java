@@ -2,6 +2,7 @@ public class Player {
     private int numSettlement, numCity, points, numOre, numBrick, numLumber, numWheat, numSheep, numRoad;
     private final String color, name;
     private card[] hand;
+    private int knights;
 
     public Player(String c, String n) {
         name = n;
@@ -112,5 +113,14 @@ public class Player {
 
     public void setHand(card[] hand) {
         this.hand = hand;
+    }
+
+    public boolean checkWin() {
+        return points >= 10;
+    }
+
+    public void addKnight()
+    {
+        knights++;
     }
 }

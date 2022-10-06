@@ -5,6 +5,7 @@ import java.awt.event.*;
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
     //declaring all images
     private final ImageIcon titlePic = new ImageIcon("images/title.png");
+    private final ImageIcon placeBut = new ImageIcon("images/thing.png");
     private final ImageIcon developmentBack = new ImageIcon("images/developmentBack.png");
     private final ImageIcon startBack = new ImageIcon("images/background.gif");
     private final ImageIcon emptyBoard = new ImageIcon("images/blankcatanboard.png");
@@ -14,8 +15,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final ImageIcon forestTile = new ImageIcon("images/forestcatantile.png");
     private final ImageIcon hillTile = new ImageIcon("images/hillscatantile.png");
     private final ImageIcon pastureTile = new ImageIcon("images/pasturecatantile.png");
+    private final ImageIcon hlBut = new ImageIcon("images/otherThing.png");
 
-    private final board board = new board(); //creating board
+    private static final board board = new board(); //creating board
     private static final int SIZE = 500;
     private static int currentScreen; //home = 1, rules = 2, etc. Allows us to only use 1 panel
     private static Timer t;
@@ -28,6 +30,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final catanButton[] buttons = new catanButton[6]; //array of all buttons, just add to the array length if needed
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
+    private catanButton[] places;
+
 
     //constructor
     public catanGraphics()
@@ -64,6 +68,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         numFrames = 0;
         placing = false;
         mousePlaced = false;
+        places = new catanButton[20];
+
     }
 
     //actual drawing of game
@@ -101,13 +107,15 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         {
                 drawBoard(g); //draws board
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
-                placing = true;
-                if(mousePlaced)
-                {
-                    g.drawImage(developmentBack.getImage(), mouseX, mouseY, 50, 50, null);
-                    mousePlaced = false;
-                    placing = false;
-                }
+                place(g);
+            placing = true;
+            if (mousePlaced)
+            {
+                g.drawImage(developmentBack.getImage(), mouseX, mouseY, 50, 50, null);
+                mousePlaced = false;
+                removeAll();
+            }
+
         }
     }
     //paints component
@@ -145,10 +153,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 currentScreen = 2; //rules screen
                                 repaint();
                             }
-                            case "back" -> {
-                                currentScreen = 1; //goes back to main
-                                repaint();
-                            }
                             case "settings" -> {
                                 currentScreen = 3; //settings
                                 repaint();
@@ -160,12 +164,26 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                             case "quit" -> System.exit(0); //closes window
                         }
                     }
+                    else if(currentScreen == 2 || currentScreen == 3)
+                    {
+                        if(b.getTitle() == "back")
+                        {
+                            currentScreen = 1;
+                        }
+                    }
                 }
             }
         }
         if(placing)
         {
-            mousePlaced = true;
+            for(catanButton b:places) //goes through array of buttons
+            {
+                if(b.getShape().contains(mouseX, mouseY))
+                {
+                    placing = false;
+                    mousePlaced = true;
+                }
+            }
         }
         repaint();
     }
@@ -184,6 +202,17 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             else
                 b.unHighlight(); //goes back to un highlighted form
         }
+
+            for(catanButton b:places) //goes through array of buttons
+            {
+                if(b!= null) {
+                    if (b.getShape().contains(mouseX, mouseY)) //if the mouse is over a button
+                    {
+                        b.highlight(); //highlighted form of the button is drawn
+                    } else
+                        b.unHighlight(); //goes back to un highlighted form
+                }
+            }
         repaint();
     }
 
@@ -336,5 +365,53 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         return numFrames;
     }
 
+    public void place(Graphics g) {
+        Shape[] shapes = new Shape[20];
+        int x = 478; //starting x & y coordinates
+        int y = 100;
+        for(int i = 0; i<3; i++) {
+            shapes[i] = new Rectangle(x, y, 50, 50);
+            x+= 125;
+        } //draws top row
+        y+= 103;
+        x = 416;
+        for(int i = 3; i<7; i++) {
+            shapes[i] = new Rectangle(x, y, 50, 50);
+            x+= 125;
+        } //row 2
+        y+= 103;
+        x = 356;
+        for(int i = 7; i < 13; i++) {
+            shapes[i] = new Rectangle(x, y, 50, 50);
+            x+= 125;
+        } //row 3
+        y+= 103;
+        x = 416;
+        for(int i = 13; i<17; i++) {
+            shapes[i] = new Rectangle(x, y, 50, 50);
+            x+= 125;
+        } //row 4
+        y+= 103;
+        x = 478;
+        for(int i = 17; i<20; i++) {
+            shapes[i] = new Rectangle(x, y, 50, 50);
+            x+= 125;
+        } //bottom row
+        for(int i = 0; i<20; i++)
+        {
+            places[i] = new catanButton(shapes[i], "" + i, placeBut, hlBut);
+            places[i].drawButton(g);
+        }
+    }
 
+    private static catanGraphics screen;
+    public static void main(String[]args) {
+        screen = new catanGraphics();
+        JFrame frame = new JFrame("catan");    //window title
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setLocation(100, 50);                 //location of game window on the screen
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(screen);
+        frame.setVisible(true);
+    }
 }

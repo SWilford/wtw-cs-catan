@@ -57,24 +57,22 @@ public class catanButton {
         color = regularColor;
         image = regularImage;
     }
-    public void drawButton(Graphics g)
-    {
-        int x = (int)(this.getShape().getBounds().getX());
-        int y = (int)(this.getShape().getBounds().getY());
-        int width = (int)(this.getShape().getBounds().getWidth());
-        int height = (int)(this.getShape().getBounds().getHeight());
+    public void drawButton(Graphics g) {
+        int x = (int) (this.getShape().getBounds().getX());
+        int y = (int) (this.getShape().getBounds().getY());
+        int width = (int) (this.getShape().getBounds().getWidth());
+        int height = (int) (this.getShape().getBounds().getHeight());
         g.setColor(this.getColor());
-        if(image != null)
+        if (image != null)
             g.drawImage(image.getImage(), x, y, width, height, null);
-        else if(this.getShape() instanceof Rectangle)
+        else if (this.getShape() instanceof Rectangle)
             g.fillRect(x, y, width, height);
         else
             g.fillOval(x, y, width, height);
 
-        if(image == null)
-        {
+        if (image == null) {
             g.setColor(this.getTextColor());
-            g.drawString(this.getTitle(), x, y + (height/2));
+            g.drawString(this.getTitle(), x, y + (height / 2));
         }
 
     }

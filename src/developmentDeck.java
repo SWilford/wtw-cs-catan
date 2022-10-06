@@ -32,7 +32,7 @@ public class developmentDeck {
         shuffle();
     }
 
-    //if deck.length = 0 we gotta reshuffle
+    //if deck.length = 0 we have to reshuffle
     //deals the top card (duh)
     public card dealTop()
     {
