@@ -1,4 +1,6 @@
-public class Tile {
+import java.io.Serializable;
+
+public class Tile implements Serializable {
     private final String type;
     private int number;
 

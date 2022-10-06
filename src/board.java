@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class board {
+public class board implements Serializable {
     Tile[][] tiles = new Tile[7][7];//initializing an array of tiles that represent the board
     public board() {
         ArrayList<String> types = new ArrayList<>();//Array List that will contain the name for the type of tile
