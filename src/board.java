@@ -333,4 +333,8 @@ public class board {
     public String getTileType(int row, int col) {
         return tiles[row][col].getType();
     }
+
+    public void setTiles(Tile[][] ts) {
+        tiles = ts;
+    }
 }

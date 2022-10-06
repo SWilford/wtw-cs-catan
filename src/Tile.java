@@ -4,6 +4,8 @@ public class Tile {
 
     private String specialHarbor;//If a harbor is a special harbor what type
     private int nO, noE, soE, sO, soW, noW; //Stores values for shared vertices of hexes
+    private boolean[] settlements = new boolean[6];
+    private boolean[] cities = new boolean[6];
 
     public Tile(String t, int n)//Constructor
     {
@@ -84,5 +86,21 @@ public class Tile {
 
     void setNumber(int n) {//mutator for number
         number = n;
+    }
+
+    void buildSettlement(int vertex) {
+        settlements[vertex] = true;
+    }
+
+    public boolean getSettlement(int vertex) {
+        return settlements[vertex];
+    }
+
+    void buildCity(int vertex) {
+        cities[vertex] = true;
+    }
+
+    public boolean getCity(int vertex) {
+        return cities[vertex];
     }
 }
