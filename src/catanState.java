@@ -33,7 +33,7 @@ public class catanState implements Serializable{
 
 
     private void startGame() {
-        ArrayList<Integer> colors = new ArrayList<>();
+        /*ArrayList<Integer> colors = new ArrayList<>();
         colors.add(1);
         colors.add(2);
         colors.add(3);
@@ -60,7 +60,7 @@ public class catanState implements Serializable{
         }
         else if(playerPlayingWhite == 1) {
             currentPlayer = playerPlayingWhite;
-        }
+        }*/
         winner = -1;
         gameInProgress = true;
         bard = new board();
