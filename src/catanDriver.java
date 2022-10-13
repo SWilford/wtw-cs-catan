@@ -118,7 +118,13 @@ public class catanDriver {
                         continue;
                     }
                     try {
-                        new catanGraphics("localhost", port);
+                        screen = new catanGraphics("localhost", port);
+                        JFrame frame = new JFrame("catan");    //window title
+                        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        frame.setLocation(100, 50);                 //location of game window on the screen
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.setContentPane(screen);
+                        frame.setVisible(true);
                     }
                     catch (IOException e) {
                         message.setText("Could not connect to server on localhost!!");
@@ -148,7 +154,13 @@ public class catanDriver {
                         continue;
                     }
                     try {
-                        new catanGraphics(host,port);
+                        screen = new catanGraphics(host,port);
+                        JFrame frame = new JFrame("catan");    //window title
+                        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        frame.setLocation(100, 50);                 //location of game window on the screen
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.setContentPane(screen);
+                        frame.setVisible(true);
                     }
                     catch (IOException e) {
                         message.setText("Could not connect to specified host and port.");
@@ -159,14 +171,5 @@ public class catanDriver {
                     break;
                 }
             }
-
-
-            /*screen = new catanGraphics();
-            JFrame frame = new JFrame("catan");    //window title
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            frame.setLocation(100, 50);                 //location of game window on the screen
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setContentPane(screen);
-            frame.setVisible(true);*/
         }
-        }
+    }

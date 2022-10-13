@@ -13,7 +13,7 @@ public class catanSHub extends catanHub {
         sendToAll(state);
     }
     protected void playerConnected(int playerID) {
-        if (getPlayerList().length == 2) {
+        if (getPlayerList().length == 4) {
             shutdownServerSocket();
             state.startFirstGame();
             sendToAll(state);
