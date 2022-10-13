@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class catanState implements Serializable{
+    public int noPlayers;
     public board bard;
     public ArrayList<Player> players = new ArrayList<>();
     public boolean gameInProgress;
@@ -23,6 +24,9 @@ public class catanState implements Serializable{
                 winner = currentPlayer;
             }
         }
+        else if(gameInProgress && message instanceof Player && sender == currentPlayer) { //Updates player for the current player
+            Player update = (Player)message;
+        }
         else if(!gameInProgress && message.equals("newgame")) {
             startGame();
         }
@@ -32,35 +36,13 @@ public class catanState implements Serializable{
     }
 
 
-    private void startGame() {
-        /*ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(1);
-        colors.add(2);
-        colors.add(3);
-        colors.add(4);
-        Random rand = new Random();
-        for(int j = 0; j < colors.size(); j++) {
-            int randI = rand.nextInt(colors.size());
-            int temp = colors.get(randI);
-            colors.set(randI, colors.get(j));
-            colors.set(j, temp);
+    private void startGame() {//Work on assigning player colors and move turn per id
+        if(this.getNoPlayers()==4) {
+            playerPlayingBlue = 1;
+            playerPlayingOrange = 2;
+            playerPlayingRed = 3;
+            playerPlayingWhite = 4;
         }
-        playerPlayingBlue = colors.get(0);
-        playerPlayingOrange = colors.get(1);
-        playerPlayingRed = colors.get(2);
-        playerPlayingWhite = colors.get(3);
-        if(playerPlayingBlue == 1) {
-            currentPlayer = playerPlayingBlue;
-        }
-        else if(playerPlayingOrange == 1) {
-            currentPlayer = playerPlayingOrange;
-        }
-        else if(playerPlayingRed == 1) {
-            currentPlayer = playerPlayingRed;
-        }
-        else if(playerPlayingWhite == 1) {
-            currentPlayer = playerPlayingWhite;
-        }*/
         winner = -1;
         gameInProgress = true;
         bard = new board();
@@ -70,4 +52,10 @@ public class catanState implements Serializable{
         return players.get(currentPlayer).getPoints() >= 10;
     }
 
+    void setNoPlayers(int n) {
+        noPlayers = n;
+    }
+    int getNoPlayers() {
+        return noPlayers;
+    }
 }
