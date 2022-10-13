@@ -24,6 +24,37 @@ abstract public class catanClient {
 
     protected void extraHandshake(ObjectInputStream in, ObjectOutputStream out) throws IOException { } //called after connection to server has been established and completes extra checking to be defined in subclass
 
+    public void disconnect() {
+        if (!connection.closed)
+            connection.send(new DisconnectMessage("Goodbye Hub"));
+    }
+
+    public void send(Object message) {
+        if (message == null)
+            throw new IllegalArgumentException("Null cannot be sent as a message.");
+        if (! (message instanceof Serializable))
+            throw new IllegalArgumentException("Messages must implement the Serializable interface.");
+        if (connection.closed)
+            throw new IllegalStateException("Message cannot be sent because the connection is closed.");
+        connection.send(message);
+    }
+
+    public int getID() {
+        return connection.id_number;
+    }
+
+    public void resetOutput() {
+        connection.send(new ResetSignal()); //A ResetSignal in the output stream is seen as a signal to reset
+    }
+
+    public void setAutoreset(boolean auto) {
+        autoreset = auto;
+    }
+
+    public boolean getAutoreset() {
+        return autoreset;
+    }
+
     private final ConnectionToHub connection;
     //private class handles connections
     private class ConnectionToHub {
