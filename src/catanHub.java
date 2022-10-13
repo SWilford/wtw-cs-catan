@@ -5,6 +5,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class catanHub {
+    public int noPlayers;
     private TreeMap<Integer, ConnectionToClient> playerConnections; //a map associating player names with the connection for each player
     private LinkedBlockingQueue<Message> incomingMessages; //queue of messages sent by the client
     private volatile boolean autoreset; //if set to true oos will be reset before sending
@@ -36,6 +37,13 @@ public class catanHub {
         };
         readerThread.setDaemon(true);
         readerThread.start();
+    }
+
+    void setNoPlayers(int n) {
+        noPlayers = n;
+    }
+    int getNoPlayers() {
+        return noPlayers;
     }
 
     protected void messageReceived(int playerID, Object message) { //called when message received from a player

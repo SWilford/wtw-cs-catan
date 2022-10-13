@@ -14,6 +14,7 @@ public class catanDriver {
             JLabel message = new JLabel("Welcome to Catan!", JLabel.CENTER);
             message.setFont(new Font("Serif",Font.BOLD, 16));
             final JTextField listeningPortInput = new JTextField("" + DEFAULT_PORT, 5);
+            final JTextField pNSel= new JTextField("4", 1);
             final JTextField hostInput = new JTextField(30);
             final JTextField connectPortInput = new JTextField("" + DEFAULT_PORT, 5);
             final JRadioButton selectServerMode = new JRadioButton("Start a new game");
@@ -26,17 +27,21 @@ public class catanDriver {
                 public void actionPerformed(ActionEvent e) {
                     if (e.getSource() == selectServerMode) {
                         listeningPortInput.setEnabled(true);
+                        pNSel.setEnabled(true);
                         hostInput.setEnabled(false);
                         connectPortInput.setEnabled(false);
                         listeningPortInput.setEditable(true);
+                        pNSel.setEditable(true);
                         hostInput.setEditable(false);
                         connectPortInput.setEditable(false);
                     }
                     else {
                         listeningPortInput.setEnabled(false);
+                        pNSel.setEnabled(false);
                         hostInput.setEnabled(true);
                         connectPortInput.setEnabled(true);
                         listeningPortInput.setEditable(false);
+                        pNSel.setEditable(false);
                         hostInput.setEditable(true);
                         connectPortInput.setEditable(true);
                     }
@@ -60,7 +65,7 @@ public class catanDriver {
             inputPanel.add(message);
 
             JPanel row;
-
+            JPanel box;
             inputPanel.add(selectServerMode);
 
             row = new JPanel();
@@ -69,6 +74,12 @@ public class catanDriver {
             row.add(new JLabel("Listen on port: "));
             row.add(listeningPortInput);
             inputPanel.add(row);
+            box = new JPanel();
+            box.setLayout(new FlowLayout(FlowLayout.LEFT));
+            box.add(Box.createHorizontalStrut(40));
+            box.add(new JLabel("Number of players: "));
+            box.add(pNSel);
+            inputPanel.add(box);
 
             inputPanel.add(selectClientMode);
 
@@ -107,9 +118,23 @@ public class catanDriver {
                         listeningPortInput.requestFocus();
                         continue;
                     }
+                    int players;
+                    try {
+                        players = Integer.parseInt(pNSel.getText().trim());
+                        if(players < 2 || players > 4) {
+                            throw new Exception();
+                        }
+                    }
+                    catch (Exception e) {
+                        message.setText("Illegal number of players!");
+                        pNSel.selectAll();
+                        pNSel.requestFocus();
+                        continue;
+                    }
                     catanHub hub;
                     try {
                         hub = new catanSHub(port);
+                        hub.setNoPlayers(players);
                     }
                     catch (Exception e) {
                         message.setText("Error: Can't listen on port " + port);
@@ -172,4 +197,4 @@ public class catanDriver {
                 }
             }
         }
-    }
+}
