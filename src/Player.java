@@ -1,4 +1,6 @@
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private int numSettlement, numCity, points, numOre, numBrick, numLumber, numWheat, numSheep, numRoad;
     private final String color, name;
     private card[] hand;

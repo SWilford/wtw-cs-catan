@@ -6,6 +6,10 @@ import java.io.IOException;
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
     private catanClient connection;
     //declaring all images
+    private final ImageIcon p1Blue = new ImageIcon("images/p1blue.png");
+    private final ImageIcon p2Orange = new ImageIcon("images/p2orange.png");
+    private final ImageIcon p3Red = new ImageIcon("images/p3red.png");
+    private final ImageIcon p4White = new ImageIcon("images/p4white.png");
     private final ImageIcon titlePic = new ImageIcon("images/title.png");
     private final ImageIcon placeBut = new ImageIcon("images/thing.png");
     private final ImageIcon developmentBack = new ImageIcon("images/developmentBack.png");
@@ -251,10 +255,18 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     public void drawBoard(Graphics g)
     {
         newState(state);
-        /*if(!state.gameInProgress) {
-            connection.send("newgame");
-            state.gameInProgress = true;
-        }*/
+        if(connection.getID()==1) {
+            g.drawImage(p1Blue.getImage(),0,0,null);
+        }
+        if(connection.getID()==2) {
+            g.drawImage(p2Orange.getImage(),0,0,null);
+        }
+        if(connection.getID()==3) {
+            g.drawImage(p3Red.getImage(), 0, 0, null);
+        }
+        if(connection.getID()==4) {
+            g.drawImage(p4White.getImage(), 0, 0, null);
+        }
         int x = 478; //starting x & y coordinates
         int y = 100;
         g.drawImage(emptyBoard.getImage(), 250, 25, 832, 702, null); //draws empty board outline

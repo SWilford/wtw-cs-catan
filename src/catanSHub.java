@@ -40,7 +40,7 @@ public class catanSHub extends catanHub {
         }
         else if(this.getNoPlayers() == 1) { //needs to be removed
             if(getPlayerList().length == 1) {
-                shutdownServerSocket();;
+                shutdownServerSocket();
                 state.setNoPlayers(1);
                 state.startFirstGame();
                 sendToAll(state);

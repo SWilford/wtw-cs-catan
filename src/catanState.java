@@ -39,9 +39,17 @@ public class catanState implements Serializable {
     private void startGame() {//Work on assigning player colors and move turn per id
         if(this.getNoPlayers()==4) {
             playerPlayingBlue = 1;
+            Player bPlayer = new Player("Player 1", "Blue");
+            players.add(bPlayer);
             playerPlayingOrange = 2;
+            Player oPlayer = new Player("Player 2", "Orange");
+            players.add(oPlayer);
             playerPlayingRed = 3;
+            Player rPlayer = new Player("Player 3", "Red");
+            players.add(rPlayer);
             playerPlayingWhite = 4;
+            Player wPlayer = new Player("Player 4", "White");
+            players.add(wPlayer);
             int random = (int)(Math.random()*3+1);
             if(random == 1) {
                 currentPlayer = playerPlayingBlue;
@@ -58,15 +66,44 @@ public class catanState implements Serializable {
         }
         else if(this.getNoPlayers()==3) {
             playerPlayingBlue = 1;
+            Player bPlayer = new Player("Player 1", "Blue");
+            players.add(bPlayer);
             playerPlayingOrange = 2;
+            Player oPlayer = new Player("Player 2", "Orange");
+            players.add(oPlayer);
             playerPlayingRed = 3;
+            Player rPlayer = new Player("Player 3", "Red");
+            players.add(rPlayer);
+            int random = (int)(Math.random()*2+1);
+            if(random == 1) {
+                currentPlayer = playerPlayingBlue;
+            }
+            else if (random == 2) {
+                currentPlayer = playerPlayingOrange;
+            }
+            else if (random == 3) {
+                currentPlayer = playerPlayingRed;
+            }
         }
         else if(this.getNoPlayers()==2) {
             playerPlayingBlue = 1;
+            Player bPlayer = new Player("Player 1", "Blue");
+            players.add(bPlayer);
             playerPlayingOrange = 2;
+            Player oPlayer = new Player("Player 2", "Orange");
+            players.add(oPlayer);
+            int random = (int)(Math.random()+1);
+            if(random == 1) {
+                currentPlayer = playerPlayingBlue;
+            }
+            else if (random == 2) {
+                currentPlayer = playerPlayingOrange;
+            }
         }
         else if(this.getNoPlayers()==1) {//needs to be removed
             playerPlayingBlue = 1;
+            Player bPlayer = new Player("Player 1", "Blue");
+            players.add(bPlayer);
             currentPlayer = playerPlayingBlue;
         }
         winner = -1;
