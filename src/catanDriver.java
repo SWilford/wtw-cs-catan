@@ -121,7 +121,7 @@ public class catanDriver {
                     int players;
                     try {
                         players = Integer.parseInt(pNSel.getText().trim());
-                        if(players < 2 || players > 4) {
+                        if(players < 1 || players > 4) {//needs to be changed to <2
                             throw new Exception();
                         }
                     }

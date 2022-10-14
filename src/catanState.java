@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class catanState implements Serializable{
+public class catanState implements Serializable {
     public int noPlayers;
     public board bard;
     public ArrayList<Player> players = new ArrayList<>();
@@ -42,6 +42,32 @@ public class catanState implements Serializable{
             playerPlayingOrange = 2;
             playerPlayingRed = 3;
             playerPlayingWhite = 4;
+            int random = (int)(Math.random()*3+1);
+            if(random == 1) {
+                currentPlayer = playerPlayingBlue;
+            }
+            else if (random == 2) {
+                currentPlayer = playerPlayingOrange;
+            }
+            else if (random == 3) {
+                currentPlayer = playerPlayingRed;
+            }
+            else if (random == 4) {
+                currentPlayer = playerPlayingWhite;
+            }
+        }
+        else if(this.getNoPlayers()==3) {
+            playerPlayingBlue = 1;
+            playerPlayingOrange = 2;
+            playerPlayingRed = 3;
+        }
+        else if(this.getNoPlayers()==2) {
+            playerPlayingBlue = 1;
+            playerPlayingOrange = 2;
+        }
+        else if(this.getNoPlayers()==1) {//needs to be removed
+            playerPlayingBlue = 1;
+            currentPlayer = playerPlayingBlue;
         }
         winner = -1;
         gameInProgress = true;

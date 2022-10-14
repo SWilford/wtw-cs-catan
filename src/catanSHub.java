@@ -38,6 +38,14 @@ public class catanSHub extends catanHub {
                 sendToAll(state);
             }
         }
+        else if(this.getNoPlayers() == 1) { //needs to be removed
+            if(getPlayerList().length == 1) {
+                shutdownServerSocket();;
+                state.setNoPlayers(1);
+                state.startFirstGame();
+                sendToAll(state);
+            }
+        }
     }
     protected void playerDisconnected(int playerID) {
         state.playerDisconnected = true;
