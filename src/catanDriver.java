@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class catanDriver {
         public static catanGraphics screen;					//Game window
-        private static final int DEFAULT_PORT = 45017; //Default port
+        private static final int DEFAULT_PORT = 48018; //Default port
 
 
         public static void main(String[]args) {
