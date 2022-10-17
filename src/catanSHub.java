@@ -17,6 +17,7 @@ public class catanSHub extends catanHub {
         if(this.getNoPlayers() == 4) {
             if (getPlayerList().length == 4) {
                 shutdownServerSocket();
+                state.setNoPlayers(4);
                 state.startFirstGame();
                 sendToAll(state);
             }
@@ -24,6 +25,7 @@ public class catanSHub extends catanHub {
         else if(this.getNoPlayers() == 3) {
             if (getPlayerList().length == 3) {
                 shutdownServerSocket();
+                state.setNoPlayers(3);
                 state.startFirstGame();
                 sendToAll(state);
             }
@@ -31,6 +33,15 @@ public class catanSHub extends catanHub {
         else if(this.getNoPlayers() == 2) {
             if (getPlayerList().length == 2) {
                 shutdownServerSocket();
+                state.setNoPlayers(2);
+                state.startFirstGame();
+                sendToAll(state);
+            }
+        }
+        else if(this.getNoPlayers() == 1) { //needs to be removed
+            if(getPlayerList().length == 1) {
+                shutdownServerSocket();
+                state.setNoPlayers(1);
                 state.startFirstGame();
                 sendToAll(state);
             }

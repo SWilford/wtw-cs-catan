@@ -1,7 +1,8 @@
 import java.util.*;
 import java.io.*;
 
-public class catanState implements Serializable{
+public class catanState implements Serializable {
+    public int noPlayers;
     public board bard;
     public ArrayList<Player> players = new ArrayList<>();
     public boolean gameInProgress;
@@ -23,6 +24,9 @@ public class catanState implements Serializable{
                 winner = currentPlayer;
             }
         }
+        else if(gameInProgress && message instanceof Player && sender == currentPlayer) { //Updates player for the current player
+            Player update = (Player)message;
+        }
         else if(!gameInProgress && message.equals("newgame")) {
             startGame();
         }
@@ -32,35 +36,76 @@ public class catanState implements Serializable{
     }
 
 
-    private void startGame() {
-        /*ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(1);
-        colors.add(2);
-        colors.add(3);
-        colors.add(4);
-        Random rand = new Random();
-        for(int j = 0; j < colors.size(); j++) {
-            int randI = rand.nextInt(colors.size());
-            int temp = colors.get(randI);
-            colors.set(randI, colors.get(j));
-            colors.set(j, temp);
+    private void startGame() {//Work on assigning player colors and move turn per id
+        if(this.getNoPlayers()==4) {
+            playerPlayingBlue = 1;
+            Player bPlayer = new Player("Player 1", "Blue");
+            players.add(bPlayer);
+            playerPlayingOrange = 2;
+            Player oPlayer = new Player("Player 2", "Orange");
+            players.add(oPlayer);
+            playerPlayingRed = 3;
+            Player rPlayer = new Player("Player 3", "Red");
+            players.add(rPlayer);
+            playerPlayingWhite = 4;
+            Player wPlayer = new Player("Player 4", "White");
+            players.add(wPlayer);
+            int random = (int)(Math.random()*3+1);
+            if(random == 1) {
+                currentPlayer = playerPlayingBlue;
+            }
+            else if (random == 2) {
+                currentPlayer = playerPlayingOrange;
+            }
+            else if (random == 3) {
+                currentPlayer = playerPlayingRed;
+            }
+            else if (random == 4) {
+                currentPlayer = playerPlayingWhite;
+            }
         }
-        playerPlayingBlue = colors.get(0);
-        playerPlayingOrange = colors.get(1);
-        playerPlayingRed = colors.get(2);
-        playerPlayingWhite = colors.get(3);
-        if(playerPlayingBlue == 1) {
+        else if(this.getNoPlayers()==3) {
+            playerPlayingBlue = 1;
+            Player bPlayer = new Player("Player 1", "Blue");
+            players.add(bPlayer);
+            playerPlayingOrange = 2;
+            Player oPlayer = new Player("Player 2", "Orange");
+            players.add(oPlayer);
+            playerPlayingRed = 3;
+            Player rPlayer = new Player("Player 3", "Red");
+            players.add(rPlayer);
+            int random = (int)(Math.random()*2+1);
+            if(random == 1) {
+                currentPlayer = playerPlayingBlue;
+            }
+            else if (random == 2) {
+                currentPlayer = playerPlayingOrange;
+            }
+            else if (random == 3) {
+                currentPlayer = playerPlayingRed;
+            }
+        }
+        else if(this.getNoPlayers()==2) {
+            playerPlayingBlue = 1;
+            Player bPlayer = new Player("Player 1", "Blue");
+            players.add(bPlayer);
+            playerPlayingOrange = 2;
+            Player oPlayer = new Player("Player 2", "Orange");
+            players.add(oPlayer);
+            int random = (int)(Math.random()+1);
+            if(random == 1) {
+                currentPlayer = playerPlayingBlue;
+            }
+            else if (random == 2) {
+                currentPlayer = playerPlayingOrange;
+            }
+        }
+        else if(this.getNoPlayers()==1) {//needs to be removed
+            playerPlayingBlue = 1;
+            Player bPlayer = new Player("Player 1", "Blue");
+            players.add(bPlayer);
             currentPlayer = playerPlayingBlue;
         }
-        else if(playerPlayingOrange == 1) {
-            currentPlayer = playerPlayingOrange;
-        }
-        else if(playerPlayingRed == 1) {
-            currentPlayer = playerPlayingRed;
-        }
-        else if(playerPlayingWhite == 1) {
-            currentPlayer = playerPlayingWhite;
-        }*/
         winner = -1;
         gameInProgress = true;
         bard = new board();
@@ -70,4 +115,10 @@ public class catanState implements Serializable{
         return players.get(currentPlayer).getPoints() >= 10;
     }
 
+    void setNoPlayers(int n) {
+        noPlayers = n;
+    }
+    int getNoPlayers() {
+        return noPlayers;
+    }
 }

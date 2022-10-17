@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class catanDriver {
         public static catanGraphics screen;					//Game window
-        private static final int DEFAULT_PORT = 45017; //Default port
+        private static final int DEFAULT_PORT = 48018; //Default port
 
 
         public static void main(String[]args) {
@@ -121,7 +121,7 @@ public class catanDriver {
                     int players;
                     try {
                         players = Integer.parseInt(pNSel.getText().trim());
-                        if(players < 2 || players > 4) {
+                        if(players < 1 || players > 4) {//needs to be changed to <2
                             throw new Exception();
                         }
                     }
