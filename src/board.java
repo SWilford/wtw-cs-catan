@@ -338,4 +338,11 @@ public class board implements Serializable {
     public void setTiles(Tile[][] ts) {
         tiles = ts;
     }
+
+    public void createSettlement(int row, int col, int vertex) {
+        tiles[row][col].buildSettlement(vertex);
+    }
+    public boolean isSettlement(int row, int col, int vertex) {
+        return tiles[row][col].getSettlement(vertex);
+    }
 }
