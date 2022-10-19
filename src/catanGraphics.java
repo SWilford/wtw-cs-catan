@@ -189,6 +189,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 currentScreen = 4; //board draws
                                 repaint();
                             }
+                            case "build" -> {
+                                //draw buttons
+                            }
                             case "quit" -> System.exit(0); //closes window
                         }
                     }
