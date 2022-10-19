@@ -6,6 +6,8 @@ import java.io.IOException;
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
     private catanClient connection;
     //declaring all images
+    private final ImageIcon buildm1 = new ImageIcon("images/buildmode1.png");
+    private final ImageIcon buildm2 = new ImageIcon("images/buildmode2.png");
     private final ImageIcon p1Blue = new ImageIcon("images/p1blue.png");
     private final ImageIcon p2Orange = new ImageIcon("images/p2orange.png");
     private final ImageIcon p3Red = new ImageIcon("images/p3red.png");
@@ -33,7 +35,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static int currentPlayer;
     private static boolean placing, mousePlaced;
 
-    private final catanButton[] buttons = new catanButton[6]; //array of all buttons, just add to the array length if needed
+    private final catanButton[] buttons = new catanButton[7]; //array of all buttons, just add to the array length if needed
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
@@ -76,6 +78,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect3 = new Rectangle(500, 300, 150, 100);
         Shape rect4 = new Rectangle(100, 600, 75, 50);
         Shape rect5 = new Rectangle(100, 500, 75, 50);
+        Shape rect6 = new Rectangle(0,658, 127,48);
         ImageIcon rulesButton = new ImageIcon("images/rulesbut.png"); //rules
         ImageIcon rulesHighlighted = new ImageIcon("images/rulesbutHL.png"); //rules highlighted
         //declaration of all buttons
@@ -85,6 +88,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         buttons[3] = new catanButton(rect3, "Start", Color.YELLOW, Color.RED, Color.BLACK);
         buttons[4] = new catanButton(rect4, "quit", Color.YELLOW, Color.RED, Color.BLACK);
         buttons[5] = new catanButton(rect5, "place", Color.WHITE, Color.GRAY, Color.BLACK);
+        buttons[6] = new catanButton(rect6, "build", buildm1, buildm2);
         currentScreen = 1; //sets to start screen
         t = new Timer(DELAY, new Listener());
         t.start();
@@ -128,6 +132,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         }
         else if(currentScreen == 4) //start
         {
+                buttons[6].drawButton(g);
                 drawBoard(g); //draws board
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 place(g);
@@ -455,7 +460,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     private static catanGraphics screen;
     public static void main(String[]args) throws IOException {
-        screen = new catanGraphics("localhost", 45017);
+        screen = new catanGraphics("localhost", 41018);
         JFrame frame = new JFrame("catan");    //window title
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocation(100, 50);                 //location of game window on the screen
