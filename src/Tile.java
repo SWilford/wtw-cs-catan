@@ -99,10 +99,10 @@ public class Tile implements Serializable {
     }
 
     void buildCity(int vertex) {
-        cities[vertex] = true;
+        cities[vertex-1] = true;
     }
 
     public boolean getCity(int vertex) {
-        return cities[vertex];
+        return cities[vertex-1];
     }
 }
