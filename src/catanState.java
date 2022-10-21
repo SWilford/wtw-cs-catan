@@ -24,6 +24,43 @@ public class catanState implements Serializable {
                 winner = currentPlayer;
             }
         }
+        else if(gameInProgress && message instanceof Integer && sender == currentPlayer) {
+            int change = (int)message;
+            if(change == 1) {
+                bard.createSettlement(1,2, 0);
+            }
+            else if(change == 2) {
+                bard.createSettlement(1, 3, 0);
+            }
+            else if(change == 3) {
+                bard.createSettlement(1,4,0);
+            }
+            else if(change == 4) {
+                bard.createSettlement(1,2, 5);
+            }
+            else if(change == 5) {
+                bard.createSettlement(1,3,5);
+            }
+            else if(change == 6) {
+                bard.createSettlement(1, 4, 5);
+            }
+            else if(change == 7) {
+                bard.createSettlement(1,4,1);
+            }
+            else if(change == 8) {
+                bard.createSettlement(1,2,4);
+            }
+            else if(change == 9) {
+                bard.createSettlement(1,3,4);
+            }
+            else if(change == 10) {
+                bard.createSettlement(1,4,4);
+            }
+            else if(change == 11) {
+                bard.createSettlement(1,4,2);
+            }
+
+        }
         else if(gameInProgress && message instanceof Player && sender == currentPlayer) { //Updates player for the current player
             Player update = (Player)message;
         }

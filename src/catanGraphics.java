@@ -5,6 +5,8 @@ import java.io.IOException;
 
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
     private catanClient connection;
+    private int myID;
+    private int bNum = 0;
 
     //declaring all images
     private final ImageIcon buildm1 = new ImageIcon("images/buildmode1.png");
@@ -37,7 +39,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private boolean building;
 
     private final catanButton[] buttons = new catanButton[7]; //array of all buttons, just add to the array length if needed
-    private final catanButton[] buttons1 = new catanButton[10];
+    private final catanButton[] buttons1 = new catanButton[11];
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
@@ -64,6 +66,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     public catanGraphics(String hostName, int serverPortNumber) throws IOException {
         building = false;
         connection = new catanSClient(hostName, serverPortNumber);
+        myID = connection.getID();
         addMouseListener(this); //mouse
         addMouseMotionListener(this); //mouse
         mouseX = SIZE/2; //mouse location
@@ -91,7 +94,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         buttons[3] = new catanButton(rect3, "Start", Color.YELLOW, Color.RED, Color.BLACK);
         buttons[4] = new catanButton(rect4, "quit", Color.YELLOW, Color.RED, Color.BLACK);
         buttons[5] = new catanButton(rect5, "place", Color.WHITE, Color.GRAY, Color.BLACK);
-        buttons[6] = new catanButton(rect6, "build", buildm1, buildm2);
+        buttons[6] = new catanButton(rect6, "builds", buildm1, buildm2);
         currentScreen = 1; //sets to start screen
         t = new Timer(DELAY, new Listener());
         t.start();
@@ -193,14 +196,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                             case "Start" -> {
                                 currentScreen = 4; //board draws
                             }
-                            case "builds" -> { //draws building buttons
-                                //if(!building) {
-                                    building = true;
-                                //}
-                                /*else {
-                                    building = false;
-                                }*/
-                            }
                             case "quit" -> System.exit(0); //closes window
                         }
                     }
@@ -210,6 +205,26 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         {
                             currentScreen = 1;
                         }
+                    }
+                    else if(currentScreen == 4) {
+                        if(b.getTitle().equals("builds")) {
+                            if(!building) {
+                                building = true;
+                            }
+                            else {
+                                building = false;
+                            }
+                        }
+                    }
+                }
+            }
+            if(currentScreen == 4 && building) {
+                for(catanButton c: buttons1) {
+                    if(c.getShape().contains(mouseX, mouseY)) {
+                        //needs code to make sure the player has the correct amount of resources
+                        Integer i = Integer.parseInt(c.getTitle());
+                        i++;
+                        connection.send(i);
                     }
                 }
             }
@@ -231,6 +246,16 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             else
                 b.unHighlight(); //goes back to un highlighted form
         }
+        if(building) {
+            for (catanButton c : buttons1) {
+                if (c.getShape().contains(mouseX, mouseY)) {
+                    c.highlight();
+                }
+                else {
+                    c.unHighlight();
+                }
+            }
+        }
         repaint();
     }
 
@@ -247,53 +272,61 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     }
 
     public void drawBuildButtons(Graphics g) {
-        System.out.println("Yo!");
-        int bNum = 0;
-        int x = 535;
-        int y = 98;
+        String Bnum;
+        Shape rect;
+        bNum = 0;
+        int x = 532;
+        int y = 96;
         for(int col = 2; col < 5; col++) { //first row of vertices
-            if(!state.bard.isSettlement(1, col, 1)) {
-                Shape rect = new Rectangle(x, y, 11, 11);
-                buttons1[bNum] = new catanButton(rect, "builds", Color.RED, Color.YELLOW, Color.BLACK);
-                buttons1[bNum].drawButton(g);
+                Bnum = ""+bNum;
+                rect = new Rectangle(x, y, 17, 17);
+                buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+                if(!state.bard.isSettlement(1, col, 0)) {
+                    buttons1[bNum].drawButton(g);
+                }
                 x+=125;
                 bNum++;
-            }
         }
-        x = 474;
-        y = 132;
+        x = 471;
+        y = 130;
         for(int col = 2; col < 5; col++) { //second row of vertices
-            if(!state.bard.isSettlement(1, col, 6)) {
-                Shape rect = new Rectangle(x, y, 11, 11);
-                buttons1[bNum] = new catanButton(rect, "builds", Color.RED, Color.YELLOW, Color.BLACK);
-                buttons1[bNum].drawButton(g);
+                Bnum = ""+bNum;
+                rect = new Rectangle(x, y, 17, 17);
+                buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+                if(!state.bard.isSettlement(1, col, 5)) {
+                    buttons1[bNum].drawButton(g);
+                }
                 x+=123;
                 bNum++;
-            }
             if(col == 4) {
-                if(!state.bard.isSettlement(1,col, 2)) {
-                    Shape rect = new Rectangle(874, y, 11, 11);
-                    buttons1[bNum] = new catanButton(rect, "builds", Color.RED, Color.YELLOW, Color.BLACK);
-                    buttons1[bNum].drawButton(g);
+                    Bnum = ""+bNum;
+                    rect = new Rectangle(844, y, 17, 17);
+                    buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+                    if(!state.bard.isSettlement(1,col, 1)) {
+                        buttons1[bNum].drawButton(g);
+                    }
                     bNum++;
-                }
             }
         }
-        x = 473;
-        y = 221;
+        x = 470;
+        y = 199;
         for(int col = 2; col < 5; col++) {//third row
-            if(!state.bard.isSettlement(1, col, 5)) {
-                Shape rect = new Rectangle(x, y, 11, 11);
-                buttons1[bNum] = new catanButton(rect, "builds", Color.RED, Color.YELLOW, Color.BLACK);
-                buttons1[bNum].drawButton(g);
+                Bnum = ""+bNum;
+                rect = new Rectangle(x, y, 17, 17);
+                buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+                if(!state.bard.isSettlement(1, col, 4)) {
+                    buttons1[bNum].drawButton(g);
+                }
                 x+=124;
                 bNum++;
-            }
             if(col == 4) {
-                Shape rect = new Rectangle(847, y, 11, 11);
-                buttons1[bNum] = new catanButton(rect, "builds", Color.RED, Color.YELLOW, Color.BLACK);
-                buttons1[bNum].drawButton(g);
-                bNum++;
+                    Bnum = ""+bNum;
+                    rect = new Rectangle(845, y, 17, 17);
+                    buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+                    if(!state.bard.isSettlement(1, col, 2)) {
+                        buttons1[bNum].drawButton(g);
+                    }
+                    bNum++;
             }
         }
         repaint();
