@@ -24,7 +24,7 @@ public class catanState implements Serializable {
                 winner = currentPlayer;
             }
         }
-        else if(gameInProgress && message instanceof Integer && sender == currentPlayer) {
+        if(gameInProgress && message instanceof Integer && sender == currentPlayer) {
             int change = (int)message;
             if(change == 1) {
                 bard.createSettlement(1,2, 0);
@@ -59,7 +59,36 @@ public class catanState implements Serializable {
             else if(change == 11) {
                 bard.createSettlement(1,4,2);
             }
-
+            if(winner()) { //Needs to be called in the other updates as well
+                gameInProgress = false;
+                winner = currentPlayer;
+            }
+        }
+        else if(gameInProgress && message.equals("nextplayer") && sender == currentPlayer) {//ends turn and makes turn go to next player
+            if(noPlayers == 4) {
+                if(currentPlayer <= 3) {
+                    currentPlayer++;
+                }
+                else if(currentPlayer == 4) {
+                    currentPlayer = 1;
+                }
+            }
+            else if(noPlayers == 3) {
+                if(currentPlayer <= 2) {
+                    currentPlayer++;
+                }
+                else if(currentPlayer == 3) {
+                    currentPlayer = 1;
+                }
+            }
+            else if(noPlayers == 2) {
+                if(currentPlayer == 1) {
+                    currentPlayer++;
+                }
+                else if(currentPlayer == 2) {
+                    currentPlayer = 1;
+                }
+            }
         }
         else if(gameInProgress && message instanceof Player && sender == currentPlayer) { //Updates player for the current player
             Player update = (Player)message;

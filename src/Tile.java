@@ -7,6 +7,7 @@ public class Tile implements Serializable {
     private String specialHarbor;//If a harbor is a special harbor what type
     private int nO, noE, soE, sO, soW, noW; //Stores values for shared vertices of hexes
     private boolean[] settlements = new boolean[6];
+    private String[] settlementsOwnedBy = new String[6];
     private boolean[] cities = new boolean[6];
 
     public Tile(String t, int n)//Constructor

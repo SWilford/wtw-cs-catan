@@ -9,6 +9,12 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private int bNum = 0;
 
     //declaring all images
+    private final ImageIcon endt1 = new ImageIcon("images/endturn1.png");
+    private final ImageIcon endt2 = new ImageIcon("images/endturn2.png");
+    private final ImageIcon cplayerb = new ImageIcon("images/cplayerblue.png");
+    private final ImageIcon cplayero = new ImageIcon("cplayerorange.png");
+    private final ImageIcon cplayerr = new ImageIcon("cplayerred.png");
+    private final ImageIcon cplayerw = new ImageIcon("cplayerwhite.png");
     private final ImageIcon buildm1 = new ImageIcon("images/buildmode1.png");
     private final ImageIcon buildm2 = new ImageIcon("images/buildmode2.png");
     private final ImageIcon p1Blue = new ImageIcon("images/p1blue.png");
@@ -38,7 +44,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static boolean placing, mousePlaced;
     private boolean building;
 
-    private final catanButton[] buttons = new catanButton[7]; //array of all buttons, just add to the array length if needed
+    private final catanButton[] buttons = new catanButton[8]; //array of all buttons, just add to the array length if needed
     private final catanButton[] buttons1 = new catanButton[11];
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
@@ -84,7 +90,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect3 = new Rectangle(500, 300, 150, 100);
         Shape rect4 = new Rectangle(100, 600, 75, 50);
         Shape rect5 = new Rectangle(100, 500, 75, 50);
-        Shape rect6 = new Rectangle(0,658, 127,48);
+        Shape rect6 = new Rectangle(0,658, 127,47);
+        Shape rect7 = new Rectangle(129, 658, 127, 47);
         ImageIcon rulesButton = new ImageIcon("images/rulesbut.png"); //rules
         ImageIcon rulesHighlighted = new ImageIcon("images/rulesbutHL.png"); //rules highlighted
         //declaration of all buttons
@@ -95,6 +102,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         buttons[4] = new catanButton(rect4, "quit", Color.YELLOW, Color.RED, Color.BLACK);
         buttons[5] = new catanButton(rect5, "place", Color.WHITE, Color.GRAY, Color.BLACK);
         buttons[6] = new catanButton(rect6, "builds", buildm1, buildm2);
+        buttons[7] = new catanButton(rect7, "end", endt1, endt2);
         currentScreen = 1; //sets to start screen
         t = new Timer(DELAY, new Listener());
         t.start();
@@ -138,9 +146,14 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         }
         else if(currentScreen == 4) //start
         {
+            if(state.currentPlayer == myID) {
                 buttons[6].drawButton(g);
+                buttons[7].drawButton(g);
+            }
                 drawBoard(g); //draws board
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
+                drawCurrentPlayer(g);
+                repaint();
                 //place(g);
             placing = true;
             if (mousePlaced)
@@ -215,6 +228,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 building = false;
                             }
                         }
+                        else if(b.getTitle().equals("end")) {
+                            String nm = "nextplayer";
+                            connection.send(nm);
+                        }
                     }
                 }
             }
@@ -267,6 +284,46 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         this.state = state;
         if(state.bard == null) {
             return; //Has not started yet
+        }
+        repaint();
+    }
+
+    public void drawCurrentPlayer(Graphics g) {
+        if(state.noPlayers == 4) {
+            if(state.currentPlayer == 1) {
+                g.drawImage(cplayerb.getImage(), 70, 0, null);
+            }
+            else if(state.currentPlayer == 2) {
+                g.drawImage(cplayero.getImage(), 70, 0, null);
+            }
+            else if(state.currentPlayer == 3) {
+                g.drawImage(cplayerr.getImage(), 70, 0, null);
+            }
+            else if(state.currentPlayer == 4) {
+                g.drawImage(cplayerw.getImage(), 70, 0, null);
+            }
+        }
+        else if(state.noPlayers == 3) {
+            if(state.currentPlayer == 1) {
+                g.drawImage(cplayerb.getImage(), 70, 0, null);
+            } else if(state.currentPlayer == 2) {
+                g.drawImage(cplayero.getImage(), 70, 0, null);
+            }
+            else if(state.currentPlayer == 3) {
+                g.drawImage(cplayerr.getImage(), 70, 0, null);
+            }
+        }
+        else if(state.noPlayers == 2) {
+            if(state.currentPlayer == 1) {
+                g.drawImage(cplayerb.getImage(), 70, 0, null);
+            } else if(state.currentPlayer == 2) {
+                g.drawImage(cplayero.getImage(), 70, 0, null);
+            }
+        }
+        else if(state.noPlayers == 1) { //needs to be deleted, for testing purposes
+            if(state.currentPlayer == 1) {
+                g.drawImage(cplayerb.getImage(), 70, 0, null);
+            }
         }
         repaint();
     }
