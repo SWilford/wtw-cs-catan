@@ -59,10 +59,10 @@ public class catanState implements Serializable {
             else if(change == 11) {
                 bard.createSettlement(1,4,2);
             }
-            if(winner()) { //Needs to be called in the other updates as well
+            /*if(winner()) { //Needs to be called in the other updates as well
                 gameInProgress = false;
                 winner = currentPlayer;
-            }
+            }*/
         }
         else if(gameInProgress && message.equals("nextplayer") && sender == currentPlayer) {//ends turn and makes turn go to next player
             if(noPlayers == 4) {
