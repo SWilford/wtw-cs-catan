@@ -20,9 +20,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final ImageIcon endt1 = new ImageIcon("images/endturn1.png");
     private final ImageIcon endt2 = new ImageIcon("images/endturn2.png");
     private final ImageIcon cplayerb = new ImageIcon("images/cplayerblue.png");
-    private final ImageIcon cplayero = new ImageIcon("cplayerorange.png");
-    private final ImageIcon cplayerr = new ImageIcon("cplayerred.png");
-    private final ImageIcon cplayerw = new ImageIcon("cplayerwhite.png");
+    private final ImageIcon cplayero = new ImageIcon("images/cplayerorange.png");
+    private final ImageIcon cplayerr = new ImageIcon("images/cplayerred.png");
+    private final ImageIcon cplayerw = new ImageIcon("images/cplayerwhite.png");
     private final ImageIcon buildm1 = new ImageIcon("images/buildmode1.png");
     private final ImageIcon buildm2 = new ImageIcon("images/buildmode2.png");
     private final ImageIcon p1Blue = new ImageIcon("images/p1blue.png");
@@ -166,7 +166,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 drawBoard(g); //draws board
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 drawCurrentPlayer(g);
-                repaint();
                 //place(g);
             placing = true;
             if (mousePlaced)
