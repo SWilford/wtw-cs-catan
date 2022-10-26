@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.lang.Thread;
 
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
     private catanClient connection;
@@ -9,6 +10,13 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private int bNum = 0;
 
     //declaring all images
+    private final ImageIcon face1 = new ImageIcon("images/face1.png");
+    private final ImageIcon face2 = new ImageIcon("images/face2.png");
+    private final ImageIcon face3 = new ImageIcon("images/face3.png");
+    private final ImageIcon face4 = new ImageIcon("images/face4.png");
+    private final ImageIcon face5 = new ImageIcon("images/face5.png");
+    private final ImageIcon face6 = new ImageIcon("images/face6.png");
+
     private final ImageIcon endt1 = new ImageIcon("images/endturn1.png");
     private final ImageIcon endt2 = new ImageIcon("images/endturn2.png");
     private final ImageIcon cplayerb = new ImageIcon("images/cplayerblue.png");
@@ -23,6 +31,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final ImageIcon p4White = new ImageIcon("images/p4white.png");
     private final ImageIcon titlePic = new ImageIcon("images/title.png");
     private final ImageIcon placeBut = new ImageIcon("images/thing.png");
+    private final ImageIcon roll1 = new ImageIcon("images/rollDice1.png");
+    private final ImageIcon roll2 = new ImageIcon("images/rollDice2.png");
     private final ImageIcon developmentBack = new ImageIcon("images/developmentBack.png");
     private final ImageIcon startBack = new ImageIcon("images/background.gif");
     private final ImageIcon emptyBoard = new ImageIcon("images/blankcatanboard.png");
@@ -42,9 +52,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static Player[] players = new Player[4];
     private static int currentPlayer;
     private static boolean placing, mousePlaced;
-    private boolean building;
+    private boolean building, rolling;
 
-    private final catanButton[] buttons = new catanButton[8]; //array of all buttons, just add to the array length if needed
+    private final catanButton[] buttons = new catanButton[9]; //array of all buttons, just add to the array length if needed
     private final catanButton[] buttons1 = new catanButton[11];
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
@@ -92,6 +102,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect5 = new Rectangle(100, 500, 75, 50);
         Shape rect6 = new Rectangle(0,658, 127,47);
         Shape rect7 = new Rectangle(129, 658, 127, 47);
+        Shape rect8 = new Rectangle(0, 611, 127, 47);
         ImageIcon rulesButton = new ImageIcon("images/rulesbut.png"); //rules
         ImageIcon rulesHighlighted = new ImageIcon("images/rulesbutHL.png"); //rules highlighted
         //declaration of all buttons
@@ -103,6 +114,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         buttons[5] = new catanButton(rect5, "place", Color.WHITE, Color.GRAY, Color.BLACK);
         buttons[6] = new catanButton(rect6, "builds", buildm1, buildm2);
         buttons[7] = new catanButton(rect7, "end", endt1, endt2);
+        buttons[8] = new catanButton(rect8, "roll", roll1, roll2);
         currentScreen = 1; //sets to start screen
         t = new Timer(DELAY, new Listener());
         t.start();
@@ -149,6 +161,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(state.currentPlayer == myID) {
                 buttons[6].drawButton(g);
                 buttons[7].drawButton(g);
+                buttons[8].drawButton(g);
             }
                 drawBoard(g); //draws board
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
@@ -164,6 +177,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             }
             if(building) {
                 drawBuildButtons(g);
+            }
+            if(rolling)
+            {
+                rollDice(g);
             }
         }
 
@@ -231,6 +248,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         else if(b.getTitle().equals("end")) {
                             String nm = "nextplayer";
                             connection.send(nm);
+                        }
+                        else if(b.getTitle().equals("roll")) {
+                            rolling = true;
                         }
                     }
                 }
@@ -589,6 +609,46 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             places[i].drawButton(g);
         }
     }
+
+
+    private int rollDice(Graphics g)
+    {
+        int roll = 0;
+        for(int i = 0; i <20; i++) {
+            int one = (int) (Math.random() * 5) + 1;
+            int two = (int) (Math.random() * 5) + 1;
+            if (one == 1) {
+                g.drawImage(face1.getImage(), 25, 150, 50, 50, null);
+            } else if (one == 2) {
+                g.drawImage(face2.getImage(), 25, 150, 50, 50, null);
+            } else if (one == 3) {
+                g.drawImage(face3.getImage(), 25, 150, 50, 50, null);
+            } else if (one == 4) {
+                g.drawImage(face4.getImage(), 25, 150, 50, 50, null);
+            } else if (one == 5) {
+                g.drawImage(face5.getImage(), 25, 150, 50, 50, null);
+            } else if (one == 6) {
+                g.drawImage(face6.getImage(), 25, 150, 50, 50, null);
+            }
+            if (two == 1) {
+                g.drawImage(face1.getImage(), 75, 150, 50, 50, null);
+            } else if (two == 2) {
+                g.drawImage(face2.getImage(), 75, 150, 50, 50, null);
+            } else if (two == 3) {
+                g.drawImage(face3.getImage(), 75, 150, 50, 50, null);
+            } else if (two == 4) {
+                g.drawImage(face4.getImage(), 75, 150, 50, 50, null);
+            } else if (two == 5) {
+                g.drawImage(face5.getImage(), 75, 150, 50, 50, null);
+            } else if (two == 6) {
+                g.drawImage(face6.getImage(), 75, 150, 50, 50, null);
+            }
+            roll = one + two;
+        }
+        rolling = false;
+        return roll;
+    }
+
 
 
     private static catanGraphics screen;
