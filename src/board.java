@@ -331,6 +331,10 @@ public class board implements Serializable {
         tiles[6][5].setNorthWest(54);
     }
 
+    public int getNumber(int row, int col) {
+        return tiles[row][col].getNumber();
+    }
+
     public String getTileType(int row, int col) {
         return tiles[row][col].getType();
     }

@@ -17,6 +17,18 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final ImageIcon face5 = new ImageIcon("images/face5.png");
     private final ImageIcon face6 = new ImageIcon("images/face6.png");
 
+    private final ImageIcon token2 = new ImageIcon("images/token2.png");
+    private final ImageIcon token3 = new ImageIcon("images/token3.png");
+    private final ImageIcon token4 = new ImageIcon("images/token4.png");
+    private final ImageIcon token5 = new ImageIcon("images/token5.png");
+    private final ImageIcon token6 = new ImageIcon("images/token6.png");
+    private final ImageIcon token8 = new ImageIcon("images/token8.png");
+    private final ImageIcon token9 = new ImageIcon("images/token9.png");
+    private final ImageIcon token10 = new ImageIcon("images/token10.png");
+    private final ImageIcon token11 = new ImageIcon("images/token11.png");
+    private final ImageIcon token12 = new ImageIcon("images/token12.png");
+
+
     private final ImageIcon endt1 = new ImageIcon("images/endturn1.png");
     private final ImageIcon endt2 = new ImageIcon("images/endturn2.png");
     private final ImageIcon cplayerb = new ImageIcon("images/cplayerblue.png");
@@ -164,6 +176,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 buttons[8].drawButton(g);
             }
                 drawBoard(g); //draws board
+                drawTokens(g);
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 drawCurrentPlayer(g);
                 //place(g);
@@ -406,6 +419,194 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             }
         }
         repaint();
+    }
+
+    public void drawTokens(Graphics g) {
+        int x = 522;
+        int y = 198;
+        for(int col = 2; col < 5; col++) {
+            if(!state.bard.getTileType(1, col).equals("Desert")) {
+                if(state.bard.getNumber(1, col) == 2) {
+                    g.drawImage(token2.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(1, col) == 3) {
+                    g.drawImage(token3.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(1, col) == 4) {
+                    g.drawImage(token4.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(1, col) == 5) {
+                    g.drawImage(token5.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(1, col) == 6) {
+                    g.drawImage(token6.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(1, col) == 8) {
+                    g.drawImage(token8.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(1, col) == 9) {
+                    g.drawImage(token9.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(1, col) == 10) {
+                    g.drawImage(token10.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(1, col) == 11) {
+                    g.drawImage(token11.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(1, col) == 12) {
+                    g.drawImage(token12.getImage(), x, y, 36, 36, null);
+                }
+            }
+            x+=125;
+        }
+        y = 301;
+        x = 461;
+        for(int col = 2; col < 6; col++) {
+            if(!state.bard.getTileType(2, col).equals("Desert")) {
+                if(state.bard.getNumber(2, col) == 2) {
+                    g.drawImage(token2.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(2, col) == 3) {
+                    g.drawImage(token3.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(2, col) == 4) {
+                    g.drawImage(token4.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(2, col) == 5) {
+                    g.drawImage(token5.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(2, col) == 6) {
+                    g.drawImage(token6.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(2, col) == 8) {
+                    g.drawImage(token8.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(2, col) == 9) {
+                    g.drawImage(token9.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(2, col) == 10) {
+                    g.drawImage(token10.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(2, col) == 11) {
+                    g.drawImage(token11.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(2, col) == 12) {
+                    g.drawImage(token12.getImage(), x, y, 36, 36, null);
+                }
+            }
+            x+=125;
+        }
+        x = 400;
+        y = 404;
+        for(int col = 1; col < 6; col++) {
+            if(!state.bard.getTileType(3, col).equals("Desert")) {
+                if(state.bard.getNumber(3, col) == 2) {
+                    g.drawImage(token2.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(3, col) == 3) {
+                    g.drawImage(token3.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(3, col) == 4) {
+                    g.drawImage(token4.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(3, col) == 5) {
+                    g.drawImage(token5.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(3, col) == 6) {
+                    g.drawImage(token6.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(3, col) == 8) {
+                    g.drawImage(token8.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(3, col) == 9) {
+                    g.drawImage(token9.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(3, col) == 10) {
+                    g.drawImage(token10.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(3, col) == 11) {
+                    g.drawImage(token11.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(3, col) == 12) {
+                    g.drawImage(token12.getImage(), x, y, 36, 36, null);
+                }
+            }
+            x+=125;
+        }
+        y = 507;
+        x = 460;
+        for(int col = 2; col < 6; col++) {
+            if(!state.bard.getTileType(4, col).equals("Desert")) {
+                if(state.bard.getNumber(4, col) == 2) {
+                    g.drawImage(token2.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(4, col) == 3) {
+                    g.drawImage(token3.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(4, col) == 4) {
+                    g.drawImage(token4.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(4, col) == 5) {
+                    g.drawImage(token5.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(4, col) == 6) {
+                    g.drawImage(token6.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(4, col) == 8) {
+                    g.drawImage(token8.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(4, col) == 9) {
+                    g.drawImage(token9.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(4, col) == 10) {
+                    g.drawImage(token10.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(4, col) == 11) {
+                    g.drawImage(token11.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(4, col) == 12) {
+                    g.drawImage(token12.getImage(), x, y, 36, 36, null);
+                }
+            }
+            x+=125;
+        }
+        x = 522;
+        y = 610;
+        for(int col = 2; col < 5; col++) {
+            if(!state.bard.getTileType(4, col).equals("Desert")) {
+                if(state.bard.getNumber(5, col) == 2) {
+                    g.drawImage(token2.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(5, col) == 3) {
+                    g.drawImage(token3.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(5, col) == 4) {
+                    g.drawImage(token4.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(5, col) == 5) {
+                    g.drawImage(token5.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(5, col) == 6) {
+                    g.drawImage(token6.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(5, col) == 8) {
+                    g.drawImage(token8.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(5, col) == 9) {
+                    g.drawImage(token9.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(5, col) == 10) {
+                    g.drawImage(token10.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(5, col) == 11) {
+                    g.drawImage(token11.getImage(), x, y, 36, 36, null);
+                }
+                if(state.bard.getNumber(5, col) == 12) {
+                    g.drawImage(token12.getImage(), x, y, 36, 36, null);
+                }
+            }
+            x+=125;
+        }
     }
 
     //draws the actual board
