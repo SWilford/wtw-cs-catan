@@ -41,7 +41,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final ImageIcon p2Orange = new ImageIcon("images/p2orange.png");
     private final ImageIcon p3Red = new ImageIcon("images/p3red.png");
     private final ImageIcon p4White = new ImageIcon("images/p4white.png");
-    private final ImageIcon titlePic = new ImageIcon("images/title.png");
+    private final ImageIcon titlePic = new ImageIcon("images/logo.png");
     private final ImageIcon placeBut = new ImageIcon("images/thing.png");
     private final ImageIcon roll1 = new ImageIcon("images/rollDice1.png");
     private final ImageIcon roll2 = new ImageIcon("images/rollDice2.png");
@@ -148,7 +148,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             buttons[3].drawButton(g); //start
             buttons[2].drawButton(g); //settings
             buttons[4].drawButton(g); //quit
-            g.drawImage(titlePic.getImage(), 450, 100, titlePic.getIconWidth(), titlePic.getIconHeight(), null); //draws title
+            g.drawImage(titlePic.getImage(), 450, 78, 466, 230, null); //draws title
 
         }
         else if(currentScreen == 2) //rules screen
