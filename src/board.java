@@ -329,6 +329,134 @@ public class board implements Serializable {
         tiles[6][4].setNorthWest(53);
         tiles[6][5].setNorth(51);
         tiles[6][5].setNorthWest(54);
+
+        tiles[1][2].setEdgeName(0, 2);
+        tiles[1][2].setEdgeName(1, 8);
+        tiles[1][2].setEdgeName(2, 13);
+        tiles[1][2].setEdgeName(3, 12);
+        tiles[1][2].setEdgeName(4, 7);
+        tiles[1][2].setEdgeName(5, 1);
+
+        tiles[1][3].setEdgeName(0, 4);
+        tiles[1][3].setEdgeName(1, 9);
+        tiles[1][3].setEdgeName(2, 15);
+        tiles[1][3].setEdgeName(3, 14);
+        tiles[1][3].setEdgeName(4, 8);
+        tiles[1][3].setEdgeName(5, 3);
+
+        tiles[1][4].setEdgeName(0, 6);
+        tiles[1][4].setEdgeName(1, 10);
+        tiles[1][4].setEdgeName(2, 17);
+        tiles[1][4].setEdgeName(3, 16);
+        tiles[1][4].setEdgeName(4, 9);
+        tiles[1][4].setEdgeName(5, 5);
+
+        tiles[2][2].setEdgeName(0, 12);
+        tiles[2][2].setEdgeName(1, 20);
+        tiles[2][2].setEdgeName(2, 26);
+        tiles[2][2].setEdgeName(3, 25);
+        tiles[2][2].setEdgeName(4, 19);
+        tiles[2][2].setEdgeName(5, 11);
+
+        tiles[2][4].setEdgeName(0, 16);
+        tiles[2][4].setEdgeName(1, 22);
+        tiles[2][4].setEdgeName(2, 30);
+        tiles[2][4].setEdgeName(3, 29);
+        tiles[2][4].setEdgeName(4, 21);
+        tiles[2][4].setEdgeName(5, 15);
+
+        tiles[2][5].setEdgeName(0, 18);
+        tiles[2][5].setEdgeName(1, 23);
+        tiles[2][5].setEdgeName(2, 32);
+        tiles[2][5].setEdgeName(3, 31);
+        tiles[2][5].setEdgeName(4, 22);
+        tiles[2][5].setEdgeName(5, 17);
+
+        tiles[3][1].setEdgeName(0, 25);
+        tiles[3][1].setEdgeName(1, 35);
+        tiles[3][1].setEdgeName(2, 41);
+        tiles[3][1].setEdgeName(3, 40);
+        tiles[3][1].setEdgeName(4, 34);
+        tiles[3][1].setEdgeName(5, 24);
+
+        tiles[3][2].setEdgeName(0, 27);
+        tiles[3][2].setEdgeName(1, 36);
+        tiles[3][2].setEdgeName(2, 43);
+        tiles[3][2].setEdgeName(3, 42);
+        tiles[3][2].setEdgeName(4, 35);
+        tiles[3][2].setEdgeName(5, 26);
+
+        tiles[3][3].setEdgeName(0, 29);
+        tiles[3][3].setEdgeName(1, 37);
+        tiles[3][3].setEdgeName(2, 45);
+        tiles[3][3].setEdgeName(3, 44);
+        tiles[3][3].setEdgeName(4, 36);
+        tiles[3][3].setEdgeName(5, 28);
+
+        tiles[3][4].setEdgeName(0, 31);
+        tiles[3][4].setEdgeName(1, 38);
+        tiles[3][4].setEdgeName(2, 47);
+        tiles[3][4].setEdgeName(3, 46);
+        tiles[3][4].setEdgeName(4, 37);
+        tiles[3][4].setEdgeName(5, 30);
+
+        tiles[3][5].setEdgeName(0, 33);
+        tiles[3][5].setEdgeName(1, 39);
+        tiles[3][5].setEdgeName(2, 49);
+        tiles[3][5].setEdgeName(3, 48);
+        tiles[3][5].setEdgeName(4, 38);
+        tiles[3][5].setEdgeName(5, 32);
+
+        tiles[4][2].setEdgeName(0, 42);
+        tiles[4][2].setEdgeName(1, 51);
+        tiles[4][2].setEdgeName(2, 56);
+        tiles[4][2].setEdgeName(3, 55);
+        tiles[4][2].setEdgeName(4, 50);
+        tiles[4][2].setEdgeName(5, 41);
+
+        tiles[4][3].setEdgeName(0, 44);
+        tiles[4][3].setEdgeName(1, 52);
+        tiles[4][3].setEdgeName(2, 58);
+        tiles[4][3].setEdgeName(3, 43);
+        tiles[4][3].setEdgeName(4, 51);
+        tiles[4][3].setEdgeName(5, 43);
+
+        tiles[4][4].setEdgeName(0, 46);
+        tiles[4][4].setEdgeName(1, 53);
+        tiles[4][4].setEdgeName(2, 60);
+        tiles[4][4].setEdgeName(3, 59);
+        tiles[4][4].setEdgeName(4, 52);
+        tiles[4][4].setEdgeName(5, 45);
+
+        tiles[4][5].setEdgeName(0, 48);
+        tiles[4][5].setEdgeName(1, 54);
+        tiles[4][5].setEdgeName(2, 62);
+        tiles[4][5].setEdgeName(3, 61);
+        tiles[4][5].setEdgeName(4, 53);
+        tiles[4][5].setEdgeName(5, 47);
+
+        tiles[5][2].setEdgeName(0, 57);
+        tiles[5][2].setEdgeName(1, 64);
+        tiles[5][2].setEdgeName(2, 68);
+        tiles[5][2].setEdgeName(3, 67);
+        tiles[5][2].setEdgeName(4, 63);
+        tiles[5][2].setEdgeName(5, 56);
+
+        tiles[5][3].setEdgeName(0, 59);
+        tiles[5][3].setEdgeName(1, 65);
+        tiles[5][3].setEdgeName(2, 70);
+        tiles[5][3].setEdgeName(3, 69);
+        tiles[5][3].setEdgeName(4, 64);
+        tiles[5][3].setEdgeName(5, 58);
+
+        tiles[5][4].setEdgeName(0, 61);
+        tiles[5][4].setEdgeName(1, 66);
+        tiles[5][4].setEdgeName(2, 72);
+        tiles[5][4].setEdgeName(3, 71);
+        tiles[5][4].setEdgeName(4, 65);
+        tiles[5][4].setEdgeName(5, 60);
+
+
     }
 
     public int getNumber(int row, int col) {

@@ -1,8 +1,10 @@
 import java.io.Serializable;
+import java.util.*;
 
 public class Tile implements Serializable {
     private final String type;
-    private int number;
+    private final int number;
+    private edge[] edges = new edge[6];
 
     private String specialHarbor;//If a harbor is a special harbor what type
     private int nO, noE, soE, sO, soW, noW; //Stores values for shared vertices of hexes
@@ -21,6 +23,31 @@ public class Tile implements Serializable {
         soW = 0;
         noW = 0; //vertex values defaulted to 0
         specialHarbor = "NOT"; //harbor defaulted to not a special harbor
+    }
+
+    private class edge {
+        ArrayList<Integer> connectsEdge = new ArrayList<>();
+        private Boolean isRoad;
+        private final int name;
+        public edge(int n) {
+            name = n;
+            isRoad = false;
+        }
+        public void addConnection(int c) {
+            connectsEdge.add(c);
+        }
+        public ArrayList<Integer> getConnectsEdge(){
+            return connectsEdge;
+        }
+        public void makeRoad() {
+            isRoad = true;
+        }
+        public boolean getIsRoad() {
+            return isRoad;
+        }
+        public int getName() {
+            return name;
+        }
     }
 
     public void setNorth(int nh) {//mutator method for north vertex value
@@ -51,6 +78,24 @@ public class Tile implements Serializable {
         specialHarbor = b;
     }
 
+    public int getNorth() {
+        return nO;
+    }
+    public int getNorthEast() {
+        return noE;
+    }
+    public int getSouthEast() {
+        return soE;
+    }
+    public int getSouth() {
+        return sO;
+    }
+    public int getSouthWest() {
+        return soW;
+    }
+    public int getNorthWest() {
+        return noW;
+    }
     public String getType() {
         return type;
     }//accessor for type
@@ -59,36 +104,8 @@ public class Tile implements Serializable {
         return number;
     }//accessor for number
 
-    public int getNorth() { //accessor for north vertex value
-        return nO;
-    }
-
-    public int getNorthEast() { //accessor for northeast vertex
-        return noE;
-    }
-
-    public int getSouthEast() { //accessor for southeast vertex
-        return soE;
-    }
-
-    public int getSouth() { //accessor for south vertex
-        return sO;
-    }
-
-    public int getSouthWest() { //accessor for southwest vertex
-        return soW;
-    }
-
-    public int getNorthWest() { //accessor for northwest vertex
-        return noW;
-    }
-
     public String getSpecialHarbor() {
         return specialHarbor;
-    }
-
-    void setNumber(int n) {//mutator for number
-        number = n;
     }
 
     void buildSettlement(int vertex) {
@@ -105,5 +122,13 @@ public class Tile implements Serializable {
 
     public boolean getCity(int vertex) {
         return cities[vertex-1];
+    }
+
+    public void setEdgeName(int i, int n) {
+        edges[i] = new edge(n);
+    }
+
+    public int getEdgeName(int i) {
+        return edges[i].getName();
     }
 }
