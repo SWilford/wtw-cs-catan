@@ -106,7 +106,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         }
         currentPlayer = 0;
         //shapes of the buttons
-        Shape rect = new Rectangle(650, SIZE - 100, 75, 50);
+        Shape rect = new Rectangle(580, SIZE- 100, 150, 100);
         Shape rect1 = new Rectangle(550, 400, 75, 50);
         Shape rect2 = new Rectangle(650, 500, 75, 50);
         Shape rect3 = new Rectangle(500, 300, 150, 100);
@@ -115,8 +115,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect6 = new Rectangle(0,658, 127,47);
         Shape rect7 = new Rectangle(129, 658, 127, 47);
         Shape rect8 = new Rectangle(0, 611, 127, 47);
-        ImageIcon rulesButton = new ImageIcon("images/rulesbut.png"); //rules
-        ImageIcon rulesHighlighted = new ImageIcon("images/rulesbutHL.png"); //rules highlighted
+        ImageIcon rulesButton = new ImageIcon("images/rulesRed.png"); //rules
+        ImageIcon rulesHighlighted = new ImageIcon("images/rulesYellow.png"); //rules highlighted
         //declaration of all buttons
         buttons[0] = new catanButton(rect, "rules", rulesHighlighted, rulesButton);
         buttons[1] = new catanButton(rect1, "back", Color.WHITE, Color.GRAY, Color.BLACK);
