@@ -73,6 +73,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private catanButton[] places;
 
     private catanState state;
+    int time;
+    ImageIcon rollFace1, rollFace2;
 
     private class catanSClient extends catanClient {
         public catanSClient(String hubHostName,int hubPort) throws IOException {
@@ -93,6 +95,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     //constructor
     public catanGraphics(String hostName, int serverPortNumber) throws IOException {
         building = false;
+        time = 0;
         connection = new catanSClient(hostName, serverPortNumber);
         myID = connection.getID();
         addMouseListener(this); //mouse
@@ -128,6 +131,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         buttons[7] = new catanButton(rect7, "end", endt1, endt2);
         buttons[8] = new catanButton(rect8, "roll", roll1, roll2);
         currentScreen = 1; //sets to start screen
+        rollFace1 = face1;
+        rollFace2 = face1;
         t = new Timer(DELAY, new Listener());
         t.start();
         numFrames = 0;
@@ -180,6 +185,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 drawCurrentPlayer(g);
                 //place(g);
+
+            g.drawImage(rollFace1.getImage(), 25, 350, 50, 50, null);
+            g.drawImage(rollFace2.getImage(), 75, 350, 50, 50, null);
+
             placing = true;
             if (mousePlaced)
             {
@@ -192,7 +201,14 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             }
             if(rolling)
             {
-                rollDice(g);
+                for(int i = 0; i<20;) {
+
+                        rollFace1 = rollDice();
+                        rollFace2 = rollDice();
+                    g.drawImage(rollFace1.getImage(), 25, 350, 50, 50, null);
+                    g.drawImage(rollFace2.getImage(), 75, 350, 50, 50, null);
+
+                }
             }
         }
 
@@ -811,42 +827,32 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     }
 
 
-    private int rollDice(Graphics g)
+    private ImageIcon rollDice()
     {
         int roll = 0;
-        for(int i = 0; i <20; i++) {
-            int one = (int) (Math.random() * 5) + 1;
-            int two = (int) (Math.random() * 5) + 1;
-            if (one == 1) {
-                g.drawImage(face1.getImage(), 25, 150, 50, 50, null);
-            } else if (one == 2) {
-                g.drawImage(face2.getImage(), 25, 150, 50, 50, null);
-            } else if (one == 3) {
-                g.drawImage(face3.getImage(), 25, 150, 50, 50, null);
-            } else if (one == 4) {
-                g.drawImage(face4.getImage(), 25, 150, 50, 50, null);
-            } else if (one == 5) {
-                g.drawImage(face5.getImage(), 25, 150, 50, 50, null);
-            } else if (one == 6) {
-                g.drawImage(face6.getImage(), 25, 150, 50, 50, null);
-            }
-            if (two == 1) {
-                g.drawImage(face1.getImage(), 75, 150, 50, 50, null);
-            } else if (two == 2) {
-                g.drawImage(face2.getImage(), 75, 150, 50, 50, null);
-            } else if (two == 3) {
-                g.drawImage(face3.getImage(), 75, 150, 50, 50, null);
-            } else if (two == 4) {
-                g.drawImage(face4.getImage(), 75, 150, 50, 50, null);
-            } else if (two == 5) {
-                g.drawImage(face5.getImage(), 75, 150, 50, 50, null);
-            } else if (two == 6) {
-                g.drawImage(face6.getImage(), 75, 150, 50, 50, null);
-            }
-            roll = one + two;
+        roll = (int)(Math.random() * 5) + 1;
+        if(roll == 1)
+        {
+            rolling = false;
+            return face1;
+        }
+        else if(roll == 2)
+        {
+            rolling = false;
+            return face2;
+        }
+        else if(roll == 3)
+        {        rolling = false;
+            return face3;
+        }else if(roll == 4)
+        {        rolling = false;
+            return face4;
+        }else if(roll == 5)
+        {        rolling = false;
+            return face5;
         }
         rolling = false;
-        return roll;
+        return face6;
     }
 
 
