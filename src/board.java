@@ -477,4 +477,11 @@ public class board implements Serializable {
     public boolean isSettlement(int row, int col, int vertex) {
         return tiles[row][col].getSettlement(vertex);
     }
+    public void makeOwned(int row, int col, int vertex, String color) {
+        tiles[row][col].makeOwned(color, vertex);
+    }
+
+    public String getOwned(int row, int col, int vertex) {
+        return tiles[row][col].getOwnedBy(vertex);
+    }
 }

@@ -50,6 +50,10 @@ public class Tile implements Serializable {
         }
     }
 
+    public void makeOwned(String color, int vertex) {
+        settlementsOwnedBy[vertex] = color;
+    }
+
     public void setNorth(int nh) {//mutator method for north vertex value
         nO = nh;
     }//mutator for north vertex value
@@ -130,5 +134,9 @@ public class Tile implements Serializable {
 
     public int getEdgeName(int i) {
         return edges[i].getName();
+    }
+
+    public String getOwnedBy(int vertex) {
+        return settlementsOwnedBy[vertex];
     }
 }

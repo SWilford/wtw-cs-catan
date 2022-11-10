@@ -153,7 +153,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             buttons[3].drawButton(g); //start
             buttons[2].drawButton(g); //settings
             buttons[4].drawButton(g); //quit
-            g.drawImage(titlePic.getImage(), 450, 78, 466, 230, null); //draws title
+            g.drawImage(titlePic.getImage(), 450, 78, 466, 200, null); //draws title
 
         }
         else if(currentScreen == 2) //rules screen
