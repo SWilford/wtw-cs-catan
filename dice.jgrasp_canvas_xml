@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Canvas xmlns="http://www.jgrasp.org">
+  <Language>Java</Language>
+  <ShowTypes>false</ShowTypes>
+  <Version>2</Version>
+  <Grid>
+    <Snap>true</Snap>
+    <Show>false</Show>
+  </Grid>
+  <Scope id="0">
+    <Name>rollDice</Name>
+    <Signature>(Ljava/awt/Graphics;)V</Signature>
+    <DeclaringType>dice</DeclaringType>
+    <Depth>0</Depth>
+  </Scope>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>240</X>
+      <Y>160</Y>
+      <W>98</W>
+      <H>38</H>
+    </Bounds>
+    <LabelLoc>
+      <WO>false</WO>
+    </LabelLoc>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local` nextDiceFrame</Expression>
+      <ViewerClass>jgrasp_viewers._X_ElementView</ViewerClass>
+    </Viewer>
+  </Frame>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>170</X>
+      <Y>80</Y>
+      <W>98</W>
+      <H>38</H>
+    </Bounds>
+    <LabelLoc>
+      <WO>false</WO>
+    </LabelLoc>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local` diceOffFrame</Expression>
+      <ViewerClass>jgrasp_viewers._X_ElementView</ViewerClass>
+    </Viewer>
+  </Frame>
+  <Size>
+    <W>683</W>
+    <H>384</H>
+  </Size>
+  <ESize>
+    <W>683</W>
+    <H>384</H>
+  </ESize>
+</Canvas>

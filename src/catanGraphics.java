@@ -10,12 +10,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private int bNum = 0;
 
     //declaring all images
-    private final ImageIcon face1 = new ImageIcon("images/face1.png");
-    private final ImageIcon face2 = new ImageIcon("images/face2.png");
-    private final ImageIcon face3 = new ImageIcon("images/face3.png");
-    private final ImageIcon face4 = new ImageIcon("images/face4.png");
-    private final ImageIcon face5 = new ImageIcon("images/face5.png");
-    private final ImageIcon face6 = new ImageIcon("images/face6.png");
 
     private final ImageIcon token2 = new ImageIcon("images/token2.png");
     private final ImageIcon token3 = new ImageIcon("images/token3.png");
@@ -71,6 +65,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
+    private dice die1, die2;
 
     private catanState state;
     int time;
@@ -118,6 +113,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect6 = new Rectangle(0,658, 127,47);
         Shape rect7 = new Rectangle(129, 658, 127, 47);
         Shape rect8 = new Rectangle(0, 611, 127, 47);
+        Shape dice1 = new Rectangle(50, 150, 50, 50);
+        Shape dice2 = new Rectangle(75, 150, 50, 50);
+
         ImageIcon rulesButton = new ImageIcon("images/rulesRed.png"); //rules
         ImageIcon rulesHighlighted = new ImageIcon("images/rulesYellow.png"); //rules highlighted
         //declaration of all buttons
@@ -131,15 +129,14 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         buttons[7] = new catanButton(rect7, "end", endt1, endt2);
         buttons[8] = new catanButton(rect8, "roll", roll1, roll2);
         currentScreen = 1; //sets to start screen
-        rollFace1 = face1;
-        rollFace2 = face1;
         t = new Timer(DELAY, new Listener());
         t.start();
         numFrames = 0;
         placing = false;
         mousePlaced = false;
         places = new catanButton[20];
-
+        die1 = new dice(dice1);
+        die2 = new dice(dice2);
     }
 
     //actual drawing of game
@@ -185,10 +182,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 drawCurrentPlayer(g);
                 //place(g);
-
-            g.drawImage(rollFace1.getImage(), 25, 350, 50, 50, null);
-            g.drawImage(rollFace2.getImage(), 75, 350, 50, 50, null);
-
+            die1.drawDice(g);
             placing = true;
             if (mousePlaced)
             {
@@ -199,16 +193,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(building) {
                 drawBuildButtons(g);
             }
-            if(rolling)
+            if(die1.isRolling())
             {
-                for(int i = 0; i<20;) {
-
-                        rollFace1 = rollDice();
-                        rollFace2 = rollDice();
-                    g.drawImage(rollFace1.getImage(), 25, 350, 50, 50, null);
-                    g.drawImage(rollFace2.getImage(), 75, 350, 50, 50, null);
-
-                }
+                die1.rollDice(g);
             }
         }
 
@@ -278,7 +265,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                             connection.send(nm);
                         }
                         else if(b.getTitle().equals("roll")) {
-                            rolling = true;
+                            die1.startRoll();
                         }
                     }
                 }
@@ -776,7 +763,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             }
             repaint();
         }
-
     }
     public static int getCurrentScreen()
     {
@@ -827,33 +813,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     }
 
 
-    private ImageIcon rollDice()
-    {
-        int roll = 0;
-        roll = (int)(Math.random() * 5) + 1;
-        if(roll == 1)
-        {
-            rolling = false;
-            return face1;
-        }
-        else if(roll == 2)
-        {
-            rolling = false;
-            return face2;
-        }
-        else if(roll == 3)
-        {        rolling = false;
-            return face3;
-        }else if(roll == 4)
-        {        rolling = false;
-            return face4;
-        }else if(roll == 5)
-        {        rolling = false;
-            return face5;
-        }
-        rolling = false;
-        return face6;
-    }
+
 
 
 
