@@ -25,7 +25,7 @@ public class Tile implements Serializable {
         specialHarbor = "NOT"; //harbor defaulted to not a special harbor
     }
 
-    private class edge {
+    private class edge implements Serializable{
         ArrayList<Integer> connectsEdge = new ArrayList<>();
         private Boolean isRoad;
         private final int name;
