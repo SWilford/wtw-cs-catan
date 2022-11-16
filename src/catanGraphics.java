@@ -114,7 +114,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect7 = new Rectangle(129, 658, 127, 47);
         Shape rect8 = new Rectangle(0, 611, 127, 47);
         Shape dice1 = new Rectangle(50, 150, 50, 50);
-        Shape dice2 = new Rectangle(75, 150, 50, 50);
+        Shape dice2 = new Rectangle(100, 150, 50, 50);
 
         ImageIcon rulesButton = new ImageIcon("images/rulesRed.png"); //rules
         ImageIcon rulesHighlighted = new ImageIcon("images/rulesYellow.png"); //rules highlighted
@@ -183,6 +183,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 drawCurrentPlayer(g);
                 //place(g);
             die1.drawDice(g);
+            die2.drawDice(g);
             placing = true;
             if (mousePlaced)
             {
@@ -196,6 +197,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(die1.isRolling())
             {
                 die1.rollDice(g);
+                die2.rollDice(g);
             }
         }
 
@@ -266,6 +268,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         }
                         else if(b.getTitle().equals("roll")) {
                             die1.startRoll();
+                            die2.startRoll();
                         }
                     }
                 }
