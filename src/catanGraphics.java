@@ -265,6 +265,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         else if(b.getTitle().equals("end")) {
                             String nm = "nextplayer";
                             connection.send(nm);
+                            if(building) {
+                                building = false;
+                            }
                         }
                         else if(b.getTitle().equals("roll")) {
                             die1.startRoll();
