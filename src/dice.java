@@ -9,11 +9,11 @@ public class dice {
     public static final ImageIcon face5 = new ImageIcon("images/face5.png");
     public static final ImageIcon face6 = new ImageIcon("images/face6.png");
     private static int diceFrame, nextDiceFrame, diceOffFrame;
-    private static boolean rolling;
+    private boolean rolling;
 
     private final Shape shape;
 
-    public static ImageIcon currentFace;
+    public ImageIcon currentFace;
 
     public dice(Shape s)
     {
@@ -22,14 +22,14 @@ public class dice {
         rolling = false;
     }
 
-    public static void startRoll()
+    public void startRoll()
     {
         rolling = true;
-        nextDiceFrame = catanGraphics.getFrames() + 100;
+        nextDiceFrame = catanGraphics.getFrames() + 200;
         diceOffFrame = catanGraphics.getFrames() + 800;
     }
 
-    public static boolean isRolling()
+    public boolean isRolling()
     {
         return rolling;
     }

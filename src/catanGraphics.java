@@ -197,6 +197,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(die1.isRolling())
             {
                 die1.rollDice(g);
+            }
+            if(die2.isRolling())
+            {
                 die2.rollDice(g);
             }
         }
