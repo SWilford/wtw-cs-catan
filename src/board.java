@@ -1,6 +1,6 @@
 import java.io.Serializable;
 import java.util.*;
-
+//test
 public class board implements Serializable {
     Tile[][] tiles = new Tile[7][7];//initializing an array of tiles that represent the board
     public board() {
