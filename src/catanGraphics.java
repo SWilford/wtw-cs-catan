@@ -373,63 +373,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     }
 
     public void drawBuildButtons(Graphics g) {
-        String Bnum;
-        Shape rect;
-        bNum = 0;
-        int x = 532;
-        int y = 96;
-        for(int col = 2; col < 5; col++) { //first row of vertices
-                Bnum = ""+bNum;
-                rect = new Rectangle(x, y, 17, 17);
-                buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-                if(!state.bard.isSettlement(1, col, 0)) {
-                    buttons1[bNum].drawButton(g);
-                }
-                x+=125;
-                bNum++;
-        }
-        x = 471;
-        y = 130;
-        for(int col = 2; col < 5; col++) { //second row of vertices
-                Bnum = ""+bNum;
-                rect = new Rectangle(x, y, 17, 17);
-                buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-                if(!state.bard.isSettlement(1, col, 5)) {
-                    buttons1[bNum].drawButton(g);
-                }
-                x+=123;
-                bNum++;
-            if(col == 4) {
-                    Bnum = ""+bNum;
-                    rect = new Rectangle(844, y, 17, 17);
-                    buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-                    if(!state.bard.isSettlement(1,col, 1)) {
-                        buttons1[bNum].drawButton(g);
-                    }
-                    bNum++;
-            }
-        }
-        x = 470;
-        y = 199;
-        for(int col = 2; col < 5; col++) {//third row
-                Bnum = ""+bNum;
-                rect = new Rectangle(x, y, 17, 17);
-                buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-                if(!state.bard.isSettlement(1, col, 4)) {
-                    buttons1[bNum].drawButton(g);
-                }
-                x+=124;
-                bNum++;
-            if(col == 4) {
-                    Bnum = ""+bNum;
-                    rect = new Rectangle(845, y, 17, 17);
-                    buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-                    if(!state.bard.isSettlement(1, col, 2)) {
-                        buttons1[bNum].drawButton(g);
-                    }
-                    bNum++;
-            }
-        }
         repaint();
     }
 
