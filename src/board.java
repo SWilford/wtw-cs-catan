@@ -1,6 +1,6 @@
 import java.io.Serializable;
 import java.util.*;
-
+//test
 public class board implements Serializable {
     Tile[][] tiles = new Tile[7][7];//initializing an array of tiles that represent the board
     public board() {
@@ -473,6 +473,47 @@ public class board implements Serializable {
 
     public void createSettlement(int row, int col, int vertex) {
         tiles[row][col].buildSettlement(vertex);
+        int vNum = 0;
+        if(vertex == 0) {
+            vNum = tiles[row][col].getNorth();
+        }
+        if(vertex == 1) {
+            vNum = tiles[row][col].getNorthEast();
+        }
+        if(vertex == 2) {
+            vNum = tiles[row][col].getSouthEast();
+        }
+        if(vertex == 3) {
+            vNum = tiles[row][col].getSouth();
+        }
+        if(vertex == 4) {
+            vNum = tiles[row][col].getSouthWest();
+        }
+        if(vertex == 5) {
+            vNum = tiles[row][col].getNorthWest();
+        }
+        for(int r = 0; r < 7; r++) {
+            for(int c = 0; c < 7; c++) {
+                if(tiles[r][c].getNorth() == vNum) {
+                    tiles[r][c].buildSettlement(0);
+                }
+                else if(tiles[r][c].getNorthEast() == vNum) {
+                    tiles[r][c].buildSettlement(1);
+                }
+                else if(tiles[r][c].getSouthEast() == vNum) {
+                    tiles[r][c].buildSettlement(2);
+                }
+                else if(tiles[r][c].getSouth() == vNum) {
+                    tiles[r][c].buildSettlement(3);
+                }
+                else if(tiles[r][c].getSouthWest() == vNum) {
+                    tiles[r][c].buildSettlement(4);
+                }
+                else if(tiles[r][c].getNorthWest() == vNum) {
+                    tiles[r][c].buildSettlement(5);
+                }
+            }
+        }
     }
     public boolean isSettlement(int row, int col, int vertex) {
         return tiles[row][col].getSettlement(vertex);
