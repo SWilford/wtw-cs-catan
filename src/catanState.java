@@ -14,47 +14,6 @@ public class catanState implements Serializable {
     public int playerPlayingRed; //The id of the player who is playing red
     public int playerPlayingWhite; //The id of the player who is playing white
 
-    private void makeOwnedHelper(int number, int row, int col, int vertex) {
-        if(this.getNoPlayers() == 4) {
-            if(number == 1) {
-                bard.makeOwned(row,col,vertex,"BLUE");
-            }
-            else if(number == 2) {
-                bard.makeOwned(row,col,vertex,"ORANGE");
-            }
-            else if(number == 3) {
-                bard.makeOwned(row,col,vertex,"RED");
-            }
-            else if(number == 4) {
-                bard.makeOwned(row,col,vertex,"WHITE");
-            }
-        }
-        else if(this.getNoPlayers() == 3) {
-            if(number == 1) {
-                bard.makeOwned(row,col,vertex,"BLUE");
-            }
-            else if(number == 2) {
-                bard.makeOwned(row,col,vertex,"ORANGE");
-            }
-            else if(number == 3) {
-                bard.makeOwned(row,col,vertex,"RED");
-            }
-        }
-        else if(this.getNoPlayers() == 2) {
-            if(number == 1) {
-                bard.makeOwned(row,col,vertex,"BLUE");
-            }
-            else if(number == 2) {
-                bard.makeOwned(row,col,vertex,"ORANGE");
-            }
-        }
-        else if(this.getNoPlayers() == 1) {//delete, for testing only
-            if(number == 1) {
-                bard.makeOwned(1,2,0,"BLUE");
-            }
-        }
-    }
-
     public void applyMessage(int sender, Object message) {
         if(gameInProgress && message instanceof Tile[][] && sender == currentPlayer) { //Updates for changes to buildings and roads
             Tile[][] move = (Tile[][])message;
@@ -66,50 +25,6 @@ public class catanState implements Serializable {
         }
         if(gameInProgress && message instanceof Integer && sender == currentPlayer) {
             int change = (int)message;
-            if(change == 1) {
-                bard.createSettlement(1,2, 0);
-                makeOwnedHelper(sender, 1, 2, 0);
-            }
-            else if(change == 2) {
-                bard.createSettlement(1, 3, 0);
-                makeOwnedHelper(sender, 1, 3, 0);
-            }
-            else if(change == 3) {
-                bard.createSettlement(1,4,0);
-                makeOwnedHelper(sender, 1, 4, 0);
-            }
-            else if(change == 4) {
-                bard.createSettlement(1,2, 5);
-                makeOwnedHelper(sender, 1, 2, 5);
-            }
-            else if(change == 5) {
-                bard.createSettlement(1,3,5);
-                makeOwnedHelper(sender, 1, 3, 5);
-            }
-            else if(change == 6) {
-                bard.createSettlement(1, 4, 5);
-                makeOwnedHelper(sender, 1, 4, 5);
-            }
-            else if(change == 7) {
-                bard.createSettlement(1,4,1);
-                makeOwnedHelper(sender, 1, 4, 1);
-            }
-            else if(change == 8) {
-                bard.createSettlement(1,2,4);
-                makeOwnedHelper(sender, 1, 2, 4);
-            }
-            else if(change == 9) {
-                bard.createSettlement(1,3,4);
-                makeOwnedHelper(sender, 1, 3, 4);
-            }
-            else if(change == 10) {
-                bard.createSettlement(1,4,4);
-                makeOwnedHelper(sender, 1, 4, 4);
-            }
-            else if(change == 11) {
-                bard.createSettlement(1,4,2);
-                makeOwnedHelper(sender, 1, 4, 2);
-            }
             /*if(winner()) { //Needs to be called in the other updates as well
                 gameInProgress = false;
                 winner = currentPlayer;
