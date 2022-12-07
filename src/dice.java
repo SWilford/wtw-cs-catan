@@ -8,7 +8,8 @@ public class dice {
     public static final ImageIcon face4 = new ImageIcon("images/face4.png");
     public static final ImageIcon face5 = new ImageIcon("images/face5.png");
     public static final ImageIcon face6 = new ImageIcon("images/face6.png");
-    private static int diceFrame, nextDiceFrame, diceOffFrame;
+    private static int nextDiceFrame;
+    private static int diceOffFrame;
     private boolean rolling;
 
     private final Shape shape;
@@ -35,8 +36,7 @@ public class dice {
     }
 
     public void rollDice(Graphics g){
-            diceFrame = catanGraphics.getFrames();
-            int roll = 0;
+        int roll;
                 if (catanGraphics.getFrames() < nextDiceFrame && rolling) {
                     roll = (int) (Math.random() * 5) + 1;
                     if (roll == 1) {
@@ -76,5 +76,30 @@ public class dice {
         {
             rolling = false;
         }
+    }
+
+    public int getRollNum()
+    {
+        if(currentFace == face1)
+        {
+            return 1;
+        }
+        else if(currentFace == face2)
+        {
+            return 2;
+        }
+        else if(currentFace == face3)
+        {
+            return 3;
+        }
+        else if(currentFace == face4)
+        {
+            return 4;
+        }
+        else if(currentFace == face5)
+        {
+            return 5;
+        }
+        else return 6;
     }
 }
