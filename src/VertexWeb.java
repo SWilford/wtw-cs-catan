@@ -23,7 +23,5 @@ public class VertexWeb implements Serializable {
         vertices.get(3).addNeighbor(1);
         vertices.get(3).addNeighbor(8);
 
-        vertices.get().addNeighbor();
-
     }
 }
