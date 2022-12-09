@@ -62,7 +62,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     private rulebook book;
     private final catanButton[] buttons = new catanButton[11]; //array of all buttons, just add to the array length if needed
-    private final catanButton[] buttons1 = new catanButton[11];
+    private final catanButton[] buttons1 = new catanButton[7];
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
@@ -417,6 +417,33 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     }
 
     public void drawBuildButtons(Graphics g) {
+        String Bnum;
+        Shape rect;
+        bNum = 0;
+        int x = 532;
+        int y = 96;
+        for(int i = 0; i < 3; i++) { //First row of build buttons
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }
+            x+=125;
+            bNum++;
+        }
+        x = 471;
+        y = 130;
+        for(int i = 0; i < 4; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }
+            x+=123;
+            bNum++;
+        }
         repaint();
     }
 

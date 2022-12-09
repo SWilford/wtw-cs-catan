@@ -3,7 +3,9 @@ import java.util.*;
 //test
 public class board implements Serializable {
     Tile[][] tiles = new Tile[7][7];//initializing an array of tiles that represent the board
+    VertexWeb web;
     public board() {
+        web = new VertexWeb();
         ArrayList<String> types = new ArrayList<>();//Array List that will contain the name for the type of tile
         for(int i = 0; i < 4; i++) { // fills array list with 4 forest type
             types.add("Forest");
@@ -177,6 +179,16 @@ public class board implements Serializable {
         tiles = ts;
     }
 
+    public void buildSettlement(int i, String color) {
+        web.buildSettlement(i, color);
+    }
 
+    public void upgradeSettlement(int i) {
+        web.upgradeSettlement(i);
+    }
+
+    public boolean isBuildable(int i) {
+        return web.isBuildable(i);
+    }
 
 }

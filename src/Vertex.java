@@ -56,4 +56,8 @@ public class Vertex implements Serializable {
     public boolean isCity() {
         return isCity;
     }
+
+    public ArrayList<Integer> getNeighbors() {
+        return neighborNumbs;
+    }
 }

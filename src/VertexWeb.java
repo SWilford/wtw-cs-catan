@@ -88,5 +88,146 @@ public class VertexWeb implements Serializable {
         vertices.get(20).addNeighbor(25);
         vertices.get(20).addNeighbor(26);
 
+        vertices.get(21).addNeighbor(16);
+        vertices.get(21).addNeighbor(27);
+
+        vertices.get(22).addNeighbor(16);
+        vertices.get(22).addNeighbor(17);
+        vertices.get(22).addNeighbor(28);
+
+        vertices.get(23).addNeighbor(17);
+        vertices.get(23).addNeighbor(18);
+        vertices.get(23).addNeighbor(29);
+
+        vertices.get(24).addNeighbor(18);
+        vertices.get(24).addNeighbor(19);
+        vertices.get(24).addNeighbor(30);
+
+        vertices.get(25).addNeighbor(19);
+        vertices.get(25).addNeighbor(20);
+        vertices.get(25).addNeighbor(31);
+
+        vertices.get(26).addNeighbor(20);
+        vertices.get(26).addNeighbor(32);
+
+        vertices.get(27).addNeighbor(21);
+        vertices.get(27).addNeighbor(33);
+
+        vertices.get(28).addNeighbor(22);
+        vertices.get(28).addNeighbor(33);
+        vertices.get(28).addNeighbor(34);
+
+        vertices.get(29).addNeighbor(23);
+        vertices.get(29).addNeighbor(34);
+        vertices.get(29).addNeighbor(35);
+
+        vertices.get(30).addNeighbor(24);
+        vertices.get(30).addNeighbor(35);
+        vertices.get(30).addNeighbor(36);
+
+        vertices.get(31).addNeighbor(25);
+        vertices.get(31).addNeighbor(36);
+        vertices.get(31).addNeighbor(37);
+
+        vertices.get(32).addNeighbor(26);
+        vertices.get(32).addNeighbor(37);
+
+        vertices.get(33).addNeighbor(27);
+        vertices.get(33).addNeighbor(28);
+        vertices.get(33).addNeighbor(38);
+
+        vertices.get(34).addNeighbor(28);
+        vertices.get(34).addNeighbor(29);
+        vertices.get(34).addNeighbor(39);
+
+        vertices.get(35).addNeighbor(29);
+        vertices.get(35).addNeighbor(30);
+        vertices.get(35).addNeighbor(40);
+
+        vertices.get(36).addNeighbor(30);
+        vertices.get(36).addNeighbor(31);
+        vertices.get(36).addNeighbor(41);
+
+        vertices.get(37).addNeighbor(31);
+        vertices.get(37).addNeighbor(32);
+        vertices.get(37).addNeighbor(42);
+
+        vertices.get(38).addNeighbor(33);
+        vertices.get(38).addNeighbor(43);
+
+        vertices.get(39).addNeighbor(34);
+        vertices.get(39).addNeighbor(43);
+        vertices.get(39).addNeighbor(44);
+
+        vertices.get(40).addNeighbor(35);
+        vertices.get(40).addNeighbor(44);
+        vertices.get(40).addNeighbor(45);
+
+        vertices.get(41).addNeighbor(36);
+        vertices.get(41).addNeighbor(45);
+        vertices.get(41).addNeighbor(46);
+
+        vertices.get(42).addNeighbor(37);
+        vertices.get(42).addNeighbor(46);
+
+        vertices.get(43).addNeighbor(38);
+        vertices.get(43).addNeighbor(39);
+        vertices.get(43).addNeighbor(47);
+
+        vertices.get(44).addNeighbor(39);
+        vertices.get(44).addNeighbor(40);
+        vertices.get(44).addNeighbor(48);
+
+        vertices.get(45).addNeighbor(40);
+        vertices.get(45).addNeighbor(41);
+        vertices.get(45).addNeighbor(49);
+
+        vertices.get(46).addNeighbor(41);
+        vertices.get(46).addNeighbor(42);
+        vertices.get(46).addNeighbor(50);
+
+        vertices.get(47).addNeighbor(43);
+        vertices.get(47).addNeighbor(51);
+
+        vertices.get(48).addNeighbor(44);
+        vertices.get(48).addNeighbor(51);
+        vertices.get(48).addNeighbor(52);
+
+        vertices.get(49).addNeighbor(45);
+        vertices.get(49).addNeighbor(52);
+        vertices.get(49).addNeighbor(53);
+
+        vertices.get(50).addNeighbor(46);
+        vertices.get(50).addNeighbor(53);
+
+        vertices.get(51).addNeighbor(47);
+        vertices.get(51).addNeighbor(48);
+
+        vertices.get(52).addNeighbor(48);
+        vertices.get(52).addNeighbor(49);
+
+        vertices.get(53).addNeighbor(49);
+        vertices.get(53).addNeighbor(50);
     }
+
+    public void buildSettlement(int i, String color) {
+        vertices.get(i).build(color);
+        vertices.get(i).setBuildable();
+        ArrayList<Integer> neighbors = vertices.get(i).getNeighbors();
+        for(Integer a : neighbors) {
+            vertices.get(a).setBuildable();
+        }
+    }
+
+    public void upgradeSettlement(int i) {
+        if(!vertices.get(i).isCity()) {
+            vertices.get(i).upgrade();
+        }
+    }
+
+    public boolean isBuildable(int i) { //need code to make sure building rule is followed
+        return vertices.get(i).isBuildable();
+    }
+
+
 }
