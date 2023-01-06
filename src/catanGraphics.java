@@ -444,6 +444,54 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             x+=123;
             bNum++;
         }
+        x = 471;
+        y = 223;
+        for(int i = 0; i < 4; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }
+            x+=123;
+            bNum++;
+        }
+        x = 408;
+        y = 250;
+        for(int i = 0; i < 5; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }
+            x+=124;
+            bNum++;
+        }
+        x = 408;
+        y = 325;
+        for(int i = 0; i < 5; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }
+            x+=124;
+            bNum++;
+        }
+        x = 348;
+        y = 351;
+        for(int i = 0; i < 6; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }
+            x+=124;
+            bNum++;
+        }
         repaint();
     }
 
