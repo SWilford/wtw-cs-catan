@@ -29,7 +29,6 @@ public class catanState implements Serializable {
                 gameInProgress = false;
                 winner = currentPlayer;
             }*/
-            change--;
             bard.buildSettlement(change, this.currentPlayerColor());
         }
         else if(gameInProgress && message.equals("nextplayer") && sender == currentPlayer) {//ends turn and makes turn go to next player

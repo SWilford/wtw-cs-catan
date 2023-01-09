@@ -62,7 +62,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     private rulebook book;
     private final catanButton[] buttons = new catanButton[11]; //array of all buttons, just add to the array length if needed
-    private final catanButton[] buttons1 = new catanButton[7];
+    private final catanButton[] buttons1 = new catanButton[54];
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
@@ -328,7 +328,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                     if(c.getShape().contains(mouseX, mouseY)) {
                         //needs code to make sure the player has the correct amount of resources
                         Integer i = Integer.parseInt(c.getTitle());
-                        i++;
                         connection.send(i);
                     }
                 }
@@ -426,9 +425,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            if(state.bard.isBuildable(i)) {
+            /*if(state.bard.isBuildable(i)) {
                 buttons1[bNum].drawButton(g);
-            }
+            }*/
             x+=125;
             bNum++;
         }
@@ -438,59 +437,136 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            if(state.bard.isBuildable(i)) {
+            /*if(state.bard.isBuildable(i)) {
                 buttons1[bNum].drawButton(g);
-            }
+            }*/
             x+=123;
             bNum++;
         }
         x = 471;
-        y = 223;
+        y = 201;
         for(int i = 0; i < 4; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            if(state.bard.isBuildable(i)) {
+            /*if(state.bard.isBuildable(i)) {
                 buttons1[bNum].drawButton(g);
-            }
+            }*/
             x+=123;
             bNum++;
         }
         x = 408;
-        y = 250;
+        y = 228;
         for(int i = 0; i < 5; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            if(state.bard.isBuildable(i)) {
+            /*if(state.bard.isBuildable(i)) {
                 buttons1[bNum].drawButton(g);
-            }
+            }*/
             x+=124;
             bNum++;
         }
         x = 408;
-        y = 325;
+        y = 303;
         for(int i = 0; i < 5; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            if(state.bard.isBuildable(i)) {
+            /*if(state.bard.isBuildable(i)) {
                 buttons1[bNum].drawButton(g);
-            }
+            }*/
             x+=124;
             bNum++;
         }
         x = 348;
-        y = 351;
+        y = 329;
         for(int i = 0; i < 6; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            if(state.bard.isBuildable(i)) {
+            /*if(state.bard.isBuildable(i)) {
                 buttons1[bNum].drawButton(g);
-            }
+            }*/
             x+=124;
             bNum++;
+        }
+        x = 349;
+        y = 406;
+        for(int i = 0; i < 6; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            /*if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }*/
+            x+=124;
+            bNum++;
+        }
+        x = 409;
+        y = 443;
+        for(int i = 0; i < 5; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            /*if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }*/
+            x+=124;
+            bNum++;
+        }
+        x = 409;
+        y = 510;
+        for(int i = 0; i < 5; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            /*if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }*/
+            x+=124;
+            bNum++;
+        }
+        x = 471;
+        y = 537;
+        for(int i = 0; i < 4; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            /*if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }*/
+            x+=124;
+            bNum++;
+        }
+        x = 471;
+        y = 613;
+        for(int i = 0; i < 4; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            /*if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }*/
+            x+=124;
+            bNum++;
+        }
+        x = 532;
+        y = 639;
+        for(int i = 0; i < 3; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
+            /*if(state.bard.isBuildable(i)) {
+                buttons1[bNum].drawButton(g);
+            }*/
+            x+=124;
+            bNum++;
+        }
+        for(int i = 0; i < 54; i++) {
+            if(state.bard.isBuildable(i)) {
+                buttons1[i].drawButton(g);
+            }
         }
         repaint();
     }
