@@ -229,6 +229,10 @@ public class VertexWeb implements Serializable {
         return vertices.get(i).getOwner();
     }
 
+    public boolean isSettled(int i) {
+        return vertices.get(i).isBuilt();
+    }
+
     public boolean isBuildable(int i) { //need code to make sure building rule is followed
         return vertices.get(i).isBuildable();
     }

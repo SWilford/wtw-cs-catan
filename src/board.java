@@ -195,4 +195,8 @@ public class board implements Serializable {
         return web.getOwner(i);
     }
 
+    public boolean isSettled(int i) {
+        return web.isSettled(i);
+    }
+
 }

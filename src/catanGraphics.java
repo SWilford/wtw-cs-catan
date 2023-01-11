@@ -216,6 +216,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 drawTokens(g);
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 drawCurrentPlayer(g);
+                drawSettlements(g);
 
                 //place(g);
             if(connection.getID()==1) {
@@ -561,40 +562,234 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     }
 
     public void drawSettlements(Graphics g) {
+        int vertexNumber = 0;
+        int x = 530;
+        int y = 95;
         for(int i = 0; i < 3; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
+        x = 468;
+        y = 118;
         for(int i = 0; i < 4; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
+        x = 468;
+        y = 198;
         for(int i = 0; i < 4; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
+        x = 406;
+        y = 221;
         for(int i = 0; i < 5; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
+        x = 406;
+        y = 301;
         for(int i = 0; i < 5; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
+        x = 346;
+        y = 324;
         for(int i = 0; i < 6; i++) {
-
-        }for(int i = 0; i < 6; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
+        x = 346;
+        y = 395;
+        for(int i = 0; i < 6; i++) {
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
+        }
+        x = 406;
+        y = 427;
         for(int i = 0; i < 5; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
+        x=406;
+        y = 503;
         for(int i = 0; i < 5; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
+        x = 468;
+        y = 530;
         for(int i = 0; i < 4; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
+        x = 468;
+        y = 603;
         for(int i = 0; i < 4; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
+        x = 529;
+        y = 634;
         for(int i = 0; i < 3; i++) {
-
+            if(state.bard.isSettled(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redSettlement.getImage(), x, y, 21, 22, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
         }
         repaint();
     }
