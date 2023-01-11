@@ -216,7 +216,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 drawTokens(g);
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 drawCurrentPlayer(g);
-                drawSettlements(g);
+                drawSettlements(g);//jump point
 
                 //place(g);
             if(connection.getID()==1) {
@@ -600,6 +600,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;
         }
         x = 468;
         y = 198;
@@ -619,6 +620,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;
         }
         x = 406;
         y = 221;
@@ -638,6 +640,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;
         }
         x = 406;
         y = 301;
@@ -657,6 +660,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;
         }
         x = 346;
         y = 324;
@@ -676,6 +680,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;
         }
         x = 346;
         y = 395;
@@ -695,6 +700,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;
         }
         x = 406;
         y = 427;
@@ -714,6 +720,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;
         }
         x=406;
         y = 503;
@@ -733,6 +740,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;
         }
         x = 468;
         y = 530;
@@ -752,6 +760,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;
         }
         x = 468;
         y = 603;
@@ -771,6 +780,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;
         }
         x = 529;
         y = 634;
@@ -790,6 +800,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             x+=125;
+            vertexNumber++;vertexNumber++;
         }
         repaint();
     }
