@@ -67,8 +67,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
     private dice die1, die2;
-
+    private card wood, brick;
     private catanState state;
+    private playerHand hand1, hand2, hand3, hand4;
     int time;
     ImageIcon rollFace1, rollFace2;
 
@@ -91,6 +92,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     //constructor
     public catanGraphics(String hostName, int serverPortNumber) throws IOException {
         building = false;
+        wood = new resourceCard(1);
+        brick = new resourceCard(2);
+        hand1 = new playerHand();
+        hand2 = new playerHand();
         book = new rulebook();
         time = 0;
         connection = new catanSClient(hostName, serverPortNumber);
@@ -145,6 +150,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         placing = false;
         mousePlaced = false;
         places = new catanButton[20];
+        hand1.addCard(wood);
+        hand2.addCard(brick);
         die1 = new dice(dice1);
         die2 = new dice(dice2);
     }
@@ -194,11 +201,19 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 buttons[7].drawButton(g);
                 buttons[8].drawButton(g);
             }
+
                 drawBoard(g); //draws board
                 drawTokens(g);
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 drawCurrentPlayer(g);
+
                 //place(g);
+            if(connection.getID()==1) {
+                hand1.showHand(g);
+            }
+            if(connection.getID()==2) {
+                hand2.showHand(g);
+            }
             die1.drawDice(g);
             die2.drawDice(g);
             placing = true;
