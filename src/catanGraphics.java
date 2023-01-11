@@ -49,6 +49,16 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final ImageIcon pastureTile = new ImageIcon("images/pasturecatantile.png");
     private final ImageIcon hlBut = new ImageIcon("images/otherThing.png");
 
+    private final ImageIcon blueSettlement = new ImageIcon("images/blueSettlement.png");
+
+    private final ImageIcon orangeSettlement = new ImageIcon("images/orangeSettlement.png");
+
+    private final ImageIcon redSettlement = new ImageIcon("images/redSettlement.png");
+
+    private final ImageIcon whiteSettlement = new ImageIcon("images/whiteSettlement.png");
+
+
+
     private static final int SIZE = 500;
 
     private static int currentScreen; //home = 1, rules = 2, etc. Allows us to only use 1 panel
@@ -440,9 +450,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=125;
             bNum++;
         }
@@ -452,9 +459,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=123;
             bNum++;
         }
@@ -464,9 +468,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=123;
             bNum++;
         }
@@ -476,9 +477,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=124;
             bNum++;
         }
@@ -488,9 +486,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=124;
             bNum++;
         }
@@ -500,9 +495,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=124;
             bNum++;
         }
@@ -512,9 +504,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=124;
             bNum++;
         }
@@ -524,9 +513,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=124;
             bNum++;
         }
@@ -536,9 +522,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=124;
             bNum++;
         }
@@ -548,9 +531,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=124;
             bNum++;
         }
@@ -560,9 +540,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=124;
             bNum++;
         }
@@ -572,9 +549,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
             buttons1[bNum] = new catanButton(rect, Bnum, Color.BLACK, Color.YELLOW, Color.BLACK);
-            /*if(state.bard.isBuildable(i)) {
-                buttons1[bNum].drawButton(g);
-            }*/
             x+=124;
             bNum++;
         }
@@ -582,6 +556,45 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(state.bard.isBuildable(i)) {
                 buttons1[i].drawButton(g);
             }
+        }
+        repaint();
+    }
+
+    public void drawSettlements(Graphics g) {
+        for(int i = 0; i < 3; i++) {
+
+        }
+        for(int i = 0; i < 4; i++) {
+
+        }
+        for(int i = 0; i < 4; i++) {
+
+        }
+        for(int i = 0; i < 5; i++) {
+
+        }
+        for(int i = 0; i < 5; i++) {
+
+        }
+        for(int i = 0; i < 6; i++) {
+
+        }for(int i = 0; i < 6; i++) {
+
+        }
+        for(int i = 0; i < 5; i++) {
+
+        }
+        for(int i = 0; i < 5; i++) {
+
+        }
+        for(int i = 0; i < 4; i++) {
+
+        }
+        for(int i = 0; i < 4; i++) {
+
+        }
+        for(int i = 0; i < 3; i++) {
+
         }
         repaint();
     }
