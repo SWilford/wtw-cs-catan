@@ -191,4 +191,8 @@ public class board implements Serializable {
         return web.isBuildable(i);
     }
 
+    public String getOwner(int i) {
+        return web.getOwner(i);
+    }
+
 }
