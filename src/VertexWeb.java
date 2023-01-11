@@ -11,17 +11,17 @@ public class VertexWeb implements Serializable {
             vertices.add(v);
         }
         //The following should have some way to be optimized, some kind of algorithm.
+        vertices.get(0).addNeighbor(3);
         vertices.get(0).addNeighbor(4);
-        vertices.get(0).addNeighbor(5);
 
+        vertices.get(1).addNeighbor(4);
         vertices.get(1).addNeighbor(5);
-        vertices.get(1).addNeighbor(6);
 
+        vertices.get(2).addNeighbor(5);
         vertices.get(2).addNeighbor(6);
-        vertices.get(2).addNeighbor(7);
 
-        vertices.get(3).addNeighbor(1);
-        vertices.get(3).addNeighbor(8);
+        vertices.get(3).addNeighbor(0);
+        vertices.get(3).addNeighbor(7);
 
         vertices.get(4).addNeighbor(0);
         vertices.get(4).addNeighbor(1);
