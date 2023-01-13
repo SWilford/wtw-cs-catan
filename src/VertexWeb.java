@@ -210,6 +210,53 @@ public class VertexWeb implements Serializable {
         vertices.get(53).addNeighbor(50);
 
         vertices.get(0).addTile(1, 2);
+        vertices.get(1).addTile(1, 3);
+        vertices.get(2).addTile(1, 4);
+        vertices.get(3).addTile(1, 2);
+        vertices.get(4).addTile(1, 2);
+        vertices.get(4).addTile(1, 3);
+        vertices.get(5).addTile(1, 3);
+        vertices.get(5).addTile(1, 4);
+        vertices.get(6).addTile(1, 4);
+        vertices.get(7).addTile(1, 2);
+        vertices.get(7).addTile(2, 2);
+        vertices.get(8).addTile(1, 2);
+        vertices.get(8).addTile(1, 3);
+        vertices.get(8).addTile(2, 3);
+        vertices.get(9).addTile(1, 3);
+        vertices.get(9).addTile(1, 4);
+        vertices.get(9).addTile(2, 4);
+        vertices.get(10).addTile(1, 4);
+        vertices.get(10).addTile(2, 5);
+        vertices.get(11).addTile(2, 2);
+        vertices.get(12).addTile(1, 2);
+        vertices.get(12).addTile(2, 2);
+        vertices.get(12).addTile(2, 3);
+        vertices.get(13).addTile(1, 3);
+        vertices.get(13).addTile(2, 3);
+        vertices.get(13).addTile(2, 4);
+        vertices.get(14).addTile(1, 4);
+        vertices.get(14).addTile(2, 4);
+        vertices.get(14).addTile(2, 5);
+        vertices.get(15).addTile(2, 5);
+        vertices.get(16).addTile(2, 2);
+        vertices.get(16).addTile(3, 1);
+        vertices.get(17).addTile(2, 2);
+        vertices.get(17).addTile(2, 3);
+        vertices.get(17).addTile(3, 2);
+        vertices.get(18).addTile(2, 3);
+        vertices.get(18).addTile(2, 4);
+        vertices.get(18).addTile(3, 3);
+        vertices.get(19).addTile(2, 4);
+        vertices.get(19).addTile(2, 5);
+        vertices.get(19).addTile(3, 4);
+        vertices.get(20).addTile(2, 5);
+        vertices.get(20).addTile(3, 5);
+
+
+
+
+
 
     }
 
