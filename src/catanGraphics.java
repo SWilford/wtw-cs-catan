@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class catanGraphics extends JPanel implements MouseListener, MouseMotionListener{
     private catanClient connection;
@@ -76,6 +77,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static Player[] players = new Player[4];
     private static int currentPlayer;
     private static boolean placing, mousePlaced;
+    public static boolean hasGiven;
     private boolean building, rolling;
 
     private rulebook book;
@@ -87,6 +89,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
     private dice die1, die2;
+    private int rollNum;
     private card wood, brick;
     private catanState state;
     private playerHand hand1, hand2, hand3, hand4;
@@ -118,6 +121,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         hand2 = new playerHand();
         book = new rulebook();
         time = 0;
+        rollNum = 0;
+        hasGiven = false;
         connection = new catanSClient(hostName, serverPortNumber);
         myID = connection.getID();
         currentPage = 1;
@@ -256,15 +261,31 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             {
                 die2.rollDice(g);
             }
-            int rollNum = die1.getRollNum() + die2.getRollNum();
+            if(!die1.isRolling() && !die2.isRolling()) {
+                rollNum = die1.getRollNum() + die2.getRollNum();
+            }
+            if(!hasGiven)
+            {
             for(int r = 0; r<7; r++)
             {
                 for(int c = 0; c<7; c++)
                 {
-                    if(state.bard.getNumber(r, c) == (rollNum))
-                    {
+                    if(state.bard.getNumber(r, c) == (rollNum)) {
                         //checks if vertices of tile are owned
-
+                        for (int i = 0; i < 53; i++) {
+                            if (state.bard.web.isNext(i, r, c)) {
+                                ArrayList<String> temp = state.bard.web.getOwners(r, c);
+                                if (temp.size() != 0) {
+                                    for (int p = 0; p < temp.size(); p++) {
+                                        if (temp.get(p).equals("BLUE")) {
+                                            hand1.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                            hasGiven = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                         //give correct resource to players
                     }
                 }
@@ -356,6 +377,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         else if(b.getTitle().equals("roll")) {
                             die1.startRoll();
                             die2.startRoll();
+                            hasGiven = false;
                         }
                     }
                 }
