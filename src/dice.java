@@ -38,7 +38,7 @@ public class dice {
     public void rollDice(Graphics g){
         int roll;
                 if (catanGraphics.getFrames() < nextDiceFrame && rolling) {
-                    roll = (int) (Math.random() * 5) + 1;
+                    roll = (int) (Math.random() * 6) + 1;
                     if (roll == 1) {
                         currentFace = face1;
                     } else if (roll == 2) {

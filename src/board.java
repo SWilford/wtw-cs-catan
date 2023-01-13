@@ -199,4 +199,25 @@ public class board implements Serializable {
         return web.isSettled(i);
     }
 
+    public int getTypeInt(int r, int c)
+    {
+        if(getTileType(r, c).equals("Forest"))
+        {
+            return 1;
+        }
+        else if(getTileType(r, c).equals("Fields"))
+        {
+            return 5;
+        }
+        else if(getTileType(r, c).equals("Mountains"))
+        {
+            return 4;
+        }
+        else if(getTileType(r, c).equals("Pasture"))
+        {
+            return 3;
+        }
+        else return 2;
+    }
+
 }

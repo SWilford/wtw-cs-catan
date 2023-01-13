@@ -208,6 +208,9 @@ public class VertexWeb implements Serializable {
 
         vertices.get(53).addNeighbor(49);
         vertices.get(53).addNeighbor(50);
+
+        vertices.get(0).addTile(1, 2);
+
     }
 
     public void buildSettlement(int i, String color) {
@@ -237,5 +240,25 @@ public class VertexWeb implements Serializable {
         return vertices.get(i).isBuildable();
     }
 
+    public boolean isNext(int i, int r, int c)
+    {
+        if(vertices.get(i).hasTile(r, c))
+        {
+            return true;
+        }
+        else return false;
+    }
 
+    public ArrayList<String> getOwners(int r, int c)
+    {
+        ArrayList<String> owners = new ArrayList<>();
+        for(int i = 0; i<53; i++)
+        {
+            if(isNext(i, r, c))
+            {
+                owners.add(vertices.get(i).getOwner());
+            }
+        }
+        return owners;
+    }
 }
