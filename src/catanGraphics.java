@@ -57,6 +57,14 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     private final ImageIcon whiteSettlement = new ImageIcon("images/whiteSettlement.png");
 
+    private final ImageIcon blueCity = new ImageIcon("images/blueCity.png");
+
+    private final ImageIcon orangeCity = new ImageIcon("images/orangeCity.png");
+
+    private final ImageIcon redCity = new ImageIcon("images/redCity.png");
+
+    private final ImageIcon whiteCity = new ImageIcon("images/whiteCity.png");
+
 
 
     private static final int SIZE = 500;
@@ -73,6 +81,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private rulebook book;
     private final catanButton[] buttons = new catanButton[11]; //array of all buttons, just add to the array length if needed
     private final catanButton[] buttons1 = new catanButton[54];
+
+    private final catanButton[] upgradeButtons = new catanButton[54];
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
@@ -236,6 +246,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             }
             if(building) {
                 drawBuildButtons(g);
+                drawUpgradeButtons(g);
             }
             if(die1.isRolling())
             {
@@ -436,6 +447,126 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         else if(state.noPlayers == 1) { //needs to be deleted, for testing purposes
             if(state.currentPlayer == 1) {
                 g.drawImage(cplayerb.getImage(), 70, 0, null);
+            }
+        }
+        repaint();
+    }
+
+    public void drawUpgradeButtons(Graphics g) {
+        String Bnum;
+        Shape rect;
+        bNum = 0;
+        int x = 532;
+        int y = 96;
+        for(int i = 0; i < 3; i++) { //First row of upgrade buttons
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=125;
+            bNum++;
+        }
+        x = 471;
+        y = 130;
+        for(int i = 0; i < 4; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=123;
+            bNum++;
+        }
+        x = 471;
+        y = 201;
+        for(int i = 0; i < 4; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=123;
+            bNum++;
+        }
+        x = 408;
+        y = 228;
+        for(int i = 0; i < 5; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=124;
+            bNum++;
+        }
+        x = 408;
+        y = 303;
+        for(int i = 0; i < 5; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=124;
+            bNum++;
+        }
+        x = 348;
+        y = 329;
+        for(int i = 0; i < 6; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=124;
+            bNum++;
+        }
+        x = 349;
+        y = 406;
+        for(int i = 0; i < 6; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=124;
+            bNum++;
+        }
+        x = 409;
+        y = 443;
+        for(int i = 0; i < 5; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=124;
+            bNum++;
+        }
+        x = 409;
+        y = 510;
+        for(int i = 0; i < 5; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=124;
+            bNum++;
+        }
+        x = 471;
+        y = 537;
+        for(int i = 0; i < 4; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=124;
+            bNum++;
+        }
+        x = 471;
+        y = 613;
+        for(int i = 0; i < 4; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=124;
+            bNum++;
+        }
+        x = 532;
+        y = 639;
+        for(int i = 0; i < 3; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            upgradeButtons[bNum] = new catanButton(rect, Bnum, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            x+=124;
+            bNum++;
+        }
+        for(int i = 0; i < 54; i++) {
+            if(!state.bard.isCity(i) && state.bard.isSettled(i) && state.currentPlayer == myID) {
+                upgradeButtons[i].drawButton(g);
             }
         }
         repaint();

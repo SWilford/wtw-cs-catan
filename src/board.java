@@ -199,4 +199,8 @@ public class board implements Serializable {
         return web.isSettled(i);
     }
 
+    public boolean isCity(int i) {
+        return web.isCity(i);
+    }
+
 }
