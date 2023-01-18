@@ -287,6 +287,11 @@ public class VertexWeb implements Serializable {
         return vertices.get(i).isBuildable();
     }
 
+    public boolean isCity(int i) {
+        return vertices.get(i).isCity();
+    }
+
+
     public boolean isNext(int i, int r, int c)
     {
         if(vertices.get(i).hasTile(r, c))
