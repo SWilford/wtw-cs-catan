@@ -232,6 +232,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 drawCurrentPlayer(g);
                 drawSettlements(g);//jump point
+                drawCities(g);
 
                 //place(g);
             if(connection.getID()==1) {
@@ -387,6 +388,13 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         connection.send(i);
                     }
                 }
+                for(catanButton b: upgradeButtons) {
+                    //needs code to make sure the player has the correct amount of resources
+                    if(b.getShape().contains(mouseX, mouseY)) {
+                        String where = b.getTitle();
+                        connection.send(where);
+                    }
+                }
             }
         }
         repaint();
@@ -476,7 +484,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect;
         bNum = 0;
         int x = 532;
-        int y = 96;
+        int y = 76;
         for(int i = 0; i < 3; i++) { //First row of upgrade buttons
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -485,7 +493,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 471;
-        y = 130;
+        y = 110;
         for(int i = 0; i < 4; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -494,7 +502,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 471;
-        y = 201;
+        y = 181;
         for(int i = 0; i < 4; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -503,7 +511,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 408;
-        y = 228;
+        y = 208;
         for(int i = 0; i < 5; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -512,7 +520,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 408;
-        y = 303;
+        y = 283;
         for(int i = 0; i < 5; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -521,7 +529,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 348;
-        y = 329;
+        y = 309;
         for(int i = 0; i < 6; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -530,7 +538,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 349;
-        y = 406;
+        y = 386;
         for(int i = 0; i < 6; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -539,7 +547,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 409;
-        y = 443;
+        y = 423;
         for(int i = 0; i < 5; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -548,7 +556,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 409;
-        y = 510;
+        y = 490;
         for(int i = 0; i < 5; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -557,7 +565,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 471;
-        y = 537;
+        y = 517;
         for(int i = 0; i < 4; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -566,7 +574,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 471;
-        y = 613;
+        y = 593;
         for(int i = 0; i < 4; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -575,7 +583,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 532;
-        y = 639;
+        y = 619;
         for(int i = 0; i < 3; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -716,7 +724,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         int x = 530;
         int y = 95;
         for(int i = 0; i < 3; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -736,7 +744,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 468;
         y = 118;
         for(int i = 0; i < 4; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -756,7 +764,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 468;
         y = 198;
         for(int i = 0; i < 4; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -776,7 +784,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 406;
         y = 221;
         for(int i = 0; i < 5; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -796,7 +804,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 406;
         y = 301;
         for(int i = 0; i < 5; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -816,7 +824,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 346;
         y = 324;
         for(int i = 0; i < 6; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -836,7 +844,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 346;
         y = 395;
         for(int i = 0; i < 6; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -856,7 +864,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 406;
         y = 427;
         for(int i = 0; i < 5; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -876,7 +884,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x=406;
         y = 503;
         for(int i = 0; i < 5; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -896,7 +904,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 468;
         y = 530;
         for(int i = 0; i < 4; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -916,7 +924,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 468;
         y = 603;
         for(int i = 0; i < 4; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -936,7 +944,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 529;
         y = 634;
         for(int i = 0; i < 3; i++) {
-            if(state.bard.isSettled(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -948,6 +956,251 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
                 else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
                     g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        repaint();
+    }
+
+    public void drawCities(Graphics g) {
+        int vertexNumber = 0;
+        int x = 530;
+        int y = 95;
+        for(int i = 0; i < 3; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x = 468;
+        y = 118;
+        for(int i = 0; i < 4; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x = 468;
+        y = 198;
+        for(int i = 0; i < 4; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x = 406;
+        y = 221;
+        for(int i = 0; i < 5; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x = 406;
+        y = 301;
+        for(int i = 0; i < 5; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x = 346;
+        y = 324;
+        for(int i = 0; i < 6; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x = 346;
+        y = 395;
+        for(int i = 0; i < 6; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x = 406;
+        y = 427;
+        for(int i = 0; i < 5; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x=406;
+        y = 503;
+        for(int i = 0; i < 5; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x = 468;
+        y = 530;
+        for(int i = 0; i < 4; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x = 468;
+        y = 603;
+        for(int i = 0; i < 4; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
+                }
+            }
+            x+=125;
+            vertexNumber++;
+        }
+        x = 529;
+        y = 634;
+        for(int i = 0; i < 3; i++) {
+            if(state.bard.isCity(vertexNumber)) {
+                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
+                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
+                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
+                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
+                }
+                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
+                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
                 }
             }
             x+=125;

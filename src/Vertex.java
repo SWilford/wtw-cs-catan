@@ -32,7 +32,8 @@ public class Vertex implements Serializable {
         isBuilt = true;
     }
 
-    public void upgrade() {
+    public void upgrade(String owner) {
+        this.owner = owner;
         isCity = true;
     }
 

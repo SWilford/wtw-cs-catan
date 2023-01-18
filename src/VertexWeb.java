@@ -334,9 +334,9 @@ public class VertexWeb implements Serializable {
         }
     }
 
-    public void upgradeSettlement(int i) {
+    public void upgradeSettlement(int i, String owner) {
         if(!vertices.get(i).isCity()) {
-            vertices.get(i).upgrade();
+            vertices.get(i).upgrade(owner);
         }
     }
 

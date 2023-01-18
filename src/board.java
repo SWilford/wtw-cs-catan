@@ -183,8 +183,8 @@ public class board implements Serializable {
         web.buildSettlement(i, color);
     }
 
-    public void upgradeSettlement(int i) {
-        web.upgradeSettlement(i);
+    public void upgradeSettlement(int i, String owner) {
+        web.upgradeSettlement(i, owner);
     }
 
     public boolean isBuildable(int i) {
