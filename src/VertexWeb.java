@@ -295,17 +295,4 @@ public class VertexWeb implements Serializable {
         }
         else return false;
     }
-
-    public ArrayList<String> getOwners(int r, int c)
-    {
-        ArrayList<String> owners = new ArrayList<>();
-        for(int i = 0; i<53; i++)
-        {
-            if(isNext(i, r, c))
-            {
-                owners.add(vertices.get(i).getOwner());
-            }
-        }
-        return owners;
-    }
 }

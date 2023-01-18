@@ -253,7 +253,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(!die1.isRolling() && !die2.isRolling()) {
                 rollNum = die1.getRollNum() + die2.getRollNum();
             }
-            if(!hasGiven)
+            if(!hasGiven && !die1.isRolling())
             {
             for(int r = 0; r<7; r++)
             {
@@ -263,13 +263,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         //checks if vertices of tile are owned
                         for (int i = 0; i < 53; i++) {
                             if (state.bard.web.isNext(i, r, c)) {
-                                ArrayList<String> temp = state.bard.web.getOwners(r, c);
-                                if (temp.size() != 0) {
-                                    for (int p = 0; p < temp.size(); p++) {
-                                        if (temp.get(p).equals("BLUE")) {
+                                if(state.bard.web.getOwner(i) != null) {
+                                    if (state.bard.web.getOwner(i).equals("BLUE")) {
                                             hand1.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
                                             hasGiven = true;
-                                        }
                                     }
                                 }
                             }
