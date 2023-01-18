@@ -252,12 +252,77 @@ public class VertexWeb implements Serializable {
         vertices.get(19).addTile(3, 4);
         vertices.get(20).addTile(2, 5);
         vertices.get(20).addTile(3, 5);
-
-
-
-
-
-
+        vertices.get(21).addTile(3, 1);
+        vertices.get(22).addTile(2, 2);
+        vertices.get(22).addTile(3, 2);
+        vertices.get(22).addTile(3, 1);
+        vertices.get(23).addTile(2, 3);
+        vertices.get(23).addTile(3, 2);
+        vertices.get(23).addTile(3, 3);
+        vertices.get(24).addTile(2, 4);
+        vertices.get(24).addTile(3, 3);
+        vertices.get(24).addTile(3, 4);
+        vertices.get(25).addTile(3, 5);
+        vertices.get(25).addTile(3, 4);
+        vertices.get(25).addTile(2, 5);
+        vertices.get(26).addTile(3, 5);
+        vertices.get(27).addTile(3, 1);
+        vertices.get(28).addTile(3, 1);
+        vertices.get(28).addTile(3, 2);
+        vertices.get(28).addTile(4, 2);
+        vertices.get(29).addTile(3, 2);
+        vertices.get(29).addTile(4, 3);
+        vertices.get(29).addTile(3, 3);
+        vertices.get(30).addTile(3, 3);
+        vertices.get(30).addTile(3, 4);
+        vertices.get(30).addTile(4, 4);
+        vertices.get(31).addTile(3, 4);
+        vertices.get(31).addTile(3, 5);
+        vertices.get(31).addTile(4, 5);
+        vertices.get(32).addTile(3, 5);
+        vertices.get(33).addTile(4, 2);
+        vertices.get(33).addTile(3, 1);
+        vertices.get(34).addTile(3, 2);
+        vertices.get(34).addTile(4, 2);
+        vertices.get(34).addTile(4, 3);
+        vertices.get(35).addTile(3, 3);
+        vertices.get(35).addTile(4, 3);
+        vertices.get(35).addTile(4, 4);
+        vertices.get(36).addTile(4, 5);
+        vertices.get(36).addTile(3, 4);
+        vertices.get(36).addTile(4, 4);
+        vertices.get(37).addTile(3, 5);
+        vertices.get(37).addTile(4, 5);
+        vertices.get(38).addTile(4, 2);
+        vertices.get(39).addTile(4, 2);
+        vertices.get(39).addTile(4, 3);
+        vertices.get(39).addTile(5, 2);
+        vertices.get(40).addTile(4, 3);
+        vertices.get(40).addTile(5, 3);
+        vertices.get(40).addTile(4, 4);
+        vertices.get(41).addTile(4, 5);
+        vertices.get(41).addTile(5, 4);
+        vertices.get(41).addTile(4, 4);
+        vertices.get(42).addTile(4, 5);
+        vertices.get(43).addTile(4, 2);
+        vertices.get(43).addTile(5, 2);
+        vertices.get(44).addTile(4, 3);
+        vertices.get(44).addTile(5, 3);
+        vertices.get(44).addTile(5, 2);
+        vertices.get(45).addTile(5, 4);
+        vertices.get(45).addTile(5, 3);
+        vertices.get(45).addTile(4, 4);
+        vertices.get(46).addTile(4, 5);
+        vertices.get(46).addTile(5, 4);
+        vertices.get(47).addTile(5, 2);
+        vertices.get(48).addTile(5, 2);
+        vertices.get(48).addTile(5, 3);
+        vertices.get(49).addTile(5, 3);
+        vertices.get(49).addTile(5, 4);
+        vertices.get(50).addTile(5, 4);
+        vertices.get(51).addTile(5, 2);
+        vertices.get(52).addTile(5, 3);
+        vertices.get(53).addTile(5, 4);
     }
 
     public void buildSettlement(int i, String color) {
