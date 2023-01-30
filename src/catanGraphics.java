@@ -66,6 +66,22 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     private final ImageIcon whiteCity = new ImageIcon("images/whiteCity.png");
 
+    //road images
+    private final ImageIcon blueRoad1 = new ImageIcon("images/roads/blueRoad1.png");
+    private final ImageIcon blueRoad2 = new ImageIcon("images/roads/blueRoad2.png");
+    private final ImageIcon blueRoad3 = new ImageIcon("images/roads/blueRoad3.png");
+
+    private final ImageIcon orangeRoad1 = new ImageIcon("images/roads/orangeRoad1.png");
+    private final ImageIcon orangeRoad2 = new ImageIcon("images/roads/orangeRoad2.png");
+    private final ImageIcon orangeRoad3 = new ImageIcon("images/roads/orangeRoad3.png");
+
+    private final ImageIcon redRoad1 = new ImageIcon("images/roads/redRoad1.png");
+    private final ImageIcon redRoad2 = new ImageIcon("images/roads/redRoad2.png");
+    private final ImageIcon redRoad3 = new ImageIcon("images/roads/redRoad3.png");
+
+    private final ImageIcon whiteRoad1 = new ImageIcon("images/roads/whiteRoad1.png");
+    private final ImageIcon whiteRoad2 = new ImageIcon("images/roads/whiteRoad2.png");
+    private final ImageIcon whiteRoad3 = new ImageIcon("images/roads/whiteRoad3.png");
 
 
     private static final int SIZE = 500;
@@ -437,6 +453,14 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             return; //Has not started yet
         }
         repaint();
+    }
+
+    public void roadHelper(int n) {
+
+    }
+
+    public void drawRoads(Graphics g) {
+
     }
 
     public void drawCurrentPlayer(Graphics g) {

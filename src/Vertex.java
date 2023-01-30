@@ -54,10 +54,6 @@ public class Vertex implements Serializable {
         return false;
     }
 
-    public ArrayList<Integer> getNeighborNumbs() {
-        return neighborNumbs;
-    }
-
     public boolean isBuildable() {
         return buildable;
     }

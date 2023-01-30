@@ -3,7 +3,6 @@ import java.util.*;
 
 public class VertexWeb implements Serializable {
     private ArrayList<Vertex> vertices = new ArrayList<>();
-    private ArrayList<Edge> edges = new ArrayList<>();
 
     public VertexWeb() {
         for(int i = 0; i < 54; i++) {
