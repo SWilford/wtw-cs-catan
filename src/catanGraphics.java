@@ -101,6 +101,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final catanButton[] buttons1 = new catanButton[54];
 
     private final catanButton[] upgradeButtons = new catanButton[54];
+
+    private final catanButton[] roadButtons = new catanButton[71];
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
@@ -461,6 +463,116 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     public void drawRoads(Graphics g) {
 
+    }
+
+    public void drawRoadButtons(Graphics g) {
+        String Bnum;
+        Shape rect;
+        bNum = 0;
+        int x = 499;
+        int y = 110;
+        for(int i = 0; i < 6; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=63;
+            bNum++;
+        }
+        x = 471;
+        y = 163;
+        for(int i = 0; i < 4; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=123;
+            bNum++;
+        }
+        x = 437;
+        y = 214;
+        for(int i = 0; i < 8; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=63;
+            bNum++;
+        }
+        x = 408;
+        y = 264;
+        for(int i = 0; i < 5; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=123;
+            bNum++;
+        }
+        x = 376;
+        y = 316;
+        for(int i = 0; i < 10; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=63;
+            bNum++;
+        }
+        x = 349;
+        y = 366;
+        for(int i = 0; i < 6; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=123;
+            bNum++;
+        }
+        x = 376;
+        y = 419;
+        for(int i = 0; i < 10; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=63;
+            bNum++;
+        }
+        x = 409;
+        y = 467;
+        for(int i = 0; i < 5; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=123;
+            bNum++;
+        }
+        x = 438;
+        y = 522;
+        for(int i = 0; i < 8; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=63;
+            bNum++;
+        }
+        x = 471;
+        y = 571;
+        for(int i = 0; i < 4; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=123;
+            bNum++;
+        }
+        x = 501;
+        y = 625;
+        for(int i = 0; i < 6; i++) {
+            Bnum = ""+bNum;
+            rect = new Rectangle(x, y, 17, 17);
+            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
+            x+=63;
+            bNum++;
+        }
+        for(int i = 0; i < 71; i++) {
+            if(state.bard.isRoadBuildable(i)) {
+                roadButtons[i].drawButton(g);
+            }
+        }
     }
 
     public void drawCurrentPlayer(Graphics g) {
