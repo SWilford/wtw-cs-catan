@@ -4,6 +4,7 @@ import java.util.*;
 public class board implements Serializable {
     Tile[][] tiles = new Tile[7][7];//initializing an array of tiles that represent the board
     VertexWeb web;
+    EdgeWeb web2;
     public board() {
         web = new VertexWeb();
         ArrayList<String> types = new ArrayList<>();//Array List that will contain the name for the type of tile
@@ -183,20 +184,36 @@ public class board implements Serializable {
         web.buildSettlement(i, color);
     }
 
-    public void upgradeSettlement(int i) {
-        web.upgradeSettlement(i);
+    public void buildRoad(int i, String color) {
+        web2.buildRoad(i, color);
+    }
+
+    public void upgradeSettlement(int i, String owner) {
+        web.upgradeSettlement(i, owner);
     }
 
     public boolean isBuildable(int i) {
         return web.isBuildable(i);
     }
 
+    public boolean isRoadBuildable(int i) {
+        return web2.isBuildable(i);
+    }
+
     public String getOwner(int i) {
         return web.getOwner(i);
     }
 
+    public String getRoadOwner(int i) {
+        return web2.getOwner(i);
+    }
+
     public boolean isSettled(int i) {
         return web.isSettled(i);
+    }
+
+    public boolean isRoadBuilt(int i) {
+        return web2.isBuilt(i);
     }
 
     public boolean isCity(int i) {

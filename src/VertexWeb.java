@@ -3,7 +3,6 @@ import java.util.*;
 
 public class VertexWeb implements Serializable {
     private ArrayList<Vertex> vertices = new ArrayList<>();
-    private ArrayList<Edge> edges = new ArrayList<>();
 
     public VertexWeb() {
         for(int i = 0; i < 54; i++) {
@@ -334,9 +333,9 @@ public class VertexWeb implements Serializable {
         }
     }
 
-    public void upgradeSettlement(int i) {
+    public void upgradeSettlement(int i, String owner) {
         if(!vertices.get(i).isCity()) {
-            vertices.get(i).upgrade();
+            vertices.get(i).upgrade(owner);
         }
     }
 
