@@ -102,7 +102,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     private final catanButton[] upgradeButtons = new catanButton[54];
 
-    private final catanButton[] roadButtons = new catanButton[71];
+    private final catanButton[] roadButtons = new catanButton[72];
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
@@ -271,6 +271,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(building) {
                 drawBuildButtons(g);
                 drawUpgradeButtons(g);
+                drawRoadButtons(g);
             }
             if(die1.isRolling())
             {
@@ -568,7 +569,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             x+=63;
             bNum++;
         }
-        for(int i = 0; i < 71; i++) {
+        for(int i = 0; i < 72; i++) {
             if(state.bard.isRoadBuildable(i)) {
                 roadButtons[i].drawButton(g);
             }
