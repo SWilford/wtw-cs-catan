@@ -13,6 +13,10 @@ public class playerHand {
         hand.add(c);
     }
 
+    public int size()
+    {
+        return hand.size();
+    }
     public void removeCard(card c)
     {
         hand.remove(c);

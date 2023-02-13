@@ -66,22 +66,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     private final ImageIcon whiteCity = new ImageIcon("images/whiteCity.png");
 
-    //road images
-    private final ImageIcon blueRoad1 = new ImageIcon("images/roads/blueRoad1.png");
-    private final ImageIcon blueRoad2 = new ImageIcon("images/roads/blueRoad2.png");
-    private final ImageIcon blueRoad3 = new ImageIcon("images/roads/blueRoad3.png");
-
-    private final ImageIcon orangeRoad1 = new ImageIcon("images/roads/orangeRoad1.png");
-    private final ImageIcon orangeRoad2 = new ImageIcon("images/roads/orangeRoad2.png");
-    private final ImageIcon orangeRoad3 = new ImageIcon("images/roads/orangeRoad3.png");
-
-    private final ImageIcon redRoad1 = new ImageIcon("images/roads/redRoad1.png");
-    private final ImageIcon redRoad2 = new ImageIcon("images/roads/redRoad2.png");
-    private final ImageIcon redRoad3 = new ImageIcon("images/roads/redRoad3.png");
-
-    private final ImageIcon whiteRoad1 = new ImageIcon("images/roads/whiteRoad1.png");
-    private final ImageIcon whiteRoad2 = new ImageIcon("images/roads/whiteRoad2.png");
-    private final ImageIcon whiteRoad3 = new ImageIcon("images/roads/whiteRoad3.png");
 
 
     private static final int SIZE = 500;
@@ -89,6 +73,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static int currentScreen; //home = 1, rules = 2, etc. Allows us to only use 1 panel
     private static Timer t;
     private static final int DELAY = 10;
+    private String pointsBlue, pointsOrange, pointsRed, pointsWhite;
     private static int numFrames;
     private static Player[] players = new Player[4];
     private static int currentPlayer;
@@ -101,8 +86,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final catanButton[] buttons1 = new catanButton[54];
 
     private final catanButton[] upgradeButtons = new catanButton[54];
-
-    private final catanButton[] roadButtons = new catanButton[72];
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
@@ -137,10 +120,12 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         brick = new resourceCard(2);
         hand1 = new playerHand();
         hand2 = new playerHand();
+        hand3 = new playerHand();
+        hand4 = new playerHand();
         book = new rulebook();
         time = 0;
         rollNum = 0;
-        hasGiven = false;
+        hasGiven = true;
         connection = new catanSClient(hostName, serverPortNumber);
         myID = connection.getID();
         currentPage = 1;
@@ -193,8 +178,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         placing = false;
         mousePlaced = false;
         places = new catanButton[20];
-        hand1.addCard(wood);
-        hand2.addCard(brick);
         die1 = new dice(dice1);
         die2 = new dice(dice2);
     }
@@ -250,10 +233,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 drawCurrentPlayer(g);
                 drawSettlements(g);//jump point
-                drawCities(g);
-                drawRoads(g);
+                g.drawString(state.getScoreboard(), 1200, 400);
 
-                //place(g);
+
+            //place(g);
             if(connection.getID()==1) {
                 hand1.showHand(g);
             }
@@ -272,7 +255,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(building) {
                 drawBuildButtons(g);
                 drawUpgradeButtons(g);
-                drawRoadButtons(g);
             }
             if(die1.isRolling())
             {
@@ -300,6 +282,22 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                             hand1.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
                                             hasGiven = true;
                                     }
+                                    else if(state.bard.web.getOwner(i).equals("ORANGE"))
+                                    {
+                                        hand2.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                        hasGiven = true;
+                                    }
+                                    else if(state.bard.web.getOwner(i).equals("RED"))
+                                    {
+                                        hand3.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                        hasGiven = true;
+                                    }
+                                    else if(state.bard.web.getOwner(i).equals("WHITE"))
+                                    {
+                                        hand4.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                        hasGiven = true;
+                                    }
+                                    //add code for the other colors im just too lazy
                                 }
                             }
                         }
@@ -404,22 +402,24 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 for(catanButton c: buttons1) {
                     if(c.getShape().contains(mouseX, mouseY)) {
                         //needs code to make sure the player has the correct amount of resources
-                        catanMessage m = new catanMessage("settlement", c.getTitle());
-                        connection.send(m);
-                    }
-                }
-                for(catanButton b: upgradeButtons) {
-                    //needs code to make sure the player has the correct amount of resources
-                    if(b.getShape().contains(mouseX, mouseY)) {
-                        catanMessage m = new catanMessage("city", b.getTitle());
-                        connection.send(m);
-                    }
-                }
-                for(catanButton r: roadButtons) {
-                    //needs code to make sure the player has the correct amount of resources
-                    if(r.getShape().contains(mouseX, mouseY)) {
-                        catanMessage m = new catanMessage("road", r.getTitle());
-                        connection.send(m);
+                        Integer i = Integer.parseInt(c.getTitle());
+                        connection.send(i);
+                        if(connection.getID() == 1)
+                        {
+                            addVictoryPoint("BLUE");
+                        }
+                        else if(connection.getID() == 2)
+                        {
+                            addVictoryPoint("ORANGE");
+                        }
+                        else if(connection.getID() == 3)
+                        {
+                            addVictoryPoint("RED");
+                        }
+                        else if(connection.getID() == 4)
+                        {
+                            addVictoryPoint("WHITE");
+                        }
                     }
                 }
             }
@@ -464,132 +464,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             return; //Has not started yet
         }
         repaint();
-    }
-
-    public void roadHelper(int n) {
-
-    }
-
-    public void drawRoads(Graphics g) {
-        //start temp
-        int edgeNumber = 0;
-        int x = 476;
-        int y = 97;
-        if(state.bard.isRoadBuilt(edgeNumber)) {
-            g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
-        }
-        //end temp
-        repaint();
-    }
-
-    public void drawRoadButtons(Graphics g) {
-        String Bnum;
-        Shape rect;
-        bNum = 0;
-        int x = 499;
-        int y = 110;
-        for(int i = 0; i < 6; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=63;
-            bNum++;
-        }
-        x = 471;
-        y = 163;
-        for(int i = 0; i < 4; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=123;
-            bNum++;
-        }
-        x = 437;
-        y = 214;
-        for(int i = 0; i < 8; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=63;
-            bNum++;
-        }
-        x = 408;
-        y = 264;
-        for(int i = 0; i < 5; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=123;
-            bNum++;
-        }
-        x = 376;
-        y = 316;
-        for(int i = 0; i < 10; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=63;
-            bNum++;
-        }
-        x = 349;
-        y = 366;
-        for(int i = 0; i < 6; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=123;
-            bNum++;
-        }
-        x = 376;
-        y = 419;
-        for(int i = 0; i < 10; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=63;
-            bNum++;
-        }
-        x = 409;
-        y = 467;
-        for(int i = 0; i < 5; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=123;
-            bNum++;
-        }
-        x = 438;
-        y = 522;
-        for(int i = 0; i < 8; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=63;
-            bNum++;
-        }
-        x = 471;
-        y = 571;
-        for(int i = 0; i < 4; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=123;
-            bNum++;
-        }
-        x = 501;
-        y = 625;
-        for(int i = 0; i < 6; i++) {
-            Bnum = ""+bNum;
-            rect = new Rectangle(x, y, 17, 17);
-            roadButtons[bNum] = new catanButton(rect, Bnum, Color.WHITE, Color.BLACK, Color.WHITE);
-            x+=63;
-            bNum++;
-        }
-        for(int i = 0; i < 72; i++) {
-            if(state.bard.isRoadBuildable(i)) {
-                roadButtons[i].drawButton(g);
-            }
-        }
     }
 
     public void drawCurrentPlayer(Graphics g) {
@@ -637,7 +511,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect;
         bNum = 0;
         int x = 532;
-        int y = 76;
+        int y = 96;
         for(int i = 0; i < 3; i++) { //First row of upgrade buttons
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -646,7 +520,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 471;
-        y = 110;
+        y = 130;
         for(int i = 0; i < 4; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -655,7 +529,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 471;
-        y = 181;
+        y = 201;
         for(int i = 0; i < 4; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -664,7 +538,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 408;
-        y = 208;
+        y = 228;
         for(int i = 0; i < 5; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -673,7 +547,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 408;
-        y = 283;
+        y = 303;
         for(int i = 0; i < 5; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -682,7 +556,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 348;
-        y = 309;
+        y = 329;
         for(int i = 0; i < 6; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -691,7 +565,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 349;
-        y = 386;
+        y = 406;
         for(int i = 0; i < 6; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -700,7 +574,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 409;
-        y = 423;
+        y = 443;
         for(int i = 0; i < 5; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -709,7 +583,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 409;
-        y = 490;
+        y = 510;
         for(int i = 0; i < 5; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -718,7 +592,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 471;
-        y = 517;
+        y = 537;
         for(int i = 0; i < 4; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -727,7 +601,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 471;
-        y = 593;
+        y = 613;
         for(int i = 0; i < 4; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -736,7 +610,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         x = 532;
-        y = 619;
+        y = 639;
         for(int i = 0; i < 3; i++) {
             Bnum = ""+bNum;
             rect = new Rectangle(x, y, 17, 17);
@@ -877,7 +751,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         int x = 530;
         int y = 95;
         for(int i = 0; i < 3; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -897,7 +771,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 468;
         y = 118;
         for(int i = 0; i < 4; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -917,7 +791,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 468;
         y = 198;
         for(int i = 0; i < 4; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -937,7 +811,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 406;
         y = 221;
         for(int i = 0; i < 5; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -957,7 +831,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 406;
         y = 301;
         for(int i = 0; i < 5; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -977,7 +851,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 346;
         y = 324;
         for(int i = 0; i < 6; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -997,7 +871,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 346;
         y = 395;
         for(int i = 0; i < 6; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -1017,7 +891,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 406;
         y = 427;
         for(int i = 0; i < 5; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -1037,7 +911,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x=406;
         y = 503;
         for(int i = 0; i < 5; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -1057,7 +931,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 468;
         y = 530;
         for(int i = 0; i < 4; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -1077,7 +951,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 468;
         y = 603;
         for(int i = 0; i < 4; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -1097,7 +971,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 529;
         y = 634;
         for(int i = 0; i < 3; i++) {
-            if(state.bard.isSettled(vertexNumber) && !state.bard.isCity(vertexNumber)) {
+            if(state.bard.isSettled(vertexNumber)) {
                 if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
                     g.drawImage(blueSettlement.getImage(), x, y, 21, 22, null);
                 }
@@ -1109,251 +983,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
                 else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
                     g.drawImage(whiteSettlement.getImage(), x, y, 21, 22, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        repaint();
-    }
-
-    public void drawCities(Graphics g) {
-        int vertexNumber = 0;
-        int x = 530;
-        int y = 95;
-        for(int i = 0; i < 3; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x = 468;
-        y = 118;
-        for(int i = 0; i < 4; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x = 468;
-        y = 198;
-        for(int i = 0; i < 4; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x = 406;
-        y = 221;
-        for(int i = 0; i < 5; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x = 406;
-        y = 301;
-        for(int i = 0; i < 5; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x = 346;
-        y = 324;
-        for(int i = 0; i < 6; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x = 346;
-        y = 395;
-        for(int i = 0; i < 6; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x = 406;
-        y = 427;
-        for(int i = 0; i < 5; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x=406;
-        y = 503;
-        for(int i = 0; i < 5; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x = 468;
-        y = 530;
-        for(int i = 0; i < 4; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x = 468;
-        y = 603;
-        for(int i = 0; i < 4; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
-                }
-            }
-            x+=125;
-            vertexNumber++;
-        }
-        x = 529;
-        y = 634;
-        for(int i = 0; i < 3; i++) {
-            if(state.bard.isCity(vertexNumber)) {
-                if(state.bard.getOwner(vertexNumber).equals("BLUE")) {
-                    g.drawImage(blueCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("ORANGE")) {
-                    g.drawImage(orangeCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("RED")) {
-                    g.drawImage(redCity.getImage(), x, y, 29, 25, null);
-                }
-                else if(state.bard.getOwner(vertexNumber).equals("WHITE")) {
-                    g.drawImage(whiteCity.getImage(), x, y, 29, 25, null);
                 }
             }
             x+=125;
@@ -1748,6 +1377,26 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             places[i] = new catanButton(shapes[i], "" + i, placeBut, hlBut);
             places[i].drawButton(g);
         }
+    }
+
+    public void addVictoryPoint(String s)
+    {
+        if(s.equals("BLUE"))
+        {
+            state.players.get(0).gainPoint(1);
+        }
+        else if(s.equals("ORANGE")) {
+            state.players.get(1).gainPoint(1);
+        }
+        else if(s.equals("RED"))
+        {
+            state.players.get(2).gainPoint(1);
+        }
+        else {
+            state.players.get(3).gainPoint(1);
+        }
+        String temp = "addVictoryPoint" + s;
+        connection.send(temp);
     }
 
 

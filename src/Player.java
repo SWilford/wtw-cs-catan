@@ -75,6 +75,12 @@ public class Player implements Serializable {
         return points;
     }
 
+    public String getPointsAsString()
+    {
+        return "" + name + ": " + points;
+    }
+
+
     public void gainResource(String r, int num) {
         switch (r) { //checks what the title is
             case "lumber" -> //goes through all the cases until it finds the right one
