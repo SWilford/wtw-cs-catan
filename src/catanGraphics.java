@@ -102,7 +102,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     private final catanButton[] upgradeButtons = new catanButton[54];
 
-    private final catanButton[] roadButtons = new catanButton[71];
+    private final catanButton[] roadButtons = new catanButton[72];
     protected static int mouseX; //position of mouse on X
     protected static int mouseY; //position of mouse on Y
     private catanButton[] places;
@@ -251,6 +251,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 drawCurrentPlayer(g);
                 drawSettlements(g);//jump point
                 drawCities(g);
+                drawRoads(g);
 
                 //place(g);
             if(connection.getID()==1) {
@@ -271,6 +272,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(building) {
                 drawBuildButtons(g);
                 drawUpgradeButtons(g);
+                drawRoadButtons(g);
             }
             if(die1.isRolling())
             {
@@ -402,15 +404,22 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 for(catanButton c: buttons1) {
                     if(c.getShape().contains(mouseX, mouseY)) {
                         //needs code to make sure the player has the correct amount of resources
-                        Integer i = Integer.parseInt(c.getTitle());
-                        connection.send(i);
+                        catanMessage m = new catanMessage("settlement", c.getTitle());
+                        connection.send(m);
                     }
                 }
                 for(catanButton b: upgradeButtons) {
                     //needs code to make sure the player has the correct amount of resources
                     if(b.getShape().contains(mouseX, mouseY)) {
-                        String where = b.getTitle();
-                        connection.send(where);
+                        catanMessage m = new catanMessage("city", b.getTitle());
+                        connection.send(m);
+                    }
+                }
+                for(catanButton r: roadButtons) {
+                    //needs code to make sure the player has the correct amount of resources
+                    if(r.getShape().contains(mouseX, mouseY)) {
+                        catanMessage m = new catanMessage("road", r.getTitle());
+                        connection.send(m);
                     }
                 }
             }
@@ -462,7 +471,15 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     }
 
     public void drawRoads(Graphics g) {
-
+        //start temp
+        int edgeNumber = 0;
+        int x = 476;
+        int y = 97;
+        if(state.bard.isRoadBuilt(edgeNumber)) {
+            g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
+        }
+        //end temp
+        repaint();
     }
 
     public void drawRoadButtons(Graphics g) {
@@ -568,7 +585,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             x+=63;
             bNum++;
         }
-        for(int i = 0; i < 71; i++) {
+        for(int i = 0; i < 72; i++) {
             if(state.bard.isRoadBuildable(i)) {
                 roadButtons[i].drawButton(g);
             }

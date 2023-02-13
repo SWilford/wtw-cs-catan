@@ -7,6 +7,7 @@ public class board implements Serializable {
     EdgeWeb web2;
     public board() {
         web = new VertexWeb();
+        web2 = new EdgeWeb();
         ArrayList<String> types = new ArrayList<>();//Array List that will contain the name for the type of tile
         for(int i = 0; i < 4; i++) { // fills array list with 4 forest type
             types.add("Forest");

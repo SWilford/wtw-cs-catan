@@ -23,19 +23,17 @@ public class catanState implements Serializable {
                 winner = currentPlayer;
             }
         }
-        if(gameInProgress && message instanceof Integer && sender == currentPlayer) {//changes settlements
-            int change = (int)message;
-            /*if(winner()) { //Needs to be called in the other updates as well
-                gameInProgress = false;
-                winner = currentPlayer;
-            }*/
-            bard.buildSettlement(change, this.currentPlayerColor());
-        }
-        else if(gameInProgress && message instanceof String && !message.equals("nextplayer") && sender == currentPlayer) {//changes cities
-            String temp = (String)message;
-            int change = Integer.parseInt(temp);
-            //needs if(winner())
-            bard.upgradeSettlement(change, this.currentPlayerColor());
+        if(gameInProgress && message instanceof catanMessage && sender == currentPlayer) {//changes settlements, cities, roads
+            catanMessage change = (catanMessage)message;
+            if(change.getType().equals("settlement")) {
+                bard.buildSettlement(change.getNumber(), this.currentPlayerColor());
+            }
+            else if(change.getType().equals("city")) {
+                bard.upgradeSettlement(change.getNumber(), this.currentPlayerColor());
+            }
+            else if(change.getType().equals("road")) {
+                bard.buildRoad(change.getNumber(), this.currentPlayerColor());
+            }
         }
         else if(gameInProgress && message.equals("nextplayer") && sender == currentPlayer) {//ends turn and makes turn go to next player
             if(noPlayers == 4) {
