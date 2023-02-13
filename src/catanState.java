@@ -63,6 +63,22 @@ public class catanState implements Serializable {
         else if(!gameInProgress && message.equals("newgame")) {
             startGame();
         }
+        if(gameInProgress && message instanceof String && message.equals("addVictoryPointBLUE"))
+        {
+            players.get(0).gainPoint(1);
+        }
+        else if(gameInProgress && message instanceof String && message.equals("addVictoryPointORANGE"))
+        {
+            players.get(1).gainPoint(1);
+        }
+        else if(gameInProgress && message instanceof String && message.equals("addVictoryPointRED"))
+        {
+            players.get(2).gainPoint(1);
+        }
+        else if(gameInProgress && message instanceof String && message.equals("addVictoryPointWHITE"))
+        {
+            players.get(3).gainPoint(1);
+        }
     }
     void startFirstGame() {
         startGame();
@@ -148,6 +164,7 @@ public class catanState implements Serializable {
         return players.get(currentPlayer).getPoints() >= 10;
     }
 
+
     void setNoPlayers(int n) {
         noPlayers = n;
     }
@@ -169,4 +186,23 @@ public class catanState implements Serializable {
             return "WHITE";
         }
     }
-}
+
+    public String getScoreboard()
+    {
+        //need to make dynamic for amount of players - should be easy just lazy
+        if(players.size() == 1) {
+            return players.get(0).getPointsAsString();
+        }
+        else if(players.size() == 2)
+        {
+            return players.get(0).getPointsAsString() + "\n" + players.get(1).getPointsAsString();
+        }
+        else if(players.size() == 3) {
+            return players.get(0).getPointsAsString() + "\n" + players.get(1).getPointsAsString() + "\n" + players.get(2).getPointsAsString();
+        }
+        else    return players.get(0).getPointsAsString() + "\n" + players.get(1).getPointsAsString() + "\n" + players.get(2).getPointsAsString() + "\n" + players.get(3).getPointsAsString();
+
+
+    }
+    }
+

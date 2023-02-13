@@ -73,6 +73,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static int currentScreen; //home = 1, rules = 2, etc. Allows us to only use 1 panel
     private static Timer t;
     private static final int DELAY = 10;
+    private String pointsBlue, pointsOrange, pointsRed, pointsWhite;
     private static int numFrames;
     private static Player[] players = new Player[4];
     private static int currentPlayer;
@@ -119,10 +120,12 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         brick = new resourceCard(2);
         hand1 = new playerHand();
         hand2 = new playerHand();
+        hand3 = new playerHand();
+        hand4 = new playerHand();
         book = new rulebook();
         time = 0;
         rollNum = 0;
-        hasGiven = false;
+        hasGiven = true;
         connection = new catanSClient(hostName, serverPortNumber);
         myID = connection.getID();
         currentPage = 1;
@@ -175,8 +178,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         placing = false;
         mousePlaced = false;
         places = new catanButton[20];
-        hand1.addCard(wood);
-        hand2.addCard(brick);
         die1 = new dice(dice1);
         die2 = new dice(dice2);
     }
@@ -232,8 +233,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 g.drawImage(developmentBack.getImage(), 50, 150, 125, 200, null);
                 drawCurrentPlayer(g);
                 drawSettlements(g);//jump point
+                g.drawString(state.getScoreboard(), 1200, 400);
 
-                //place(g);
+
+            //place(g);
             if(connection.getID()==1) {
                 hand1.showHand(g);
             }
@@ -279,6 +282,22 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                             hand1.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
                                             hasGiven = true;
                                     }
+                                    else if(state.bard.web.getOwner(i).equals("ORANGE"))
+                                    {
+                                        hand2.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                        hasGiven = true;
+                                    }
+                                    else if(state.bard.web.getOwner(i).equals("RED"))
+                                    {
+                                        hand3.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                        hasGiven = true;
+                                    }
+                                    else if(state.bard.web.getOwner(i).equals("WHITE"))
+                                    {
+                                        hand4.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                        hasGiven = true;
+                                    }
+                                    //add code for the other colors im just too lazy
                                 }
                             }
                         }
@@ -385,6 +404,22 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         //needs code to make sure the player has the correct amount of resources
                         Integer i = Integer.parseInt(c.getTitle());
                         connection.send(i);
+                        if(connection.getID() == 1)
+                        {
+                            addVictoryPoint("BLUE");
+                        }
+                        else if(connection.getID() == 2)
+                        {
+                            addVictoryPoint("ORANGE");
+                        }
+                        else if(connection.getID() == 3)
+                        {
+                            addVictoryPoint("RED");
+                        }
+                        else if(connection.getID() == 4)
+                        {
+                            addVictoryPoint("WHITE");
+                        }
                     }
                 }
             }
@@ -1342,6 +1377,26 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             places[i] = new catanButton(shapes[i], "" + i, placeBut, hlBut);
             places[i].drawButton(g);
         }
+    }
+
+    public void addVictoryPoint(String s)
+    {
+        if(s.equals("BLUE"))
+        {
+            state.players.get(0).gainPoint(1);
+        }
+        else if(s.equals("ORANGE")) {
+            state.players.get(1).gainPoint(1);
+        }
+        else if(s.equals("RED"))
+        {
+            state.players.get(2).gainPoint(1);
+        }
+        else {
+            state.players.get(3).gainPoint(1);
+        }
+        String temp = "addVictoryPoint" + s;
+        connection.send(temp);
     }
 
 
