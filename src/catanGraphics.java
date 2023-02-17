@@ -466,19 +466,50 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         repaint();
     }
 
-    public void roadHelper(int n) {
-
-    }
-
     public void drawRoads(Graphics g) {
-        //start temp
         int edgeNumber = 0;
         int x = 476;
         int y = 97;
-        if(state.bard.isRoadBuilt(0)) {
-            g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
-        }
-        //end temp
+        for(int i = 0; i < 3; i++) {
+            if(state.bard.isRoadBuilt(edgeNumber)) {
+                if(state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                    g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
+                }
+                else if(state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                    g.drawImage(orangeRoad2.getImage(), x, y, 66, 43, null);
+                }
+                else if(state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                    g.drawImage(redRoad2.getImage(), x, y, 66, 43, null);
+                }
+                else if(state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                    g.drawImage(whiteRoad2.getImage(), x, y, 66, 43, null);
+                }
+            }
+            x+=126;
+            edgeNumber++;
+        } //First edge row Northwest
+        x = 538;
+        y = 97;
+        for(int i = 0; i < 3; i++) {
+            if(state.bard.isRoadBuilt(edgeNumber)) {
+                if(state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                    g.drawImage(blueRoad1.getImage(), x, y, 66, 43, null);
+                }
+                else if(state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                    g.drawImage(orangeRoad1.getImage(), x, y, 66, 43, null);
+                }
+                else if(state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                    g.drawImage(redRoad1.getImage(), x, y, 66, 43, null);
+                }
+                else if(state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                    g.drawImage(whiteRoad1.getImage(), x, y, 66, 43, null);
+                }
+            }
+            x+=126;
+            edgeNumber++;
+        } // First edge row Northeast
+
+
     }
 
     public void drawRoadButtons(Graphics g) {
