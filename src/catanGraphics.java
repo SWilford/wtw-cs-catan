@@ -485,7 +485,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                     g.drawImage(whiteRoad2.getImage(), x, y, 66, 43, null);
                 }
             }
-            x+=126;
+            x+=125;
             edgeNumber++;
         } //First edge row Northwest
         x = 538;
@@ -505,10 +505,29 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                     g.drawImage(whiteRoad1.getImage(), x, y, 66, 43, null);
                 }
             }
-            x+=126;
+            x+=125;
             edgeNumber++;
         } // First edge row Northeast
-
+        x = 476;
+        y = 134;
+        for(int i = 0; i < 4; i++) {
+            if(state.bard.isRoadBuilt(edgeNumber)) {
+                if(state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                    g.drawImage(blueRoad3.getImage(), x, y, 66, 43, null);
+                }
+                else if(state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                    g.drawImage(orangeRoad3.getImage(), x, y, 66, 43, null);
+                }
+                else if(state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                    g.drawImage(redRoad3.getImage(), x, y, 66, 43, null);
+                }
+                else if(state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                    g.drawImage(whiteRoad3.getImage(), x, y, 66, 43, null);
+                }
+            }
+            x+=125;
+            edgeNumber++;
+        }
 
     }
 
