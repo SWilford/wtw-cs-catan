@@ -12,6 +12,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     //declaring all images
     private int currentPage, actPage;
     private final ImageIcon token2 = new ImageIcon("images/token2.png");
+    private final ImageIcon tradeBut = new ImageIcon("images/trademode.png");
+    private final ImageIcon npcTrade = new ImageIcon("images/npctrade.png");
+    private final ImageIcon playerTrade = new ImageIcon("images/playerTrade.png");
     private final ImageIcon token3 = new ImageIcon("images/token3.png");
     private final ImageIcon token4 = new ImageIcon("images/token4.png");
     private final ImageIcon token5 = new ImageIcon("images/token5.png");
@@ -94,10 +97,11 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static int currentPlayer;
     private static boolean placing, mousePlaced;
     public static boolean hasGiven;
+    public static boolean trading, npcTrading, playerTrading;
     private boolean building, rolling;
 
     private rulebook book;
-    private final catanButton[] buttons = new catanButton[11]; //array of all buttons, just add to the array length if needed
+    private final catanButton[] buttons = new catanButton[14]; //array of all buttons, just add to the array length if needed
     private final catanButton[] buttons1 = new catanButton[54];
 
     private final catanButton[] upgradeButtons = new catanButton[54];
@@ -141,6 +145,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         time = 0;
         rollNum = 0;
         hasGiven = true;
+        trading = false;
+        playerTrading = false;
+        npcTrading = false;
         connection = new catanSClient(hostName, serverPortNumber);
         myID = connection.getID();
         currentPage = 1;
@@ -170,9 +177,16 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape dice2 = new Rectangle(100, 150, 50, 50);
         Shape rect10 = new Rectangle(100, 400, 75, 50);
         Shape rect12 = new Rectangle(900, 500, 75, 50);
+        Shape rect11 = new Rectangle(200, 50, 127, 47);
+        Shape rect13 = new Rectangle(200, 97, 127, 47);
+        Shape rect14 = new Rectangle(327, 97, 127, 47);
 
+        buttons[11] = new catanButton(rect11, "trade", tradeBut, tradeBut);
         buttons[9] = new catanButton(rect10, "back", Color.WHITE, Color.GRAY, Color.BLACK);
+
         buttons[10] = new catanButton(rect12, "next", Color.WHITE, Color.GRAY, Color.BLACK);
+        buttons[12] = new catanButton(rect13, "playerTrade", playerTrade, playerTrade);
+        buttons[13] = new catanButton(rect14, "npcTrade", npcTrade, npcTrade);
 
         ImageIcon rulesButton = new ImageIcon("images/rulesRed.png"); //rules
         ImageIcon rulesHighlighted = new ImageIcon("images/rulesYellow.png"); //rules highlighted
@@ -243,6 +257,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 buttons[6].drawButton(g);
                 buttons[7].drawButton(g);
                 buttons[8].drawButton(g);
+                buttons[11].drawButton(g);
+
             }
 
                 drawBoard(g); //draws board
@@ -273,6 +289,29 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 drawBuildButtons(g);
                 drawUpgradeButtons(g);
                 drawRoadButtons(g);
+            }
+            if(trading)
+            {
+                //draw buttons for npc trading and player trading
+                buttons[12].drawButton(g);
+                buttons[13].drawButton(g);
+                //if statement for npc or player
+
+                //if npc
+                if(npcTrading)
+                {
+                    //pick resource to give up (must have 4)
+                    //pick resource to get
+                }
+
+
+                //if player
+                if(playerTrading) {
+                    //view all player hands
+                    //pick player to propose trade to
+                    //other player gets trade offer
+                    //can accept or refuse
+                }
             }
             if(die1.isRolling())
             {
@@ -396,6 +435,22 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                             die1.startRoll();
                             die2.startRoll();
                             hasGiven = false;
+                        }
+                        else if(b.getTitle().equals("trade"))
+                        {
+                            trading = !trading;
+                            //click button again to end trade mode
+                        }
+                        if(trading)
+                        {
+                            if(b.getTitle().equals("npcTrade"))
+                            {
+                                npcTrading = true;
+                            }
+                            else if(b.getTitle().equals("playerTrade"))
+                            {
+                                playerTrading = true;
+                            }
                         }
                     }
                 }
