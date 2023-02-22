@@ -197,7 +197,21 @@ public class board implements Serializable {
         return web.isBuildable(i);
     }
 
+    public void makeRoadsBuildable(int i) {
+        ArrayList<Integer> temp = web2.getOriginatingVertices(i);
+        int temp1 = temp.get(0);
+        int temp2 = temp.get(1);
+        if(web.isSettled(temp1) || web.isSettled(temp2)) {
+            web2.makeBuildable(i);
+        }
+    }
+
+    public ArrayList<Integer> getOriginatingVertices(int i) {
+        return web2.getOriginatingVertices(i);
+    }
+
     public boolean isRoadBuildable(int i) {
+        makeRoadsBuildable(i);
         return web2.isBuildable(i);
     }
 

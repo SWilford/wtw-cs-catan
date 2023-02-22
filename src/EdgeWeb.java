@@ -328,11 +328,202 @@ public class EdgeWeb implements Serializable {
 
         edges.get(71).addConnection(65);
         edges.get(71).addConnection(70);
+
+        //Once again, the following should be optimized
+        edges.get(0).addOrigin(0);
+        edges.get(0).addOrigin(3);
+
+        edges.get(1).addOrigin(0);
+        edges.get(1).addOrigin(4);
+
+        edges.get(2).addOrigin(1);
+        edges.get(2).addOrigin(4);
+
+        edges.get(3).addOrigin(1);
+        edges.get(3).addOrigin(5);
+
+        edges.get(4).addOrigin(2);
+        edges.get(4).addOrigin(5);
+
+        edges.get(5).addOrigin(2);
+        edges.get(5).addOrigin(6);
+
+        int temp1 = 3;
+        int temp2 = 7;
+        for(int i = 6; i < 9; i++) {
+            edges.get(i).addOrigin(temp1);
+            edges.get(i).addOrigin(temp2);
+            temp1++;
+            temp2++;
+        }
+
+        edges.get(10).addOrigin(7);
+        edges.get(10).addOrigin(11);
+
+        edges.get(11).addOrigin(7);
+        edges.get(11).addOrigin(12);
+
+        edges.get(12).addOrigin(8);
+        edges.get(12).addOrigin(12);
+
+        edges.get(13).addOrigin(8);
+        edges.get(13).addOrigin(13);
+
+        edges.get(14).addOrigin(9);
+        edges.get(14).addOrigin(13);
+
+        edges.get(15).addOrigin(9);
+        edges.get(15).addOrigin(14);
+
+        edges.get(16).addOrigin(10);
+        edges.get(16).addOrigin(14);
+
+        edges.get(17).addOrigin(10);
+        edges.get(17).addOrigin(15);
+
+        temp1 = 11;
+        temp2 = 16;
+        for(int i = 18; i < 22; i++) {
+            edges.get(i).addOrigin(temp1);
+            edges.get(i).addOrigin(temp2);
+            temp1++;
+            temp2++;
+        }
+
+        edges.get(23).addOrigin(16);
+        edges.get(23).addOrigin(21);
+
+        edges.get(24).addOrigin(16);
+        edges.get(24).addOrigin(22);
+
+        edges.get(25).addOrigin(17);
+        edges.get(25).addOrigin(22);
+
+        edges.get(26).addOrigin(17);
+        edges.get(26).addOrigin(23);
+
+        edges.get(27).addOrigin(18);
+        edges.get(27).addOrigin(23);
+
+        edges.get(28).addOrigin(18);
+        edges.get(28).addOrigin(24);
+
+        edges.get(29).addOrigin(19);
+        edges.get(29).addOrigin(24);
+
+        edges.get(30).addOrigin(19);
+        edges.get(30).addOrigin(25);
+
+        edges.get(31).addOrigin(20);
+        edges.get(31).addOrigin(25);
+
+        edges.get(32).addOrigin(20);
+        edges.get(32).addOrigin(26);
+
+        temp1 = 21;
+        temp2 = 27;
+        for(int i = 33; i < 38; i++) {
+            edges.get(i).addOrigin(temp1);
+            edges.get(i).addOrigin(temp2);
+            temp1++;
+            temp2++;
+        }
+
+        edges.get(39).addOrigin(27);
+        edges.get(39).addOrigin(33);
+
+        edges.get(40).addOrigin(28);
+        edges.get(40).addOrigin(33);
+
+        edges.get(41).addOrigin(28);
+        edges.get(41).addOrigin(34);
+
+        edges.get(42).addOrigin(29);
+        edges.get(42).addOrigin(34);
+
+        edges.get(43).addOrigin(29);
+        edges.get(43).addOrigin(35);
+
+        edges.get(44).addOrigin(30);
+        edges.get(44).addOrigin(35);
+
+        edges.get(45).addOrigin(30);
+        edges.get(45).addOrigin(36);
+
+        edges.get(46).addOrigin(31);
+        edges.get(46).addOrigin(36);
+
+        edges.get(47).addOrigin(31);
+        edges.get(47).addOrigin(37);
+
+        edges.get(48).addOrigin(32);
+        edges.get(48).addOrigin(37);
+
+        temp1 = 33;
+        temp2 = 38;
+        for(int i = 49; i < 53; i++) {
+            edges.get(i).addOrigin(temp1);
+            edges.get(i).addOrigin(temp2);
+            temp1++;
+            temp2++;
+        }
+
+        edges.get(54).addOrigin(38);
+        edges.get(54).addOrigin(43);
+
+        edges.get(55).addOrigin(39);
+        edges.get(55).addOrigin(43);
+
+        edges.get(56).addOrigin(39);
+        edges.get(56).addOrigin(44);
+
+        edges.get(57).addOrigin(40);
+        edges.get(47).addOrigin(44);
+
+        edges.get(58).addOrigin(40);
+        edges.get(58).addOrigin(45);
+
+        edges.get(59).addOrigin(41);
+        edges.get(59).addOrigin(45);
+
+        edges.get(60).addOrigin(41);
+        edges.get(60).addOrigin(46);
+
+        edges.get(61).addOrigin(42);
+        edges.get(61).addOrigin(46);
+
+        temp1 = 43;
+        temp2 = 47;
+        for(int i = 62; i < 65; i++) {
+            edges.get(i).addOrigin(temp1);
+            edges.get(i).addOrigin(temp2);
+            temp1++;
+            temp2++;
+        }
+
+        edges.get(66).addOrigin(47);
+        edges.get(66).addOrigin(51);
+
+        edges.get(67).addOrigin(48);
+        edges.get(67).addOrigin(51);
+
+        edges.get(68).addOrigin(48);
+        edges.get(68).addOrigin(52);
+
+        edges.get(69).addOrigin(49);
+        edges.get(69).addOrigin(52);
+
+        edges.get(70).addOrigin(49);
+        edges.get(70).addOrigin(53);
+
+        edges.get(71).addOrigin(50);
+        edges.get(71).addOrigin(53);
+
     }
 
     public void buildRoad(int i, String color) {
         edges.get(i).build(color);
-        edges.get(i).setBuildable();
+        edges.get(i).setBuildable(false);
     }
 
     public String getOwner(int i) {
@@ -345,6 +536,14 @@ public class EdgeWeb implements Serializable {
 
     public boolean isBuildable(int i) {
         return edges.get(i).isBuildable();
+    }
+
+    public void makeBuildable(int i) {
+        edges.get(i).setBuildable(true);
+    }
+
+    public ArrayList<Integer> getOriginatingVertices(int i) {
+        return edges.get(i).getOriginatingVertices();
     }
 
 }

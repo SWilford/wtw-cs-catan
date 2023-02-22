@@ -9,11 +9,13 @@ public class Edge implements Serializable {
     private boolean buildable;
 
     private ArrayList<Integer> connections = new ArrayList<>();
+    private ArrayList<Integer> originatingVertexes = new ArrayList<>();
+
 
     public Edge(int number) {
         owner = null;
         isBuilt = false;
-        buildable = true;
+        buildable = false;
         this.number = number;
     }
 
@@ -21,13 +23,17 @@ public class Edge implements Serializable {
         connections.add(n);
     }
 
+    public void addOrigin(int n) {
+        originatingVertexes.add(n);
+    }
+
     public void build(String owner) {
         this.owner = owner;
         isBuilt = true;
     }
 
-    public void setBuildable() {
-        buildable = false;
+    public void setBuildable(Boolean b) {
+        buildable = b;
     }
 
     public boolean isBuildable() {
@@ -44,5 +50,9 @@ public class Edge implements Serializable {
 
     public ArrayList<Integer> getConnections() {
         return connections;
+    }
+
+    public ArrayList<Integer> getOriginatingVertices() {
+        return originatingVertexes;
     }
 }

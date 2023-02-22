@@ -670,10 +670,20 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             bNum++;
         }
         for(int i = 0; i < 72; i++) {
-            if(state.bard.isRoadBuildable(i)) {
+            ArrayList<Integer> temp = state.bard.getOriginatingVertices(i);
+            int temp1 = temp.get(0);
+            int temp2 = temp.get(1);
+            if(state.bard.isRoadBuildable(i) && isRoadBuildableHelper(temp1, temp2)) {
                 roadButtons[i].drawButton(g);
             }
         }
+    }
+
+    private boolean isRoadBuildableHelper(int i, int j) {
+        if(state.bard.getOwner(i).equals(state.currentPlayerColor()) || state.bard.getOwner(j).equals(state.currentPlayer)) {
+            return true;
+        }
+        return false;
     }
 
     public void drawCurrentPlayer(Graphics g) {

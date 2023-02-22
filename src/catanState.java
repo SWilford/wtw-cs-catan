@@ -176,7 +176,7 @@ public class catanState implements Serializable {
         return noPlayers;
     }
 
-    private String currentPlayerColor() {
+    public String currentPlayerColor() {
         if(currentPlayer == 1) {
             return "BLUE";
         }
