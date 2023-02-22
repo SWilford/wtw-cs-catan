@@ -470,64 +470,39 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         int edgeNumber = 0;
         int x = 476;
         int y = 97;
-        for(int i = 0; i < 3; i++) {
-            if(state.bard.isRoadBuilt(edgeNumber)) {
-                if(state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
-                    g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
+        for(int i = 0; i < 6; i++) {
+            if(i%2 == 0) {
+                if(state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad2.getImage(), x, y, 66, 43, null);
+                    }
                 }
-                else if(state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
-                    g.drawImage(orangeRoad2.getImage(), x, y, 66, 43, null);
-                }
-                else if(state.bard.getRoadOwner(edgeNumber).equals("RED")) {
-                    g.drawImage(redRoad2.getImage(), x, y, 66, 43, null);
-                }
-                else if(state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
-                    g.drawImage(whiteRoad2.getImage(), x, y, 66, 43, null);
-                }
+                x+=61;
             }
-            x+=125;
+            else {
+                if(state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad1.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x+=65;
+            }
+
             edgeNumber++;
         } //First edge row Northwest
-        x = 538;
-        y = 97;
-        for(int i = 0; i < 3; i++) {
-            if(state.bard.isRoadBuilt(edgeNumber)) {
-                if(state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
-                    g.drawImage(blueRoad1.getImage(), x, y, 66, 43, null);
-                }
-                else if(state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
-                    g.drawImage(orangeRoad1.getImage(), x, y, 66, 43, null);
-                }
-                else if(state.bard.getRoadOwner(edgeNumber).equals("RED")) {
-                    g.drawImage(redRoad1.getImage(), x, y, 66, 43, null);
-                }
-                else if(state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
-                    g.drawImage(whiteRoad1.getImage(), x, y, 66, 43, null);
-                }
-            }
-            x+=125;
-            edgeNumber++;
-        } // First edge row Northeast
-        x = 476;
-        y = 134;
-        for(int i = 0; i < 4; i++) {
-            if(state.bard.isRoadBuilt(edgeNumber)) {
-                if(state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
-                    g.drawImage(blueRoad3.getImage(), x, y, 66, 43, null);
-                }
-                else if(state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
-                    g.drawImage(orangeRoad3.getImage(), x, y, 66, 43, null);
-                }
-                else if(state.bard.getRoadOwner(edgeNumber).equals("RED")) {
-                    g.drawImage(redRoad3.getImage(), x, y, 66, 43, null);
-                }
-                else if(state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
-                    g.drawImage(whiteRoad3.getImage(), x, y, 66, 43, null);
-                }
-            }
-            x+=125;
-            edgeNumber++;
-        }
+
 
     }
 
