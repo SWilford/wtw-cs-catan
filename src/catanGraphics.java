@@ -98,7 +98,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static boolean placing, mousePlaced;
     public static boolean hasGiven;
     public static boolean trading, npcTrading, playerTrading;
-    private boolean building, rolling;
+    private boolean building, rolling, hasRolled;
 
     private rulebook book;
     private final catanButton[] buttons = new catanButton[14]; //array of all buttons, just add to the array length if needed
@@ -137,6 +137,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     //constructor
     public catanGraphics(String hostName, int serverPortNumber) throws IOException {
         building = false;
+        hasRolled = false;
         wood = new resourceCard(1);
         brick = new resourceCard(2);
         hand1 = new playerHand();
@@ -256,7 +257,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(state.currentPlayer == myID) {
                 buttons[6].drawButton(g);
                 buttons[7].drawButton(g);
-                buttons[8].drawButton(g);
+                if(!hasRolled) {
+                    buttons[8].drawButton(g);
+                }
                 buttons[11].drawButton(g);
 
             }
@@ -424,8 +427,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 building = false;
                             }
                         }
-                        else if(b.getTitle().equals("end")) {
+                        else if(b.getTitle().equals("end") && hasRolled) {
                             String nm = "nextplayer";
+                            hasRolled = false;
                             connection.send(nm);
                             if(building) {
                                 building = false;
@@ -434,6 +438,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         else if(b.getTitle().equals("roll")) {
                             die1.startRoll();
                             die2.startRoll();
+                            hasRolled = true;
                             hasGiven = false;
                         }
                         else if(b.getTitle().equals("trade"))
