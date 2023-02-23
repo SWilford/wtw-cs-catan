@@ -561,7 +561,25 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             }
 
             edgeNumber++;
-        } //First edge row Northwest
+        } //First edge row
+
+        x = 476;
+        y = 133;
+        for(int i = 0; i < 4; i++) {
+            if(state.bard.isRoadBuilt(edgeNumber)) {
+                if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                    g.drawImage(blueRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                    g.drawImage(orangeRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                    g.drawImage(redRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                    g.drawImage(whiteRoad3.getImage(), x, y, 7, 72, null);
+                }
+            }
+            x+=123;
+            edgeNumber++;
+        }
 
 
     }
@@ -673,14 +691,48 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             ArrayList<Integer> temp = state.bard.getOriginatingVertices(i);
             int temp1 = temp.get(0);
             int temp2 = temp.get(1);
-            if(state.bard.isRoadBuildable(i) && isRoadBuildableHelper(temp1, temp2)) {
+            ArrayList<Integer> temp3 = state.bard.getConnections(i);
+            int temp5 = temp3.get(0);
+            int temp6 = temp3.get(1);
+            int temp7 = -1;
+            int temp8 = -1;
+            if(temp3.size() >= 3) {
+                temp7 = temp3.get(2);
+                if(temp3.size() == 4) {
+                    temp8 = temp3.get(3);
+                }
+            }
+            if(state.bard.isRoadBuildable(i) && isRoadBuildableHelper(temp1, temp2, temp5, temp6, temp7, temp8) && !state.bard.isRoadBuilt(i)) {
                 roadButtons[i].drawButton(g);
             }
         }
     }
 
-    private boolean isRoadBuildableHelper(int i, int j) {
-        if(state.bard.getOwner(i).equals(state.currentPlayerColor()) || state.bard.getOwner(j).equals(state.currentPlayer)) {
+    private boolean isRoadBuildableHelper(int i, int j, int n, int o, int k, int m) {
+        if(state.bard.getOwner(i).equals("none") && state.bard.getOwner(j).equals("none")) { //if road connected to another road (no settlements)
+            if(m != -1) {
+                if(state.bard.getRoadOwner(n).equals(state.currentPlayerColor()) || state.bard.getRoadOwner(o).equals(state.currentPlayerColor()) || state.bard.getRoadOwner(k).equals(state.currentPlayerColor()) || state.bard.getRoadOwner(m).equals(state.currentPlayerColor())) {
+                    return true;
+                }
+            }
+            else if(k != -1 && m == -1) {
+                if(state.bard.getRoadOwner(n).equals(state.currentPlayerColor()) || state.bard.getRoadOwner(o).equals(state.currentPlayerColor()) || state.bard.getRoadOwner(k).equals(state.currentPlayerColor())) {
+                    return true;
+                }
+            }
+            else if(k==-1) {
+                if(state.bard.getRoadOwner(n).equals(state.currentPlayerColor()) || state.bard.getRoadOwner(o).equals(state.currentPlayerColor())) {
+                    return true;
+                }
+            }
+        }
+        else if(state.bard.getOwner(i).equals(state.currentPlayerColor()) && state.bard.getOwner(j).equals("none")) {
+            return true;
+        }
+        else if(state.bard.getOwner(i).equals("none") && state.bard.getOwner(j).equals(state.currentPlayerColor())) {
+            return true;
+        }
+        else if(state.bard.getOwner(i).equals(state.currentPlayerColor()) && state.bard.getOwner(j).equals(state.currentPlayerColor())) {
             return true;
         }
         return false;

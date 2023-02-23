@@ -13,7 +13,7 @@ public class Vertex implements Serializable {
     public Vertex(int number) {
         this.number = number;
         isBuilt = false;
-        owner = null;
+        owner = "none";
         isCity = false;
         buildable = true;
         tiles = new ArrayList<coord>();

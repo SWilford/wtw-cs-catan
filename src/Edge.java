@@ -13,7 +13,7 @@ public class Edge implements Serializable {
 
 
     public Edge(int number) {
-        owner = null;
+        owner = "none";
         isBuilt = false;
         buildable = false;
         this.number = number;

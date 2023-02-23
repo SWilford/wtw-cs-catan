@@ -204,10 +204,39 @@ public class board implements Serializable {
         if(web.isSettled(temp1) || web.isSettled(temp2)) {
             web2.makeBuildable(i);
         }
+        ArrayList<Integer> temp3 = web2.getConnections(i);
+        if(temp3.size() == 2) {
+            int temp4 = temp3.get(0);
+            int temp5 = temp3.get(1);
+            if(web2.isBuilt(temp4) || web2.isBuilt(temp5)) {
+                web2.makeBuildable(i);
+            }
+        }
+        else if (temp3.size()==3) {
+            int temp4 = temp3.get(0);
+            int temp5 = temp3.get(1);
+            int temp6 = temp3.get(2);
+            if(web2.isBuilt(temp4) || web2.isBuilt(temp5) || web2.isBuilt(temp6)) {
+                web2.makeBuildable(i);
+            }
+        }
+        else {
+            int temp4 = temp3.get(0);
+            int temp5 = temp3.get(1);
+            int temp6 = temp3.get(2);
+            int temp7 = temp3.get(3);
+            if(web2.isBuilt(temp4) || web2.isBuilt(temp5) || web2.isBuilt(temp6) || web2.isBuilt(temp7)) {
+                web2.makeBuildable(i);
+            }
+        }
     }
 
     public ArrayList<Integer> getOriginatingVertices(int i) {
         return web2.getOriginatingVertices(i);
+    }
+
+    public ArrayList<Integer> getConnections(int i) {
+        return web2.getConnections(i);
     }
 
     public boolean isRoadBuildable(int i) {

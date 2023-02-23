@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class EdgeWeb implements Serializable {
-    private ArrayList<Edge> edges = new ArrayList<>();
+    private final ArrayList<Edge> edges = new ArrayList<>();
 
     public EdgeWeb() {
         for(int i = 0; i < 72; i++) {
@@ -219,6 +219,11 @@ public class EdgeWeb implements Serializable {
         edges.get(45).addConnection(46);
         edges.get(45).addConnection(52);
 
+        edges.get(46).addConnection(37);
+        edges.get(46).addConnection(45);
+        edges.get(46).addConnection(47);
+        edges.get(46).addConnection(52);
+
         edges.get(47).addConnection(37);
         edges.get(47).addConnection(46);
         edges.get(47).addConnection(48);
@@ -348,14 +353,17 @@ public class EdgeWeb implements Serializable {
         edges.get(5).addOrigin(2);
         edges.get(5).addOrigin(6);
 
-        int temp1 = 3;
-        int temp2 = 7;
-        for(int i = 6; i < 9; i++) {
-            edges.get(i).addOrigin(temp1);
-            edges.get(i).addOrigin(temp2);
-            temp1++;
-            temp2++;
-        }
+        edges.get(6).addOrigin(3);
+        edges.get(6).addOrigin(7);
+
+        edges.get(7).addOrigin(4);
+        edges.get(7).addOrigin(8);
+
+        edges.get(8).addOrigin(5);
+        edges.get(8).addOrigin(9);
+
+        edges.get(9).addOrigin(6);
+        edges.get(9).addOrigin(10);
 
         edges.get(10).addOrigin(7);
         edges.get(10).addOrigin(11);
@@ -381,14 +389,20 @@ public class EdgeWeb implements Serializable {
         edges.get(17).addOrigin(10);
         edges.get(17).addOrigin(15);
 
-        temp1 = 11;
-        temp2 = 16;
-        for(int i = 18; i < 22; i++) {
-            edges.get(i).addOrigin(temp1);
-            edges.get(i).addOrigin(temp2);
-            temp1++;
-            temp2++;
-        }
+        edges.get(18).addOrigin(11);
+        edges.get(18).addOrigin(16);
+
+        edges.get(19).addOrigin(12);
+        edges.get(19).addOrigin(17);
+
+        edges.get(20).addOrigin(13);
+        edges.get(20).addOrigin(18);
+
+        edges.get(21).addOrigin(14);
+        edges.get(21).addOrigin(19);
+
+        edges.get(22).addOrigin(15);
+        edges.get(22).addOrigin(20);
 
         edges.get(23).addOrigin(16);
         edges.get(23).addOrigin(21);
@@ -420,14 +434,23 @@ public class EdgeWeb implements Serializable {
         edges.get(32).addOrigin(20);
         edges.get(32).addOrigin(26);
 
-        temp1 = 21;
-        temp2 = 27;
-        for(int i = 33; i < 38; i++) {
-            edges.get(i).addOrigin(temp1);
-            edges.get(i).addOrigin(temp2);
-            temp1++;
-            temp2++;
-        }
+        edges.get(33).addOrigin(21);
+        edges.get(33).addOrigin(27);
+
+        edges.get(34).addOrigin(22);
+        edges.get(34).addOrigin(28);
+
+        edges.get(35).addOrigin(23);
+        edges.get(35).addOrigin(29);
+
+        edges.get(36).addOrigin(24);
+        edges.get(36).addOrigin(30);
+
+        edges.get(37).addOrigin(25);
+        edges.get(37).addOrigin(31);
+
+        edges.get(38).addOrigin(26);
+        edges.get(38).addOrigin(32);
 
         edges.get(39).addOrigin(27);
         edges.get(39).addOrigin(33);
@@ -459,14 +482,20 @@ public class EdgeWeb implements Serializable {
         edges.get(48).addOrigin(32);
         edges.get(48).addOrigin(37);
 
-        temp1 = 33;
-        temp2 = 38;
-        for(int i = 49; i < 53; i++) {
-            edges.get(i).addOrigin(temp1);
-            edges.get(i).addOrigin(temp2);
-            temp1++;
-            temp2++;
-        }
+        edges.get(49).addOrigin(33);
+        edges.get(49).addOrigin(38);
+
+        edges.get(50).addOrigin(34);
+        edges.get(50).addOrigin(39);
+
+        edges.get(51).addOrigin(35);
+        edges.get(51).addOrigin(40);
+
+        edges.get(52).addOrigin(36);
+        edges.get(52).addOrigin(41);
+
+        edges.get(53).addOrigin(37);
+        edges.get(53).addOrigin(42);
 
         edges.get(54).addOrigin(38);
         edges.get(54).addOrigin(43);
@@ -478,7 +507,7 @@ public class EdgeWeb implements Serializable {
         edges.get(56).addOrigin(44);
 
         edges.get(57).addOrigin(40);
-        edges.get(47).addOrigin(44);
+        edges.get(57).addOrigin(44);
 
         edges.get(58).addOrigin(40);
         edges.get(58).addOrigin(45);
@@ -492,14 +521,17 @@ public class EdgeWeb implements Serializable {
         edges.get(61).addOrigin(42);
         edges.get(61).addOrigin(46);
 
-        temp1 = 43;
-        temp2 = 47;
-        for(int i = 62; i < 65; i++) {
-            edges.get(i).addOrigin(temp1);
-            edges.get(i).addOrigin(temp2);
-            temp1++;
-            temp2++;
-        }
+        edges.get(62).addOrigin(43);
+        edges.get(62).addOrigin(47);
+
+        edges.get(63).addOrigin(44);
+        edges.get(63).addOrigin(48);
+
+        edges.get(64).addOrigin(45);
+        edges.get(64).addOrigin(49);
+
+        edges.get(65).addOrigin(46);
+        edges.get(65).addOrigin(50);
 
         edges.get(66).addOrigin(47);
         edges.get(66).addOrigin(51);
@@ -544,6 +576,10 @@ public class EdgeWeb implements Serializable {
 
     public ArrayList<Integer> getOriginatingVertices(int i) {
         return edges.get(i).getOriginatingVertices();
+    }
+
+    public ArrayList<Integer> getConnections(int i) {
+        return edges.get(i).getConnections();
     }
 
 }
