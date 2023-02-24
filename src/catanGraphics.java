@@ -566,6 +566,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         x = 476;
         y = 133;
         for(int i = 0; i < 4; i++) {
+            if(i > 2) {
+                x+=3;
+            }
             if(state.bard.isRoadBuilt(edgeNumber)) {
                 if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
                     g.drawImage(blueRoad3.getImage(), x, y, 7, 72, null);
@@ -579,7 +582,257 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             }
             x+=123;
             edgeNumber++;
-        }
+        }//First straight row
+
+        x = 415;
+        y = 199;
+        for(int i = 0; i < 8; i++) {
+            if (i % 2 == 0) {
+                if (state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad2.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x += 61;
+            } else {
+                if (state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad1.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x += 65;
+            }
+            edgeNumber++;
+        }//Second edge row
+
+        x = 415;
+        y = 235;
+        for(int i = 0; i < 5; i++) {
+            if(i > 2) {
+                x+=3;
+            }
+            if(state.bard.isRoadBuilt(edgeNumber)) {
+                if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                    g.drawImage(blueRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                    g.drawImage(orangeRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                    g.drawImage(redRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                    g.drawImage(whiteRoad3.getImage(), x, y, 7, 72, null);
+                }
+            }
+            x+=123;
+            edgeNumber++;
+        }//second straight row
+
+        x = 355;
+        y = 303;
+        for(int i = 0; i < 10; i++) {
+            if (i % 2 == 0) {
+                if (state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad2.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x += 61;
+            } else {
+                if (state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad1.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x += 65;
+            }
+            edgeNumber++;
+        }//third edge row
+
+        x = 354;
+        y = 340;
+        for(int i = 0; i < 6; i++) {
+            if(i > 2) {
+                x+=3;
+            }
+            if(state.bard.isRoadBuilt(edgeNumber)) {
+                if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                    g.drawImage(blueRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                    g.drawImage(orangeRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                    g.drawImage(redRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                    g.drawImage(whiteRoad3.getImage(), x, y, 7, 72, null);
+                }
+            }
+            x+=123;
+            edgeNumber++;
+        }//third straight row
+
+        x = 354;
+        y = 405;
+        for(int i = 0; i < 10; i++) {
+            if (i % 2 != 0) {
+                if (state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad2.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x += 62;
+            } else {
+                if (state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad1.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x += 62;
+            }
+            edgeNumber++;
+        }//fourth edge row
+
+        x = 414;
+        y = 443;
+        for(int i = 0; i < 5; i++) {
+            if(i > 2) {
+                x+=3;
+            }
+            if(state.bard.isRoadBuilt(edgeNumber)) {
+                if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                    g.drawImage(blueRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                    g.drawImage(orangeRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                    g.drawImage(redRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                    g.drawImage(whiteRoad3.getImage(), x, y, 7, 72, null);
+                }
+            }
+            x+=123;
+            edgeNumber++;
+        }//fourth straight row
+
+        x = 415;
+        y = 509;
+        for(int i = 0; i < 8; i++) {
+            if (i % 2 != 0) {
+                if (state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad2.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x += 62;
+            } else {
+                if (state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad1.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x += 62;
+            }
+            edgeNumber++;
+        }//fifth edge row
+
+        x = 475;
+        y = 546;
+        for(int i = 0; i < 4; i++) {
+            if(i > 2) {
+                x+=3;
+            }
+            if(state.bard.isRoadBuilt(edgeNumber)) {
+                if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                    g.drawImage(blueRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                    g.drawImage(orangeRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                    g.drawImage(redRoad3.getImage(), x, y, 7, 72, null);
+                } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                    g.drawImage(whiteRoad3.getImage(), x, y, 7, 72, null);
+                }
+            }
+            x+=123;
+            edgeNumber++;
+        }//fifth straight row
+
+        x = 476;
+        y = 611;
+        for(int i = 0; i < 6; i++) {
+            if (i % 2 != 0) {
+                if (state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad2.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad2.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x += 62;
+            } else {
+                if (state.bard.isRoadBuilt(edgeNumber)) {
+                    if (state.bard.getRoadOwner(edgeNumber).equals("BLUE")) {
+                        g.drawImage(blueRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("ORANGE")) {
+                        g.drawImage(orangeRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("RED")) {
+                        g.drawImage(redRoad1.getImage(), x, y, 66, 43, null);
+                    } else if (state.bard.getRoadOwner(edgeNumber).equals("WHITE")) {
+                        g.drawImage(whiteRoad1.getImage(), x, y, 66, 43, null);
+                    }
+                }
+                x += 62;
+            }
+            edgeNumber++;
+        }//sixth edge row
+
 
 
     }
