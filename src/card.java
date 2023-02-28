@@ -9,6 +9,11 @@ public class card {
     {
         return image;
     }
+    public void setImage(ImageIcon i)
+    {
+        image = i;
+    }
+
 
     public void draw(Graphics g, int x, int y)
     {

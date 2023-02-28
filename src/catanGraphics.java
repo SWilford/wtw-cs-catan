@@ -100,6 +100,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     public static boolean hasGiven;
     public static boolean trading, npcTrading, playerTrading;
     private boolean building, rolling, hasRolled;
+    private static developmentDeck devDeck;
 
     private rulebook book;
     private final catanButton[] buttons = new catanButton[15]; //array of all buttons, just add to the array length if needed
@@ -144,6 +145,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         hand1 = new playerHand();
         hand2 = new playerHand();
         book = new rulebook();
+        devDeck = new developmentDeck();
         time = 0;
         rollNum = 0;
         hasGiven = true;
@@ -182,7 +184,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect11 = new Rectangle(200, 50, 127, 47);
         Shape rect13 = new Rectangle(200, 97, 127, 47);
         Shape rect14 = new Rectangle(327, 97, 127, 47);
-        Shape rect15 = new Rectangle(200, 800, 127, 47);
+        Shape rect15 = new Rectangle(200, 500, 127, 47);
 
         buttons[14] = new catanButton(rect15, "devBut", devBut, devBut);
         buttons[11] = new catanButton(rect11, "trade", tradeBut, tradeBut);
@@ -444,6 +446,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                             die2.startRoll();
                             hasRolled = true;
                             hasGiven = false;
+                        }
+                        else if(b.getTitle().equals("devBut"))
+                        {
+                            hand1.addCard(devDeck.dealTop());
                         }
                         else if(b.getTitle().equals("trade"))
                         {
