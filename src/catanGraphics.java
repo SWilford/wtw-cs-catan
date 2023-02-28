@@ -85,6 +85,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private final ImageIcon whiteRoad1 = new ImageIcon("images/roads/whiteRoad1.png");
     private final ImageIcon whiteRoad2 = new ImageIcon("images/roads/whiteRoad2.png");
     private final ImageIcon whiteRoad3 = new ImageIcon("images/roads/whiteRoad3.png");
+    private final ImageIcon devBut = new ImageIcon("images/developmentBut.png");
 
 
     private static final int SIZE = 500;
@@ -101,7 +102,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private boolean building, rolling, hasRolled;
 
     private rulebook book;
-    private final catanButton[] buttons = new catanButton[14]; //array of all buttons, just add to the array length if needed
+    private final catanButton[] buttons = new catanButton[15]; //array of all buttons, just add to the array length if needed
     private final catanButton[] buttons1 = new catanButton[54];
 
     private final catanButton[] upgradeButtons = new catanButton[54];
@@ -181,7 +182,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         Shape rect11 = new Rectangle(200, 50, 127, 47);
         Shape rect13 = new Rectangle(200, 97, 127, 47);
         Shape rect14 = new Rectangle(327, 97, 127, 47);
+        Shape rect15 = new Rectangle(200, 800, 127, 47);
 
+        buttons[14] = new catanButton(rect15, "devBut", devBut, devBut);
         buttons[11] = new catanButton(rect11, "trade", tradeBut, tradeBut);
         buttons[9] = new catanButton(rect10, "back", Color.WHITE, Color.GRAY, Color.BLACK);
 
@@ -257,6 +260,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             if(state.currentPlayer == myID) {
                 buttons[6].drawButton(g);
                 buttons[7].drawButton(g);
+                buttons[14].drawButton(g);
                 if(!hasRolled) {
                     buttons[8].drawButton(g);
                 }
