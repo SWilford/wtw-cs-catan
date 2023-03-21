@@ -22,13 +22,18 @@ public class playerHand {
         hand.remove(c);
     }
 
-    public void showHand(Graphics g)
+    public void showHand(Graphics g, int x1, int y1)
     {
-        int x = 1000;
-        int y = 0;
+        int x = x1;
+        int y = y1;
         for (int i = 0; i<hand.size(); i++) {
             hand.get(i).draw(g, x, y);
             x += 20;
+            if(x>=1346)
+            {
+                x = 1000;
+                y+= 250;
+            }
         }
     }
 }

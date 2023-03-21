@@ -53,6 +53,10 @@ public class developmentDeck {
     //deals the top card (duh)
     public card dealTop()
     {
+        if(deck.length == 0)
+        {
+            shuffle();
+        }
         card top = deck[deck.length-1]; //top card
         card[] newDeck = new card[deck.length-2];
         for(int i = 0; i<newDeck.length; i++)

@@ -280,10 +280,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
                 //place(g);
             if(connection.getID()==1) {
-                hand1.showHand(g);
+                hand1.showHand(g, 1000, 0);
             }
             if(connection.getID()==2) {
-                hand2.showHand(g);
+                hand2.showHand(g, 1000, 0);
             }
             die1.drawDice(g);
             die2.drawDice(g);
@@ -298,29 +298,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 drawBuildButtons(g);
                 drawUpgradeButtons(g);
                 drawRoadButtons(g);
-            }
-            if(trading)
-            {
-                //draw buttons for npc trading and player trading
-                buttons[12].drawButton(g);
-                buttons[13].drawButton(g);
-                //if statement for npc or player
-
-                //if npc
-                if(npcTrading)
-                {
-                    //pick resource to give up (must have 4)
-                    //pick resource to get
-                }
-
-
-                //if player
-                if(playerTrading) {
-                    //view all player hands
-                    //pick player to propose trade to
-                    //other player gets trade offer
-                    //can accept or refuse
-                }
             }
             if(die1.isRolling())
             {
@@ -354,6 +331,23 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                     }
                         //give correct resource to players
                     }
+                }
+            }
+        }
+        else if(currentScreen == 5)
+        {
+            header = "Trading";
+            g.drawString(header, 600, 50);
+            buttons[9].drawButton(g);
+
+
+            if(state.noPlayers == 2)
+            {
+                hand1.showHand(g, 250, 0);
+                hand2.showHand(g, 250, 300);
+                if(connection.getID() == 1)
+                {
+                    g.drawString("You --->", 100, 125);
                 }
             }
         }
@@ -451,21 +445,16 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         {
                             hand1.addCard(devDeck.dealTop());
                         }
-                        else if(b.getTitle().equals("trade"))
-                        {
-                            trading = !trading;
+                        else if(b.getTitle().equals("trade")) {
+                            currentScreen = 5;
                             //click button again to end trade mode
                         }
-                        if(trading)
+                    }
+                    else if(currentScreen == 5)
+                    {
+                        if(b.getTitle().equals("back"))
                         {
-                            if(b.getTitle().equals("npcTrade"))
-                            {
-                                npcTrading = true;
-                            }
-                            else if(b.getTitle().equals("playerTrade"))
-                            {
-                                playerTrading = true;
-                            }
+                            currentScreen = 4;
                         }
                     }
                 }
