@@ -231,6 +231,122 @@ public class board implements Serializable {
         }
     }
 
+
+    public int longestRoad(String color) {
+        /*checkingTest = true;
+        int longestRoad = 0;
+        for(int i = 0; i < 71; i++) {
+            web2.setChecked(i, false);
+        }
+        for(int i = 0; i < 71; i++) {
+            int l = calculateLongestRoad(color, i);
+            if(l > longestRoad) {
+                longestRoad = l;
+            }
+        }
+        int l = calculateLongestRoad(color, 1);
+        if(l > longestRoad) {
+            longestRoad = l;
+        }*/
+        int longestRoad;
+        longestRoad = web2.cLR(web2.getEdges(), color);
+        return longestRoad;
+    }
+
+    int startingBranchNumber = -1;
+boolean checkingABranch = false;
+    public int calculateLongestRoad(String color, int i) {
+        int longestRoad = 0;
+            int j = 0;
+            int traversalNumber = 0;
+            if((isRoadEnd(i) && web2.getOwner(i).equals(color)) || (startingBranchNumber == i && !web2.isChecked(i))) {
+                web2.setChecked(i, true);
+                web2.setPreviousNumber(i);
+                j++;
+                //int traversalNumber;
+                if(startingBranchNumber != i) {
+                    traversalNumber = web2.traversalHelper();
+                }
+                else {
+                    traversalNumber = i;
+                }
+                //j+=longestHelper(color, traversalNumber);
+            }
+            j+=longestHelper(color, traversalNumber);
+            if(j > longestRoad) {
+                longestRoad = j;
+            }
+        return longestRoad;
+    }
+    private int longestHelper(String color, int i) {
+        int j = 0;
+        int traversalNumber = i;
+        while(traversalNumber >= 0 && isSingleConnection(traversalNumber) && !web2.isChecked(traversalNumber)) {
+            j++;
+            web2.setChecked(traversalNumber, true);
+            web2.setPreviousNumber(traversalNumber);
+            web2.setBranchedPreviousNumber(traversalNumber);
+            traversalNumber = web2.traversalHelper();
+        }
+        if((isRoadEnd(traversalNumber) && !web2.isChecked(traversalNumber)) || web2.isBranchEnd(traversalNumber)) {
+            web2.setChecked(traversalNumber, true);
+            j++;
+        }
+        else {
+            if(!checkingBranchHelper) {
+                web2.setCheckingABranch(false);
+            }
+            if(web2.isCheckingABranch()) {
+                traversalNumber = web2.traversalHelper();
+                checkingTest = false;
+            }
+            ArrayList<Integer> branches = web2.getBranches(traversalNumber);
+            int n = 0;
+            if(branches.size() > 0 && checkingTest) {
+                for (int b : branches) {
+                    if (!web2.isChecked(b)) {
+                        startingBranchNumber = b;
+                        checkingABranch = true;
+                        int o = calculateLongestRoad(color, b);
+                        if (o > n) {
+                            n = o;
+                        }
+                    }
+                }
+            }
+            else {
+                checkingBranchHelper = false;
+                int o = longestHelper(color, traversalNumber);
+                if(o > n) {
+                    n = o;
+                }
+            }
+            j += n;
+        }
+        return j;
+    }
+
+    boolean checkingBranchHelper = true;
+    boolean checkingTest = true;
+
+    //a test
+
+
+
+
+
+    //end of a test
+
+    public boolean isRoadEnd(int i) {
+        return web2.isRoadEnd(i);
+    }
+
+    public boolean isSingleConnection(int i) {
+        return web2.isSingleConnection(i);
+    }
+
+
+
     public ArrayList<Integer> getOriginatingVertices(int i) {
         return web2.getOriginatingVertices(i);
     }

@@ -1,8 +1,10 @@
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class EdgeWeb implements Serializable {
     private final ArrayList<Edge> edges = new ArrayList<>();
+    private int traversalNumber, previousNumber; //part of old longest road
 
     public EdgeWeb() {
         for(int i = 0; i < 72; i++) {
@@ -553,9 +555,354 @@ public class EdgeWeb implements Serializable {
 
     }
 
+    public boolean isRoadEnd(int i) {
+        ArrayList<Integer> temp = edges.get(i).getConnections();
+        if(temp.size() == 4) {
+            if(edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt() && !edges.get(temp.get(3)).isBuilt()) {
+                traversalNumber = edges.get(temp.get(0)).getNumber();
+                return true;
+            }
+            else if(!edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt() && !edges.get(temp.get(3)).isBuilt()) {
+                traversalNumber = edges.get(temp.get(1)).getNumber();
+                return true;
+            }
+            else if(!edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt() && edges.get(temp.get(2)).isBuilt() && !edges.get(temp.get(3)).isBuilt()) {
+                traversalNumber = edges.get(temp.get(2)).getNumber();
+                return true;
+            }
+            else if(!edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt() && edges.get(temp.get(3)).isBuilt()) {
+                traversalNumber = edges.get(temp.get(3)).getNumber();
+                return true;
+            }
+            else if(!edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt() && !edges.get(temp.get(3)).isBuilt()) {
+                return true;
+            }
+            else {
+                traversalNumber = -1;
+                return false;
+            }
+        }
+        else if(temp.size() == 3) {
+            if(edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt()) {
+                traversalNumber = edges.get(temp.get(0)).getNumber();
+                return true;
+            }
+            else if(!edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt()) {
+                traversalNumber = edges.get(temp.get(1)).getNumber();
+                return true;
+            }
+            else if(!edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt() && edges.get(temp.get(2)).isBuilt()) {
+                traversalNumber = edges.get(temp.get(2)).getNumber();
+                return true;
+            }
+            else if(!edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt()) {
+                return true;
+            }
+            else {
+                traversalNumber = -1;
+                return false;
+            }
+        }
+        else {
+            if(edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt()) {
+                traversalNumber = edges.get(temp.get(0)).getNumber();
+                return true;
+            }
+            else if(!edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt()) {
+                traversalNumber = edges.get(temp.get(1)).getNumber();
+                return true;
+            }
+            else if(!edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt()) {
+                return true;
+            }
+            else {
+                traversalNumber = -1;
+                return false;
+            }
+        }
+    }
+
+    private int branchedPreviousNumber = 0;
+    public void setBranchedPreviousNumber(int i) {
+        branchedPreviousNumber = i;
+    }
+    public int getBranchedPreviousNumber() {
+        return branchedPreviousNumber;
+    }
+
+    public boolean isBranchEnd(int i) {
+        if(i!=branchedPreviousNumber) {
+            ArrayList<Integer> branchEndConnections = edges.get(i).getConnections();
+            ArrayList<Integer> previousBranchConnections = edges.get(branchedPreviousNumber).getConnections();
+            ArrayList<Integer> possibleDirections = new ArrayList<>();
+            for (int c : branchEndConnections) {
+                if (!previousBranchConnections.contains(c) && c != branchedPreviousNumber) {
+                    possibleDirections.add(c);
+                }
+            }
+            for (int pc : possibleDirections) {
+                if (edges.get(pc).isBuilt()) {
+                    previousNumber = i;
+                    traversalNumber = pc;
+                    checkingABranch = true;
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkingABranch = false;
+    public boolean isCheckingABranch() {
+        return checkingABranch;
+    }
+    public void setCheckingABranch(Boolean b) {
+        checkingABranch = b;
+    }
+
+    public boolean isSingleConnection(int i) {
+        ArrayList<Integer> temp = edges.get(i).getConnections();
+        if(temp.size() == 4) {
+            if(edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt() && !edges.get(temp.get(3)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(0)).getNumber()) {
+                    traversalNumber = edges.get(temp.get(1)).getNumber();
+                }
+                else {
+                    traversalNumber = edges.get(temp.get(0)).getNumber();
+                }
+                return true;
+            }
+            else if(edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(2)).isBuilt() && !edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(3)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(0)).getNumber()) {
+                    traversalNumber = edges.get(temp.get(2)).getNumber();
+                }
+                else {
+                    traversalNumber = edges.get(temp.get(0)).getNumber();
+                }
+                return true;
+            }
+            else if(edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(3)).isBuilt() && !edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(0)).getNumber()) {
+                    traversalNumber = edges.get(temp.get(3)).getNumber();
+                }
+                else {
+                    traversalNumber = edges.get(temp.get(0)).getNumber();
+                }
+                return true;
+            }
+            else if(edges.get(temp.get(1)).isBuilt() && edges.get(temp.get(2)).isBuilt() && !edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(3)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(1)).getNumber()) {
+                    traversalNumber = edges.get(temp.get(2)).getNumber();
+                }
+                else {
+                    traversalNumber = edges.get(temp.get(1)).getNumber();
+                }
+                return true;
+            }
+            else if(edges.get(temp.get(1)).isBuilt() && edges.get(temp.get(3)).isBuilt() && !edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(2)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(1)).getNumber()) {
+                    traversalNumber = edges.get(temp.get(3)).getNumber();
+                }
+                else {
+                    traversalNumber = edges.get(temp.get(1)).getNumber();
+                }
+                return true;
+            }
+            else if(edges.get(temp.get(2)).isBuilt() && edges.get(temp.get(3)).isBuilt() && !edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(2)).getNumber()) {
+                    traversalNumber = edges.get(temp.get(3)).getNumber();
+                }
+                else {
+                    traversalNumber = edges.get(temp.get(2)).getNumber();
+                }
+                return true;
+            }
+            else {
+                traversalNumber = -1;
+                return false;
+            }
+        }
+        if(temp.size() == 3) {
+            if(edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(0)).getNumber()) {
+                    traversalNumber = edges.get(temp.get(1)).getNumber();
+                }
+                else {
+                    traversalNumber = edges.get(temp.get(0)).getNumber();
+                }
+                return true;
+            }
+            else if(edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(2)).isBuilt() && !edges.get(temp.get(1)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(0)).getNumber()) {
+                    traversalNumber = edges.get(temp.get(2)).getNumber();
+                }
+                else {
+                    traversalNumber = edges.get(temp.get(0)).getNumber();
+                }
+                return true;
+            }
+            else if(edges.get(temp.get(1)).isBuilt() && edges.get(temp.get(2)).isBuilt() && !edges.get(temp.get(0)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(1)).getNumber()) {
+                    traversalNumber = edges.get(temp.get(2)).getNumber();
+                }
+                else {
+                    traversalNumber = edges.get(temp.get(1)).getNumber();
+                }
+                return true;
+            }
+            else {
+                traversalNumber = -1;
+                return false;
+            }
+        }
+        else {
+            if(edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(0)).getNumber()) {
+                    traversalNumber = edges.get(temp.get(1)).getNumber();
+                }
+                else {
+                    traversalNumber = edges.get(temp.get(0)).getNumber();
+                }
+                return true;
+            }
+            else {
+                traversalNumber = -1;
+                return false;
+            }
+        }
+    }
+
+    public ArrayList<Integer> getBranches(int i) {
+        ArrayList<Integer> temp = edges.get(i).getConnections();
+        ArrayList<Integer> branches = new ArrayList<>();
+        if(temp.size() == 4) {
+            if(edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt() && edges.get(temp.get(2)).isBuilt() && edges.get(temp.get(3)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(0)).getNumber()) {
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                    branches.add(edges.get(temp.get(3)).getNumber());
+                }
+                else if(previousNumber == edges.get(temp.get(1)).getNumber()) {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                    branches.add(edges.get(temp.get(3)).getNumber());
+                }
+                else if(previousNumber == edges.get(temp.get(2)).getNumber()) {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                    branches.add(edges.get(temp.get(3)).getNumber());
+                }
+                else {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                }
+            }
+            if(edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt() && edges.get(temp.get(2)).isBuilt() && !edges.get(temp.get(3)).isBuilt()) {
+                if(previousNumber == edges.get(0).getNumber()) {
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                }
+                else if(previousNumber == edges.get(1).getNumber()) {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                }
+                else {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                }
+            }
+            if(edges.get(temp.get(0)).isBuilt() && !edges.get(temp.get(1)).isBuilt() && edges.get(temp.get(2)).isBuilt() && edges.get(temp.get(3)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(0)).getNumber()) {
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                    branches.add(edges.get(temp.get(3)).getNumber());
+                }
+                else if(previousNumber == edges.get(temp.get(2)).getNumber()) {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(3)).getNumber());
+                }
+                else {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                }
+            }
+            if(edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt() && !edges.get(temp.get(2)).isBuilt() && edges.get(temp.get(3)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(0)).getNumber()) {
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                    branches.add(edges.get(temp.get(3)).getNumber());
+                }
+                else if(previousNumber == edges.get(temp.get(1)).getNumber()) {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(3)).getNumber());
+                }
+                else {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                }
+            }
+            if(!edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt() && edges.get(temp.get(2)).isBuilt() && edges.get(temp.get(3)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(1)).getNumber()) {
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                    branches.add(edges.get(temp.get(3)).getNumber());
+                }
+                else if(previousNumber == edges.get(temp.get(2)).getNumber()) {
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                    branches.add(edges.get(temp.get(3)).getNumber());
+                }
+                else {
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                }
+            }
+        }
+        else if(temp.size() == 3) {
+            if(edges.get(temp.get(0)).isBuilt() && edges.get(temp.get(1)).isBuilt() && edges.get(temp.get(2)).isBuilt()) {
+                if(previousNumber == edges.get(temp.get(0)).getNumber()) {
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                }
+                else if(previousNumber == edges.get(temp.get(1)).getNumber()) {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(2)).getNumber());
+                }
+                else {
+                    branches.add(edges.get(temp.get(0)).getNumber());
+                    branches.add(edges.get(temp.get(1)).getNumber());
+                }
+            }
+        }
+        return branches;
+    }
+
+    public int traversalHelper() {
+        return traversalNumber;
+    }
+
+    public int getPreviousNumber() {
+        return previousNumber;
+    }
+
+    public void setTraversalNumber(int i) {
+        traversalNumber = i;
+    }
+
+    public void setPreviousNumber(int i) {
+        previousNumber = i;
+    }
+
+
     public void buildRoad(int i, String color) {
         edges.get(i).build(color);
         edges.get(i).setBuildable(false);
+    }
+
+    public boolean isChecked(int i) {
+        return edges.get(i).isChecked();
+    }
+
+    public void setChecked(int i, boolean b) {
+        edges.get(i).setChecked(b);
     }
 
     public String getOwner(int i) {
@@ -580,6 +927,57 @@ public class EdgeWeb implements Serializable {
 
     public ArrayList<Integer> getConnections(int i) {
         return edges.get(i).getConnections();
+    }
+
+    public Edge getEdge(int i) {
+        return edges.get(i);
+    }
+
+    public ArrayList<Edge> getEdges() {
+        return edges;
+    }
+
+    public int cLR(ArrayList<Edge> edges, String playerColor) {
+        int longestRoad = 0;
+        Map<Integer, Boolean> visited = new HashMap<>();
+        Edge startEdge = null;
+        for(Edge edge : edges) {
+            if(edge.getOwner().equals(playerColor) && edge.isBuilt()) {
+                startEdge = edge;
+                break;
+            }
+        }
+        if(startEdge == null) {
+            return longestRoad;
+        }
+        for(Integer connectedEdgeIndex : startEdge.getConnections()) {
+            if(!visited.containsKey(connectedEdgeIndex)) {
+                visited.put(connectedEdgeIndex, true);
+                int length = dfs(edges, visited, connectedEdgeIndex, 1, playerColor);
+                if(length > longestRoad) {
+                    longestRoad = length;
+                }
+            }
+        }
+        return longestRoad - 1;
+    }
+
+    private static int dfs(ArrayList<Edge> edges, Map<Integer, Boolean> visited, int edgeIndex, int length, String playerColor) {
+        int maxPathLength = length;
+        for(Integer connectedEdgeIndex : edges.get(edgeIndex).getConnections()) {
+            Edge connectedEdge = edges.get(connectedEdgeIndex);
+            if(connectedEdge.getOwner().equals(playerColor) && connectedEdge.isBuilt()) {
+                if(!visited.containsKey(connectedEdgeIndex)) {
+                    visited.put(connectedEdgeIndex, true);
+                    int pathLength = dfs(edges, visited, connectedEdgeIndex, length + 1, playerColor);
+                    if(pathLength > maxPathLength) {
+                        maxPathLength = pathLength;
+                    }
+                    visited.remove(connectedEdgeIndex);
+                }
+            }
+        }
+        return maxPathLength;
     }
 
 }
