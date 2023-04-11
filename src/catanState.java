@@ -15,6 +15,11 @@ public class catanState implements Serializable {
     public int playerPlayingWhite; //The id of the player who is playing white
     public int longestRoad;
     public int longestRoadOwner;
+    private int turn;
+
+    public int getTurn() {
+        return turn;
+    }
 
     public void applyMessage(int sender, Object message) {
         if(gameInProgress && message instanceof Tile[][] && sender == currentPlayer) { //Updates for changes to buildings and roads
@@ -49,6 +54,7 @@ public class catanState implements Serializable {
             }
         }
         else if(gameInProgress && message.equals("nextplayer") && sender == currentPlayer) {//ends turn and makes turn go to next player
+            turn++;
             if(noPlayers == 4) {
                 if(currentPlayer <= 3) {
                     currentPlayer++;
@@ -103,6 +109,9 @@ public class catanState implements Serializable {
 
 
     private void startGame() {//Work on assigning player colors and move turn per id
+        turn = 0;
+        longestRoadOwner = 0;
+        longestRoad = 0;
         if(this.getNoPlayers()==4) {
             playerPlayingBlue = 1;
             Player bPlayer = new Player("Player 1", "Blue");

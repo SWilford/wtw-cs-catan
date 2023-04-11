@@ -285,7 +285,13 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             else {
                 longestOwner = "WHITE";
             }
-            String longest = "Longest Road Owner: "+longestOwner+"\n Road Length: "+state.longestRoad;
+            String longest;
+            if(state.longestRoad > 5) {
+                longest = "Longest Road Owner: " + longestOwner + "\n Road Length: " + state.longestRoad;
+            }
+            else {
+                longest = "Longest Road Owner: Road Length: ";
+            }
             g.drawString(longest, 1066, 562);
 
                 drawBoard(g); //draws board
@@ -484,26 +490,152 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             if(currentScreen == 4 && building) {
+                int currentNumber = state.currentPlayer;
                 for(catanButton c: buttons1) {
                     if(c.getShape().contains(mouseX, mouseY)) {
                         //needs code to make sure the player has the correct amount of resources
-                        catanMessage m = new catanMessage("settlement", c.getTitle());
-                        connection.send(m);
+                        if(state.noPlayers > 3) {
+                            if(state.getTurn() > 3) {
+                                if(players[currentNumber].getLumber() >= 1 && players[currentNumber].getSheep() >= 1 && players[currentNumber].getWheat() >= 1 && players[currentNumber].getBrick() >= 1) {
+                                    players[currentNumber].placeBuilding(0);
+                                    catanMessage m = new catanMessage("settlement", c.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                            else {
+                                if(players[currentNumber].getNumSettlement() > 3) {
+                                    players[currentNumber].startSettlement();
+                                    catanMessage m = new catanMessage("settlement", c.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                        }
+                        if(state.noPlayers > 2) {
+                            if(state.getTurn() > 2) {
+                                if(players[currentNumber].getLumber() > 1 && players[currentNumber].getSheep() < 1 && players[currentNumber].getWheat() > 1 && players[currentNumber].getBrick() > 1) {
+                                    players[currentNumber].placeBuilding(0);
+                                    catanMessage m = new catanMessage("settlement", c.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                            else {
+                                if(players[currentNumber].getNumSettlement() > 3) {
+                                    players[currentNumber].startSettlement();
+                                    catanMessage m = new catanMessage("settlement", c.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                        }
+                        if(state.noPlayers > 1) {
+                            if(state.getTurn() > 1) {
+                                if(players[currentNumber].getLumber() > 1 && players[currentNumber].getSheep() < 1 && players[currentNumber].getWheat() > 1 && players[currentNumber].getBrick() > 1) {
+                                    players[currentNumber].placeBuilding(0);
+                                    catanMessage m = new catanMessage("settlement", c.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                            else {
+                                if(players[currentNumber].getNumSettlement() > 3) {
+                                    players[currentNumber].startSettlement();
+                                    catanMessage m = new catanMessage("settlement", c.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                        }
+                        else {
+                            if(state.getTurn() > 0) {
+                                if(players[currentNumber].getLumber() > 1 && players[currentNumber].getSheep() < 1 && players[currentNumber].getWheat() > 1 && players[currentNumber].getBrick() > 1) {
+                                    players[currentNumber].placeBuilding(0);
+                                    catanMessage m = new catanMessage("settlement", c.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                            else {
+                                if(players[currentNumber].getNumSettlement() > 3) {
+                                    players[currentNumber].startSettlement();
+                                    catanMessage m = new catanMessage("settlement", c.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                        }
                     }
                 }
                 for(catanButton b: upgradeButtons) {
                     //needs code to make sure the player has the correct amount of resources
                     if(b.getShape().contains(mouseX, mouseY)) {
-                        catanMessage m = new catanMessage("city", b.getTitle());
-                        connection.send(m);
+                        if(players[currentNumber].getWheat() >= 2 && players[currentNumber].getOre() >= 3) {
+                            catanMessage m = new catanMessage("city", b.getTitle());
+                            connection.send(m);
+                        }
                     }
                 }
                 for(catanButton r: roadButtons) {
-                    //needs code to make sure the player has the correct amount of resources
-                            if (r.getShape().contains(mouseX, mouseY)) {
-                                catanMessage m = new catanMessage("road", r.getTitle());
-                                connection.send(m);
+                    if (r.getShape().contains(mouseX, mouseY)) {
+                        if(state.noPlayers > 3) {
+                            if(state.getTurn() > 3) {
+                                if(players[currentNumber].getLumber() >= 1 &&  players[currentNumber].getBrick() >= 1) {
+                                    players[currentNumber].placeBuilding(2);
+                                    catanMessage m = new catanMessage("road", r.getTitle());
+                                    connection.send(m);
+                                }
                             }
+                            else {
+                                if(players[currentNumber].getNumRoad() > 13) {
+                                    players[currentNumber].startRoad();
+                                    catanMessage m = new catanMessage("road", r.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                        }
+                        if(state.noPlayers > 2) {
+                            if(state.getTurn() > 2) {
+                                if(players[currentNumber].getLumber() >= 1 &&  players[currentNumber].getBrick() >= 1) {
+                                    players[currentNumber].placeBuilding(2);
+                                    catanMessage m = new catanMessage("road", r.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                            else {
+                                if(players[currentNumber].getNumRoad() > 13) {
+                                    players[currentNumber].startRoad();
+                                    catanMessage m = new catanMessage("road", r.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                        }
+                        if(state.noPlayers > 1) {
+                            if(state.getTurn() > 1) {
+                                if(players[currentNumber].getLumber() >= 1 &&  players[currentNumber].getBrick() >= 1) {
+                                    players[currentNumber].placeBuilding(2);
+                                    catanMessage m = new catanMessage("road", r.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                            else {
+                                if(players[currentNumber].getNumRoad() > 13) {
+                                    players[currentNumber].startRoad();
+                                    catanMessage m = new catanMessage("road", r.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                        }
+                        else {
+                            if(state.getTurn() > 0) {
+                                if(players[currentNumber].getLumber() >= 1 &&  players[currentNumber].getBrick() >= 1) {
+                                    players[currentNumber].placeBuilding(2);
+                                    catanMessage m = new catanMessage("road", r.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                            else {
+                                if(players[currentNumber].getNumRoad() > 13) {
+                                    players[currentNumber].startRoad();
+                                    catanMessage m = new catanMessage("road", r.getTitle());
+                                    connection.send(m);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

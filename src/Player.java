@@ -131,4 +131,11 @@ public class Player implements Serializable {
     {
         knights++;
     }
+
+    public void startSettlement() {
+        numSettlement--;
+    }
+    public void startRoad() {
+        numRoad--;
+    }
 }
