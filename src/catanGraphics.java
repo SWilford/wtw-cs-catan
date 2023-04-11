@@ -214,6 +214,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         mousePlaced = false;
         places = new catanButton[20];
         hand1.addCard(wood);
+        hand1.addCard(brick);
+        players[0].gainResource("lumber", 1);
+        players[0].gainResource("brick", 1);
         hand2.addCard(brick);
         die1 = new dice(dice1);
         die2 = new dice(dice2);
@@ -338,7 +341,13 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 if(state.bard.web.getOwner(i) != null) {
                                     if (state.bard.web.getOwner(i).equals("BLUE")) {
                                             hand1.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                            players[0].gainResource(state.bard.getTileType(r, c), 1);
                                             hasGiven = true;
+                                    }
+                                    if (state.bard.web.getOwner(i).equals("ORANGE")) {
+                                        hand2.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                        players[1].gainResource(state.bard.getTileType(r, c), 1);
+                                        hasGiven = true;
                                     }
                                 }
                             }
@@ -491,10 +500,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
                 for(catanButton r: roadButtons) {
                     //needs code to make sure the player has the correct amount of resources
-                    if(r.getShape().contains(mouseX, mouseY)) {
-                        catanMessage m = new catanMessage("road", r.getTitle());
-                        connection.send(m);
-                    }
+                            if (r.getShape().contains(mouseX, mouseY)) {
+                                catanMessage m = new catanMessage("road", r.getTitle());
+                                connection.send(m);
+                            }
                 }
             }
         }
