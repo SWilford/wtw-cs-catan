@@ -1,7 +1,8 @@
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class playerHand {
+public class playerHand implements Serializable {
     private ArrayList<card> hand;
     public playerHand()
     {
