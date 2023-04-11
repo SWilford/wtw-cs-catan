@@ -8,8 +8,11 @@ public class Edge implements Serializable {
     private boolean isBuilt;
     private boolean buildable;
 
-    private ArrayList<Integer> connections = new ArrayList<>();
-    private ArrayList<Integer> originatingVertexes = new ArrayList<>();
+    private boolean checked; //for checking the longest road
+
+    private final ArrayList<Integer> connections = new ArrayList<>();
+    private final ArrayList<Integer> originatingVertexes = new ArrayList<>();
+    private final ArrayList<Integer> connectedRoads = new ArrayList<>();
 
 
     public Edge(int number) {
@@ -17,6 +20,23 @@ public class Edge implements Serializable {
         isBuilt = false;
         buildable = false;
         this.number = number;
+        checked = false;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean b) {
+        checked = b;
+    }
+
+    public void addConnectedRoad(int n) {
+        connectedRoads.add(n);
+    }
+
+    public ArrayList<Integer> getConnectedRoads() {
+        return connectedRoads;
     }
 
     public void addConnection(int n) {
@@ -55,4 +75,9 @@ public class Edge implements Serializable {
     public ArrayList<Integer> getOriginatingVertices() {
         return originatingVertexes;
     }
+
+    public int getNumber() {
+        return number;
+    }
+
 }

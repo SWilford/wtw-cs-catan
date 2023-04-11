@@ -13,6 +13,8 @@ public class catanState implements Serializable {
     public int playerPlayingOrange; //The id of the player who is playing orange
     public int playerPlayingRed; //The id of the player who is playing red
     public int playerPlayingWhite; //The id of the player who is playing white
+    public int longestRoad;
+    public String longestRoadOwner;
 
     public void applyMessage(int sender, Object message) {
         if(gameInProgress && message instanceof Tile[][] && sender == currentPlayer) { //Updates for changes to buildings and roads
@@ -33,6 +35,10 @@ public class catanState implements Serializable {
             }
             else if(change.getType().equals("road")) {
                 bard.buildRoad(change.getNumber(), this.currentPlayerColor());
+                if(longestRoad < bard.longestRoad(this.currentPlayerColor())) {
+                    longestRoadOwner = this.currentPlayerColor();
+                    longestRoad = bard.longestRoad(this.currentPlayerColor());
+                }
             }
         }
         else if(gameInProgress && message.equals("nextplayer") && sender == currentPlayer) {//ends turn and makes turn go to next player
