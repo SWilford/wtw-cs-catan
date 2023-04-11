@@ -269,6 +269,21 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 buttons[11].drawButton(g);
 
             }
+            String longestOwner;
+            if(state.longestRoadOwner == 0) {
+                longestOwner = "BLUE";
+            }
+            else if(state.longestRoadOwner == 1) {
+                longestOwner = "ORANGE";
+            }
+            else if(state.longestRoadOwner == 2) {
+                longestOwner = "RED";
+            }
+            else {
+                longestOwner = "WHITE";
+            }
+            String longest = "Longest Road Owner: "+longestOwner+"\n Road Length: "+state.longestRoad;
+            g.drawString(longest, 1066, 562);
 
                 drawBoard(g); //draws board
                 drawTokens(g);
