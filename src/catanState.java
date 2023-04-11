@@ -14,7 +14,7 @@ public class catanState implements Serializable {
     public int playerPlayingRed; //The id of the player who is playing red
     public int playerPlayingWhite; //The id of the player who is playing white
     public int longestRoad;
-    public String longestRoadOwner;
+    public int longestRoadOwner;
 
     public void applyMessage(int sender, Object message) {
         if(gameInProgress && message instanceof Tile[][] && sender == currentPlayer) { //Updates for changes to buildings and roads
@@ -29,15 +29,22 @@ public class catanState implements Serializable {
             catanMessage change = (catanMessage)message;
             if(change.getType().equals("settlement")) {
                 bard.buildSettlement(change.getNumber(), this.currentPlayerColor());
+                players.get(currentPlayer-1).gainPoint(1);
             }
             else if(change.getType().equals("city")) {
                 bard.upgradeSettlement(change.getNumber(), this.currentPlayerColor());
+                players.get(currentPlayer-1).gainPoint(2);
             }
             else if(change.getType().equals("road")) {
                 bard.buildRoad(change.getNumber(), this.currentPlayerColor());
-                if(longestRoad < bard.longestRoad(this.currentPlayerColor())) {
-                    longestRoadOwner = this.currentPlayerColor();
-                    longestRoad = bard.longestRoad(this.currentPlayerColor());
+                if(players.size() > 1) {
+                    if (longestRoad < bard.longestRoad(this.currentPlayerColor())) {
+                        int previousLongestRoadOwner = longestRoadOwner;
+                        longestRoadOwner = currentPlayer-1;
+                        longestRoad = bard.longestRoad(this.currentPlayerColor());
+                        players.get(previousLongestRoadOwner).losePoint(1);
+                        players.get(longestRoadOwner - 1).gainPoint(1);
+                    }
                 }
             }
         }
