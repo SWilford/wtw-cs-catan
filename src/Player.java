@@ -3,8 +3,10 @@ import java.io.Serializable;
 public class Player implements Serializable {
     private int numSettlement, numCity, points, numOre, numBrick, numLumber, numWheat, numSheep, numRoad;
     private final String color, name;
-    private card[] hand;
+    private card[] hand1;
     private int knights;
+
+    private playerHand hand;
 
     public Player(String c, String n) {
         name = n;
@@ -12,6 +14,7 @@ public class Player implements Serializable {
         numSettlement = 5;
         numCity = 4;
         numRoad = 15;
+        hand = new playerHand();
     }
 
     public int getSheep() {
@@ -48,17 +51,31 @@ public class Player implements Serializable {
         if (i == 0) {
             numSettlement--;
             numLumber--;
+            hand.removeCard(new resourceCard(1));
             numBrick--;
+            hand.removeCard(new resourceCard(2));
             numWheat--;
+            hand.removeCard(new resourceCard(5));
             numSheep--;
+            hand.removeCard(new resourceCard(3));
+
+
         } else if (i == 1) {
             numCity--;
             numSettlement++;
             numOre -= 3;
+            hand.removeCard(new resourceCard(4));
+            hand.removeCard(new resourceCard(4));
+            hand.removeCard(new resourceCard(4));
+            hand.removeCard(new resourceCard(5));
+            hand.removeCard(new resourceCard(5));
             numWheat -= 2;
         } else {
             numRoad--;
             numBrick--;
+            hand.removeCard(new resourceCard(1));
+            hand.removeCard(new resourceCard(2));
+
             numLumber--;
         }
     }
@@ -82,13 +99,27 @@ public class Player implements Serializable {
 
 
     public void gainResource(String r, int num) {
-        switch (r) { //checks what the title is
-            case "lumber" -> //goes through all the cases until it finds the right one
-                    numLumber += num;
-            case "wheat" -> numWheat += num;
-            case "sheep" -> numSheep += num;
-            case "brick" -> numBrick += num;
-            case "ore" -> numOre += num;
+        if(r.equals("lumber")) { //checks what the title is
+            numLumber += num;
+            hand.addCard(new resourceCard(1));
+        }
+    else if(r.equals("wheat")) {
+            numWheat += num;
+            hand.addCard(new resourceCard(5));
+        }
+    else if(r.equals("sheep")) {
+            numSheep += num;
+            hand.addCard(new resourceCard(3));
+        }
+    else if(r.equals("brick")) {
+            numBrick += num;
+            hand.addCard(new resourceCard(2));
+        }
+    else if(r.equals("ore"))
+        {
+
+            numOre += num;
+            hand.addCard(new resourceCard(4));
         }
     }
 
@@ -116,11 +147,11 @@ public class Player implements Serializable {
     }
 
     public card[] getHand() {
-        return hand;
+        return hand1;
     }
 
     public void setHand(card[] hand) {
-        this.hand = hand;
+        this.hand1 = hand;
     }
 
     public boolean checkWin() {

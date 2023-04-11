@@ -213,11 +213,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         placing = false;
         mousePlaced = false;
         places = new catanButton[20];
-        hand1.addCard(wood);
-        hand1.addCard(brick);
-        players[0].gainResource("lumber", 1);
-        players[0].gainResource("brick", 1);
-        hand2.addCard(brick);
         die1 = new dice(dice1);
         die2 = new dice(dice2);
     }
