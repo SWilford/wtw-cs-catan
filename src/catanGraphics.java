@@ -328,6 +328,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             }
             if(!die1.isRolling() && !die2.isRolling()) {
                 rollNum = die1.getRollNum() + die2.getRollNum();
+                catanMessage roll = new catanMessage("roll", ""+rollNum);
+                connection.send(roll);
             }
             if(!hasGiven && !die1.isRolling())
             {
@@ -335,7 +337,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             {
                 for(int c = 0; c<7; c++)
                 {
-                    if(state.bard.getNumber(r, c) == (rollNum)) {
+                    if(state.bard.getNumber(r, c) == (state.bard.getRollNum())) {
                         //checks if vertices of tile are owned
                         for (int i = 0; i < 53; i++) {
                             if (state.bard.web.isNext(i, r, c)) {
@@ -348,6 +350,16 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                     if (state.bard.web.getOwner(i).equals("ORANGE")) {
                                         hand2.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
                                         players[1].gainResource(state.bard.getTileType(r, c), 1);
+                                        hasGiven = true;
+                                    }
+                                    if (state.bard.web.getOwner(i).equals("RED")) {
+                                        hand2.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                        players[2].gainResource(state.bard.getTileType(r, c), 1);
+                                        hasGiven = true;
+                                    }
+                                    if (state.bard.web.getOwner(i).equals("WHITE")) {
+                                        hand2.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
+                                        players[3].gainResource(state.bard.getTileType(r, c), 1);
                                         hasGiven = true;
                                     }
                                 }

@@ -52,6 +52,10 @@ public class catanState implements Serializable {
                     }
                 }
             }
+            else if(change.getType().equals("roll")) {
+                int r = change.getNumber();
+                bard.setRollNum(r);
+            }
         }
         else if(gameInProgress && message.equals("nextplayer") && sender == currentPlayer) {//ends turn and makes turn go to next player
             turn++;
