@@ -3,6 +3,7 @@ import java.io.*;
 
 public class catanState implements Serializable {
     public int noPlayers;
+    public boolean canStart;
     public board bard;
     public ArrayList<Player> players = new ArrayList<>();
     public boolean gameInProgress;
@@ -48,7 +49,7 @@ public class catanState implements Serializable {
                         longestRoadOwner = currentPlayer-1;
                         longestRoad = bard.longestRoad(this.currentPlayerColor());
                         players.get(previousLongestRoadOwner).losePoint(1);
-                        players.get(longestRoadOwner - 1).gainPoint(1);
+                        players.get(longestRoadOwner).gainPoint(1);
                     }
                 }
             }
@@ -233,6 +234,13 @@ public class catanState implements Serializable {
         else    return players.get(0).getPointsAsString() + "\n" + players.get(1).getPointsAsString() + "\n" + players.get(2).getPointsAsString() + "\n" + players.get(3).getPointsAsString();
 
 
+    }
+
+    public void setCanStart() {
+        canStart = true;
+    }
+    public boolean isCanStart() {
+        return canStart;
     }
     }
 

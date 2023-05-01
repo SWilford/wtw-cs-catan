@@ -16,6 +16,7 @@ public class catanSHub extends catanHub {
     protected void playerConnected(int playerID) {
         if(this.getNoPlayers() == 4) {
             if (getPlayerList().length == 4) {
+                state.setCanStart();
                 shutdownServerSocket();
                 state.setNoPlayers(4);
                 state.startFirstGame();
@@ -24,6 +25,7 @@ public class catanSHub extends catanHub {
         }
         else if(this.getNoPlayers() == 3) {
             if (getPlayerList().length == 3) {
+                state.setCanStart();
                 shutdownServerSocket();
                 state.setNoPlayers(3);
                 state.startFirstGame();
@@ -32,6 +34,7 @@ public class catanSHub extends catanHub {
         }
         else if(this.getNoPlayers() == 2) {
             if (getPlayerList().length == 2) {
+                state.setCanStart();
                 shutdownServerSocket();
                 state.setNoPlayers(2);
                 state.startFirstGame();
@@ -40,6 +43,7 @@ public class catanSHub extends catanHub {
         }
         else if(this.getNoPlayers() == 1) { //needs to be removed
             if(getPlayerList().length == 1) {
+                state.setCanStart();
                 shutdownServerSocket();
                 state.setNoPlayers(1);
                 state.startFirstGame();

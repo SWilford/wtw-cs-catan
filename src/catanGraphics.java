@@ -225,7 +225,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         if(currentScreen == 1) {
             g.drawImage(startBack.getImage(), 0,0, 1366, 768, null); //draws background
             buttons[0].drawButton(g); //rules
-            buttons[3].drawButton(g); //start
+            if(state!= null && state.isCanStart()) {
+                buttons[3].drawButton(g); //start
+            }
             buttons[2].drawButton(g); //settings
             buttons[4].drawButton(g); //quit
             g.drawImage(titlePic.getImage(), 450, 78, 466, 200, null); //draws title
@@ -499,7 +501,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 }
             }
             if(currentScreen == 4 && building) {
-                int currentNumber = state.currentPlayer;
+                int currentNumber = state.currentPlayer -1;
                 for(catanButton c: buttons1) {
                     if(c.getShape().contains(mouseX, mouseY)) {
                         //needs code to make sure the player has the correct amount of resources
