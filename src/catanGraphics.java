@@ -139,7 +139,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     //constructor
     public catanGraphics(String hostName, int serverPortNumber) throws IOException {
         building = false;
-        hasRolled = false;
+        hasRolled = true;
         wood = new resourceCard(1);
         brick = new resourceCard(2);
         hand1 = new playerHand();
@@ -466,13 +466,15 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         }
                         else if(b.getTitle().equals("end") && hasRolled) {
                             String nm = "nextplayer";
-                            hasRolled = false;
+                            if(state.getTurn() != 0) {
+                                hasRolled = false;
+                            }
                             connection.send(nm);
                             if(building) {
                                 building = false;
                             }
                         }
-                        else if(b.getTitle().equals("roll")) {
+                        else if(b.getTitle().equals("roll") && !hasRolled) {
                             die1.startRoll();
                             die2.startRoll();
                             hasRolled = true;
