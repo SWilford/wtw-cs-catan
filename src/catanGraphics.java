@@ -498,7 +498,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumSettlement() > 3) {
+                                if(players[currentNumber].getNumSettlement() > 4) {
                                     players[currentNumber].startSettlement();
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
@@ -514,7 +514,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumSettlement() > 3) {
+                                if(players[currentNumber].getNumSettlement() > 4) {
                                     players[currentNumber].startSettlement();
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
@@ -530,7 +530,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumSettlement() > 3) {
+                                if(players[currentNumber].getNumSettlement() > 4) {
                                     players[currentNumber].startSettlement();
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
@@ -546,7 +546,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumSettlement() > 3) {
+                                if(players[currentNumber].getNumSettlement() > 4) {
                                     players[currentNumber].startSettlement();
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
@@ -575,7 +575,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumRoad() > 13) {
+                                if(players[currentNumber].getNumRoad() > 14) {
                                     players[currentNumber].startRoad();
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
@@ -591,7 +591,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumRoad() > 13) {
+                                if(players[currentNumber].getNumRoad() > 14) {
                                     players[currentNumber].startRoad();
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
@@ -607,7 +607,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumRoad() > 13) {
+                                if(players[currentNumber].getNumRoad() > 14) {
                                     players[currentNumber].startRoad();
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
@@ -623,7 +623,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumRoad() > 13) {
+                                if(players[currentNumber].getNumRoad() > 14) {
                                     players[currentNumber].startRoad();
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
