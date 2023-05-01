@@ -5,6 +5,7 @@ public class board implements Serializable {
     Tile[][] tiles = new Tile[7][7];//initializing an array of tiles that represent the board
     VertexWeb web;
     EdgeWeb web2;
+    private int rollNum;
     public board() {
         web = new VertexWeb();
         web2 = new EdgeWeb();
@@ -399,6 +400,14 @@ boolean checkingABranch = false;
             return 3;
         }
         else return 2;
+    }
+
+    public int getRollNum() {
+        return rollNum;
+    }
+
+    public void setRollNum(int r) {
+        rollNum = r;
     }
 
 }
