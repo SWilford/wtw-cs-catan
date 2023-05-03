@@ -6,6 +6,7 @@ public class catanState implements Serializable {
     public boolean canStart;
     public board bard;
     public ArrayList<Player> players = new ArrayList<>();
+    public ArrayList<playerHand> hands = new ArrayList<>();
     public boolean gameInProgress;
     public boolean playerDisconnected; //True if player has disconnected
     public int currentPlayer; //Stores the id of the player whose turn it is
@@ -23,6 +24,111 @@ public class catanState implements Serializable {
     }
 
     public void applyMessage(int sender, Object message) {
+        if(gameInProgress && message instanceof buildMessage && sender == currentPlayer) {
+            int t = ((buildMessage)message).getType();
+            int p = ((buildMessage)message).getPlayer();
+            if(p == 0) {
+                if(t == 0) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 1) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 2) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 3) {
+                    players.get(p).startSettlement();
+                }
+                else if(t == 4) {
+                    players.get(p).startRoad();
+                }
+            }
+            else if(p == 1) {
+                if(t == 0) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 1) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 2) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 3) {
+                    players.get(p).startSettlement();
+                }
+                else if(t == 4) {
+                    players.get(p).startRoad();
+                }
+            }
+            else if(p == 2) {
+                if(t == 0) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 1) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 2) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 3) {
+                    players.get(p).startSettlement();
+                }
+                else if(t == 4) {
+                    players.get(p).startRoad();
+                }
+            }
+            else if(p == 3) {
+                if(t == 0) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 1) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 2) {
+                    players.get(p).placeBuilding(t);
+                }
+                else if(t == 3) {
+                    players.get(p).startSettlement();
+                }
+                else if(t == 4) {
+                    players.get(p).startRoad();
+                }
+            }
+        }
+        if(gameInProgress && message instanceof gainMessage && sender == currentPlayer) {
+            int p = ((gainMessage)message).getPlayer();
+            resourceCard c = ((gainMessage)message).getCard();
+            if(p == 0) {
+                hands.get(p).addCard(c);
+            }
+            else if(p == 1) {
+                hands.get(p).addCard(c);
+            }
+            else if(p == 2) {
+                hands.get(p).addCard(c);
+            }
+            else if(p == 3) {
+                hands.get(p).addCard(c);
+            }
+
+        }
+        if(gameInProgress && message instanceof resourceMessage && sender == currentPlayer) {
+            String r = ((resourceMessage)message).getResource();
+            int p = ((resourceMessage)message).getPlayer();
+            if(p == 0) {
+                players.get(0).gainResource(r, 1);
+            }
+            else if(p == 1) {
+                players.get(1).gainResource(r, 1);
+            }
+            else if(p == 2) {
+                players.get(2).gainResource(r, 1);
+            }
+            else if(p == 3) {
+                players.get(3).gainResource(r, 1);
+            }
+        }
         if(gameInProgress && message instanceof Tile[][] && sender == currentPlayer) { //Updates for changes to buildings and roads
             Tile[][] move = (Tile[][])message;
             bard.setTiles(move);
@@ -121,15 +227,19 @@ public class catanState implements Serializable {
             playerPlayingBlue = 1;
             Player bPlayer = new Player("Player 1", "Blue");
             players.add(bPlayer);
+            hands.add(new playerHand());
             playerPlayingOrange = 2;
             Player oPlayer = new Player("Player 2", "Orange");
             players.add(oPlayer);
+            hands.add(new playerHand());
             playerPlayingRed = 3;
             Player rPlayer = new Player("Player 3", "Red");
             players.add(rPlayer);
+            hands.add(new playerHand());
             playerPlayingWhite = 4;
             Player wPlayer = new Player("Player 4", "White");
             players.add(wPlayer);
+            hands.add(new playerHand());
             int random = (int)(Math.random()*3+1);
             if(random == 1) {
                 currentPlayer = playerPlayingBlue;
@@ -148,12 +258,15 @@ public class catanState implements Serializable {
             playerPlayingBlue = 1;
             Player bPlayer = new Player("Player 1", "Blue");
             players.add(bPlayer);
+            hands.add(new playerHand());
             playerPlayingOrange = 2;
             Player oPlayer = new Player("Player 2", "Orange");
             players.add(oPlayer);
+            hands.add(new playerHand());
             playerPlayingRed = 3;
             Player rPlayer = new Player("Player 3", "Red");
             players.add(rPlayer);
+            hands.add(new playerHand());
             int random = (int)(Math.random()*2+1);
             if(random == 1) {
                 currentPlayer = playerPlayingBlue;
@@ -169,9 +282,11 @@ public class catanState implements Serializable {
             playerPlayingBlue = 1;
             Player bPlayer = new Player("Player 1", "Blue");
             players.add(bPlayer);
+            hands.add(new playerHand());
             playerPlayingOrange = 2;
             Player oPlayer = new Player("Player 2", "Orange");
             players.add(oPlayer);
+            hands.add(new playerHand());
             int random = (int)(Math.random()+1);
             if(random == 1) {
                 currentPlayer = playerPlayingBlue;
@@ -184,6 +299,7 @@ public class catanState implements Serializable {
             playerPlayingBlue = 1;
             Player bPlayer = new Player("Player 1", "Blue");
             players.add(bPlayer);
+            hands.add(new playerHand());
             currentPlayer = playerPlayingBlue;
         }
         winner = -1;

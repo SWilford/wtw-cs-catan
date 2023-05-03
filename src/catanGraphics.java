@@ -94,7 +94,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private static Timer t;
     private static final int DELAY = 10;
     private static int numFrames;
-    private static Player[] players = new Player[4];
+    //blocked out private static Player[] players = new Player[4];
     private static int currentPlayer;
     private static boolean placing, mousePlaced;
     public static boolean hasGiven;
@@ -116,7 +116,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private int rollNum;
     private card wood, brick;
     private catanState state;
-    private playerHand hand1, hand2, hand3, hand4;
+    //blocked out private playerHand hand1, hand2, hand3, hand4;
     int time;
     ImageIcon rollFace1, rollFace2;
 
@@ -142,8 +142,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         hasRolled = true;
         wood = new resourceCard(1);
         brick = new resourceCard(2);
-        hand1 = new playerHand();
-        hand2 = new playerHand();
+        /*blocked outhand1 = new playerHand();
+        hand2 = new playerHand();*/
         book = new rulebook();
         devDeck = new developmentDeck();
         time = 0;
@@ -163,9 +163,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         rules = false;
         catanSound.initialize();
         for(int i = 0; i<4;i++)
-        {
+        /*blocked out{
             players[i] = new Player("red", "spencer");
-        }
+        }*/
         currentPlayer = 0;
         //shapes of the buttons
         Shape rect = new Rectangle(580, SIZE- 100, 150, 100);
@@ -301,10 +301,16 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
                 //place(g);
             if(connection.getID()==1) {
-                hand1.showHand(g, 1000, 0);
+                state.hands.get(0).showHand(g, 1000, 0);
             }
             if(connection.getID()==2) {
-                hand2.showHand(g, 1000, 0);
+                state.hands.get(1).showHand(g, 1000, 0);
+            }
+            if(connection.getID()==3) {
+                state.hands.get(2).showHand(g, 1000, 0);
+            }
+            if(connection.getID()==4) {
+                state.hands.get(3).showHand(g, 1000, 0);
             }
             die1.drawDice(g);
             die2.drawDice(g);
@@ -345,23 +351,31 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                             if (state.bard.web.isNext(i, r, c)) {
                                 if(state.bard.web.getOwner(i) != null) {
                                     if (state.bard.web.getOwner(i).equals("BLUE")) {
-                                            hand1.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
-                                            players[0].gainResource(state.bard.getTileType(r, c), 1);
+                                            gainMessage gain = new gainMessage(new resourceCard(state.bard.getTypeInt(r, c)), 0);
+                                            connection.send(gain);
+                                            resourceMessage collect = new resourceMessage(state.bard.getTileType(r,c), 0);
+                                            connection.send(collect);
                                             hasGiven = true;
                                     }
                                     if (state.bard.web.getOwner(i).equals("ORANGE")) {
-                                        hand2.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
-                                        players[1].gainResource(state.bard.getTileType(r, c), 1);
+                                        gainMessage gain = new gainMessage(new resourceCard(state.bard.getTypeInt(r, c)), 1);
+                                        connection.send(gain);
+                                        resourceMessage collect = new resourceMessage(state.bard.getTileType(r,c), 1);
+                                        connection.send(collect);
                                         hasGiven = true;
                                     }
                                     if (state.bard.web.getOwner(i).equals("RED")) {
-                                        hand2.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
-                                        players[2].gainResource(state.bard.getTileType(r, c), 1);
+                                        gainMessage gain = new gainMessage(new resourceCard(state.bard.getTypeInt(r, c)), 2);
+                                        connection.send(gain);
+                                        resourceMessage collect = new resourceMessage(state.bard.getTileType(r,c), 2);
+                                        connection.send(collect);
                                         hasGiven = true;
                                     }
                                     if (state.bard.web.getOwner(i).equals("WHITE")) {
-                                        hand2.addCard(new resourceCard(state.bard.getTypeInt(r, c)));
-                                        players[3].gainResource(state.bard.getTileType(r, c), 1);
+                                        gainMessage gain = new gainMessage(new resourceCard(state.bard.getTypeInt(r, c)), 3);
+                                        connection.send(gain);
+                                        resourceMessage collect = new resourceMessage(state.bard.getTileType(r,c), 3);
+                                        connection.send(collect);
                                         hasGiven = true;
                                     }
                                 }
@@ -382,8 +396,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
             if(state.noPlayers == 2)
             {
-                hand1.showHand(g, 250, 0);
-                hand2.showHand(g, 250, 300);
+                state.hands.get(0).showHand(g, 250, 0);
+                state.hands.get(1).showHand(g, 250, 300);
                 if(connection.getID() == 1)
                 {
                     g.drawString("You --->", 100, 125);
@@ -482,10 +496,10 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                             hasRolled = true;
                             hasGiven = false;
                         }
-                        else if(b.getTitle().equals("devBut"))
+                        /*blocked outelse if(b.getTitle().equals("devBut"))
                         {
                             hand1.addCard(devDeck.dealTop());
-                        }
+                        }*/
                         else if(b.getTitle().equals("trade")) {
                             currentScreen = 5;
                             //click button again to end trade mode
@@ -507,15 +521,17 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         //needs code to make sure the player has the correct amount of resources
                         if(state.noPlayers > 3) {
                             if(state.getTurn() > 3) {
-                                if(players[currentNumber].getLumber() >= 1 && players[currentNumber].getSheep() >= 1 && players[currentNumber].getWheat() >= 1 && players[currentNumber].getBrick() >= 1) {
-                                    players[currentNumber].placeBuilding(0);
+                                if(state.players.get(currentNumber).getLumber() >= 1 && state.players.get(currentNumber).getSheep() >= 1 && state.players.get(currentNumber).getWheat() >= 1 && state.players.get(currentNumber).getBrick() >= 1) {
+                                    buildMessage build = new buildMessage(0, currentNumber);
+                                    connection.send(build);
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumSettlement() > 4) {
-                                    players[currentNumber].startSettlement();
+                                if(state.players.get(currentNumber).getNumSettlement() > 4) {
+                                    buildMessage b = new buildMessage(3, currentNumber);
+                                    connection.send(b);
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
                                 }
@@ -523,15 +539,17 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         }
                         if(state.noPlayers > 2) {
                             if(state.getTurn() > 2) {
-                                if(players[currentNumber].getLumber() > 1 && players[currentNumber].getSheep() < 1 && players[currentNumber].getWheat() > 1 && players[currentNumber].getBrick() > 1) {
-                                    players[currentNumber].placeBuilding(0);
+                                if(state.players.get(currentNumber).getLumber() >= 1 && state.players.get(currentNumber).getSheep() >= 1 && state.players.get(currentNumber).getWheat() >= 1 && state.players.get(currentNumber).getBrick() >= 1) {
+                                    buildMessage build = new buildMessage(0, currentNumber);
+                                    connection.send(build);
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumSettlement() > 4) {
-                                    players[currentNumber].startSettlement();
+                                if(state.players.get(currentNumber).getNumSettlement() > 4) {
+                                    buildMessage b = new buildMessage(3, currentNumber);
+                                    connection.send(b);
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
                                 }
@@ -539,15 +557,17 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         }
                         if(state.noPlayers > 1) {
                             if(state.getTurn() > 1) {
-                                if(players[currentNumber].getLumber() > 1 && players[currentNumber].getSheep() < 1 && players[currentNumber].getWheat() > 1 && players[currentNumber].getBrick() > 1) {
-                                    players[currentNumber].placeBuilding(0);
+                                if(state.players.get(currentNumber).getLumber() >= 1 && state.players.get(currentNumber).getSheep() >= 1 && state.players.get(currentNumber).getWheat() >= 1 && state.players.get(currentNumber).getBrick() >= 1) {
+                                    buildMessage build = new buildMessage(0, currentNumber);
+                                    connection.send(build);
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumSettlement() > 4) {
-                                    players[currentNumber].startSettlement();
+                                if(state.players.get(currentNumber).getNumSettlement() > 4) {
+                                    buildMessage b = new buildMessage(3, currentNumber);
+                                    connection.send(b);
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
                                 }
@@ -555,15 +575,17 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         }
                         else {
                             if(state.getTurn() > 0) {
-                                if(players[currentNumber].getLumber() > 1 && players[currentNumber].getSheep() < 1 && players[currentNumber].getWheat() > 1 && players[currentNumber].getBrick() > 1) {
-                                    players[currentNumber].placeBuilding(0);
+                                if(state.players.get(currentNumber).getLumber() >= 1 && state.players.get(currentNumber).getSheep() >= 1 && state.players.get(currentNumber).getWheat() >= 1 && state.players.get(currentNumber).getBrick() >= 1) {
+                                    buildMessage build = new buildMessage(0, currentNumber);
+                                    connection.send(build);
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumSettlement() > 4) {
-                                    players[currentNumber].startSettlement();
+                                if(state.players.get(currentNumber).getNumSettlement() > 4) {
+                                    buildMessage b = new buildMessage(3, currentNumber);
+                                    connection.send(b);
                                     catanMessage m = new catanMessage("settlement", c.getTitle());
                                     connection.send(m);
                                 }
@@ -574,7 +596,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 for(catanButton b: upgradeButtons) {
                     //needs code to make sure the player has the correct amount of resources
                     if(b.getShape().contains(mouseX, mouseY)) {
-                        if(players[currentNumber].getWheat() >= 2 && players[currentNumber].getOre() >= 3) {
+                        if(state.players.get(currentNumber).getWheat() >= 2 && state.players.get(currentNumber).getOre() >= 3) {
+                            buildMessage build = new buildMessage(1, currentNumber);
+                            connection.send(build);
                             catanMessage m = new catanMessage("city", b.getTitle());
                             connection.send(m);
                         }
@@ -584,15 +608,17 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                     if (r.getShape().contains(mouseX, mouseY)) {
                         if(state.noPlayers > 3) {
                             if(state.getTurn() > 3) {
-                                if(players[currentNumber].getLumber() >= 1 &&  players[currentNumber].getBrick() >= 1) {
-                                    players[currentNumber].placeBuilding(2);
+                                if(state.players.get(currentNumber).getLumber() >= 1 &&  state.players.get(currentNumber).getBrick() >= 1) {
+                                    buildMessage build = new buildMessage(2, currentNumber);
+                                    connection.send(build);
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumRoad() > 14) {
-                                    players[currentNumber].startRoad();
+                                if(state.players.get(currentNumber).getNumRoad() > 14) {
+                                    buildMessage b = new buildMessage(4, currentNumber);
+                                    connection.send(b);
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
                                 }
@@ -600,15 +626,17 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         }
                         if(state.noPlayers > 2) {
                             if(state.getTurn() > 2) {
-                                if(players[currentNumber].getLumber() >= 1 &&  players[currentNumber].getBrick() >= 1) {
-                                    players[currentNumber].placeBuilding(2);
+                                if(state.players.get(currentNumber).getLumber() >= 1 &&  state.players.get(currentNumber).getBrick() >= 1) {
+                                    buildMessage build = new buildMessage(2, currentNumber);
+                                    connection.send(build);
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumRoad() > 14) {
-                                    players[currentNumber].startRoad();
+                                if(state.players.get(currentNumber).getNumRoad() > 14) {
+                                    buildMessage b = new buildMessage(4, currentNumber);
+                                    connection.send(b);
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
                                 }
@@ -616,15 +644,17 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         }
                         if(state.noPlayers > 1) {
                             if(state.getTurn() > 1) {
-                                if(players[currentNumber].getLumber() >= 1 &&  players[currentNumber].getBrick() >= 1) {
-                                    players[currentNumber].placeBuilding(2);
+                                if(state.players.get(currentNumber).getLumber() >= 1 &&  state.players.get(currentNumber).getBrick() >= 1) {
+                                    buildMessage build = new buildMessage(2, currentNumber);
+                                    connection.send(build);
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumRoad() > 14) {
-                                    players[currentNumber].startRoad();
+                                if(state.players.get(currentNumber).getNumRoad() > 14) {
+                                    buildMessage b = new buildMessage(4, currentNumber);
+                                    connection.send(b);
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
                                 }
@@ -632,15 +662,17 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                         }
                         else {
                             if(state.getTurn() > 0) {
-                                if(players[currentNumber].getLumber() >= 1 &&  players[currentNumber].getBrick() >= 1) {
-                                    players[currentNumber].placeBuilding(2);
+                                if(state.players.get(currentNumber).getLumber() >= 1 &&  state.players.get(currentNumber).getBrick() >= 1) {
+                                    buildMessage build = new buildMessage(2, currentNumber);
+                                    connection.send(build);
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
                                 }
                             }
                             else {
-                                if(players[currentNumber].getNumRoad() > 14) {
-                                    players[currentNumber].startRoad();
+                                if(state.players.get(currentNumber).getNumRoad() > 14) {
+                                    buildMessage b = new buildMessage(4, currentNumber);
+                                    connection.send(b);
                                     catanMessage m = new catanMessage("road", r.getTitle());
                                     connection.send(m);
                                 }

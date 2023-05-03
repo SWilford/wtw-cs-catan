@@ -99,23 +99,23 @@ public class Player implements Serializable {
 
 
     public void gainResource(String r, int num) {
-        if(r.equals("lumber")) { //checks what the title is
+        if(r.equals("Forest")) { //checks what the title is
             numLumber += num;
             hand.addCard(new resourceCard(1));
         }
-    else if(r.equals("wheat")) {
+    else if(r.equals("Fields")) {
             numWheat += num;
             hand.addCard(new resourceCard(5));
         }
-    else if(r.equals("sheep")) {
+    else if(r.equals("Pasture")) {
             numSheep += num;
             hand.addCard(new resourceCard(3));
         }
-    else if(r.equals("brick")) {
+    else if(r.equals("Hills")) {
             numBrick += num;
             hand.addCard(new resourceCard(2));
         }
-    else if(r.equals("ore"))
+    else if(r.equals("Mountains"))
         {
 
             numOre += num;
