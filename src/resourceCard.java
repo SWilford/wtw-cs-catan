@@ -1,6 +1,7 @@
 import javax.swing.*;
+import java.io.Serializable;
 
-public class resourceCard extends card{
+public class resourceCard extends card implements Serializable {
 
     private final int type;
 

@@ -114,7 +114,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
     private catanButton[] places;
     private dice die1, die2;
     private int rollNum;
-    private card wood, brick;
+    private card wood, brick, sheep, ore, wheat;
     private catanState state;
     //blocked out private playerHand hand1, hand2, hand3, hand4;
     int time;
@@ -138,10 +138,15 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
     //constructor
     public catanGraphics(String hostName, int serverPortNumber) throws IOException {
+        connection = new catanSClient(hostName, serverPortNumber);
+        myID = connection.getID();
         building = false;
         hasRolled = true;
         wood = new resourceCard(1);
         brick = new resourceCard(2);
+        sheep = new resourceCard(3);
+        ore = new resourceCard(4);
+        wheat = new resourceCard(5);
         /*blocked outhand1 = new playerHand();
         hand2 = new playerHand();*/
         book = new rulebook();
@@ -152,8 +157,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
         trading = false;
         playerTrading = false;
         npcTrading = false;
-        connection = new catanSClient(hostName, serverPortNumber);
-        myID = connection.getID();
         currentPage = 1;
         actPage = 1;
         addMouseListener(this); //mouse
@@ -351,7 +354,8 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                             if (state.bard.web.isNext(i, r, c)) {
                                 if(state.bard.web.getOwner(i) != null) {
                                     if (state.bard.web.getOwner(i).equals("BLUE")) {
-                                            gainMessage gain = new gainMessage(new resourceCard(state.bard.getTypeInt(r, c)), 0);
+                                            resourceCard rc = new resourceCard(state.bard.getTypeInt(r,c));
+                                            gainMessage gain = new gainMessage(rc, 0);
                                             connection.send(gain);
                                             resourceMessage collect = new resourceMessage(state.bard.getTileType(r,c), 0);
                                             connection.send(collect);

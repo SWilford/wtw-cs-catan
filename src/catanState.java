@@ -96,11 +96,12 @@ public class catanState implements Serializable {
                 }
             }
         }
-        if(gameInProgress && message instanceof gainMessage && sender == currentPlayer) {
+        if(gameInProgress && message instanceof gainMessage /*&& sender == currentPlayer*/) {
             int p = ((gainMessage)message).getPlayer();
             resourceCard c = ((gainMessage)message).getCard();
             if(p == 0) {
                 hands.get(p).addCard(c);
+                System.out.println("I am reaching you.");
             }
             else if(p == 1) {
                 hands.get(p).addCard(c);
