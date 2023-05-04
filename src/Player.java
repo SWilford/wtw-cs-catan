@@ -51,30 +51,30 @@ public class Player implements Serializable {
         if (i == 0) {
             numSettlement--;
             numLumber--;
-            hand.removeCard(new resourceCard(1));
+            hand.removeCard(1);
             numBrick--;
-            hand.removeCard(new resourceCard(2));
+            hand.removeCard(2);
             numWheat--;
-            hand.removeCard(new resourceCard(5));
+            hand.removeCard(5);
             numSheep--;
-            hand.removeCard(new resourceCard(3));
+            hand.removeCard(3);
 
 
         } else if (i == 1) {
             numCity--;
             numSettlement++;
             numOre -= 3;
-            hand.removeCard(new resourceCard(4));
-            hand.removeCard(new resourceCard(4));
-            hand.removeCard(new resourceCard(4));
-            hand.removeCard(new resourceCard(5));
-            hand.removeCard(new resourceCard(5));
+            hand.removeCard(4);
+            hand.removeCard(4);
+            hand.removeCard(4);
+            hand.removeCard(5);
+            hand.removeCard(5);
             numWheat -= 2;
         } else {
             numRoad--;
             numBrick--;
-            hand.removeCard(new resourceCard(1));
-            hand.removeCard(new resourceCard(2));
+            hand.removeCard(1);
+            hand.removeCard(2);
 
             numLumber--;
         }
@@ -146,8 +146,8 @@ public class Player implements Serializable {
         return numRoad;
     }
 
-    public card[] getHand() {
-        return hand1;
+    public playerHand getHand() {
+        return hand;
     }
 
     public void setHand(card[] hand) {

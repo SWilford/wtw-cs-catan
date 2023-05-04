@@ -18,9 +18,18 @@ public class playerHand implements Serializable {
     {
         return hand.size();
     }
-    public void removeCard(card c)
+    public void removeCard(int t)
     {
-        hand.remove(c);
+        boolean removed = false;
+        int i = 0;
+        while(!removed) {
+            resourceCard cord = (resourceCard)hand.get(i);
+            if(cord.getType() == t) {
+                hand.remove(cord);
+                removed = true;
+            }
+            i++;
+        }
     }
 
     public void showHand(Graphics g, int x1, int y1)
@@ -36,5 +45,9 @@ public class playerHand implements Serializable {
                 y+= 250;
             }
         }
+    }
+
+    public card getHand(int i) {
+        return hand.get(i);
     }
 }

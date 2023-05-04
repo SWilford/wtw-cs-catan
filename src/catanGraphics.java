@@ -303,18 +303,6 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                 drawCities(g);
 
                 //place(g);
-            if(connection.getID()==1) {
-                state.hands.get(0).showHand(g, 1000, 0);
-            }
-            if(connection.getID()==2) {
-                state.hands.get(1).showHand(g, 1000, 0);
-            }
-            if(connection.getID()==3) {
-                state.hands.get(2).showHand(g, 1000, 0);
-            }
-            if(connection.getID()==4) {
-                state.hands.get(3).showHand(g, 1000, 0);
-            }
             die1.drawDice(g);
             die2.drawDice(g);
             placing = true;
@@ -354,9 +342,9 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                             if (state.bard.web.isNext(i, r, c)) {
                                 if(state.bard.web.getOwner(i) != null) {
                                     if (state.bard.web.getOwner(i).equals("BLUE")) {
-                                            resourceCard rc = new resourceCard(state.bard.getTypeInt(r,c));
+                                            /*resourceCard rc = new resourceCard(state.bard.getTypeInt(r,c));
                                             gainMessage gain = new gainMessage(rc, 0);
-                                            connection.send(gain);
+                                            connection.send(gain);*/
                                             resourceMessage collect = new resourceMessage(state.bard.getTileType(r,c), 0);
                                             connection.send(collect);
                                             hasGiven = true;
@@ -390,6 +378,22 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
                     }
                 }
             }
+            if(connection.getID()==1) {
+                playerHand h = state.players.get(0).getHand();
+                showHand(g, 1000, 0, h);
+            }
+            if(connection.getID()==2) {
+                playerHand h = state.players.get(1).getHand();
+                showHand(g, 1000, 0, h);
+            }
+            if(connection.getID()==3) {
+                playerHand h = state.players.get(2).getHand();
+                showHand(g, 1000, 0, h);
+            }
+            if(connection.getID()==4) {
+                playerHand h = state.players.get(3).getHand();
+                showHand(g, 1000, 0, h);
+            }
         }
         else if(currentScreen == 5)
         {
@@ -400,6 +404,7 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
 
             if(state.noPlayers == 2)
             {
+                //this needs to be fixed
                 state.hands.get(0).showHand(g, 250, 0);
                 state.hands.get(1).showHand(g, 250, 300);
                 if(connection.getID() == 1)
@@ -1351,6 +1356,38 @@ public class catanGraphics extends JPanel implements MouseListener, MouseMotionL
             }
         }
         repaint();
+    }
+
+    public void showHand(Graphics g, int x1, int y1, playerHand f)
+    {
+        int x = x1;
+        int y = y1;
+        for (int i = 0; i<f.size(); i++) {
+            ImageIcon drawnCard;
+            resourceCard cord = (resourceCard)f.getHand(i);
+            if(cord.getType() == 1) {
+                drawnCard = new ImageIcon("images/woodCard.png");
+            }
+            else if(cord.getType() == 2) {
+                drawnCard = new ImageIcon("images/brickCard.png");
+            }
+            else if(cord.getType() == 3) {
+                drawnCard = new ImageIcon("images/sheepCard.png");
+            }
+            else if(cord.getType() == 4) {
+                drawnCard = new ImageIcon("images/oreCard.png");
+            }
+            else {
+                drawnCard = new ImageIcon("images/wheatCard.png");
+            }
+            g.drawImage(drawnCard.getImage(), x, y, 130, 250, null);
+            x += 20;
+            if(x>=1346)
+            {
+                x = 1000;
+                y+= 250;
+            }
+        }
     }
 
     public void drawBuildButtons(Graphics g) {

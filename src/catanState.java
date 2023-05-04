@@ -115,8 +115,9 @@ public class catanState implements Serializable {
 
         }
         if(gameInProgress && message instanceof resourceMessage && sender == currentPlayer) {
-            String r = ((resourceMessage)message).getResource();
-            int p = ((resourceMessage)message).getPlayer();
+            resourceMessage change = (resourceMessage)message;
+            String r = change.getResource();
+            int p = change.getPlayer();
             if(p == 0) {
                 players.get(0).gainResource(r, 1);
             }
